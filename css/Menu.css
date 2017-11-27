@@ -39,7 +39,7 @@ body
 	margin-top: 150px;
 	border: solid 3px black;
 	width: 250px;
-	background-color: rgba(27,1,155,0.5); ;
+	background-color: rgba(27,1,155,0.5); 
 
 }
 #ulmenu /* Contien tous les blocs avec les liens (pour flexbox)  */
