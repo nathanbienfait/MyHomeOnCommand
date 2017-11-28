@@ -1,19 +1,14 @@
 /* ---------MENU--------*/
 
 
-#h1Menu /* gère me titre du menu */
+#h1Menu /* gère le titre du menu */
 {
 	color: white;
 	text-align: left;
 	padding-left: 20px;
 	margin-bottom: 50px;
 }
-body
-{
-	background: url(image/city.jpg) no-repeat center center fixed;
-	background-size: cover;
-	font-family: Arial;
-}
+
 .listeMenu /* Permet de gérer les cases contenant les liens du menu */
 {
 	list-style: none;
@@ -24,14 +19,15 @@ body
 	margin: 0px 5px 30px 0px ;
 	padding: 5px;
 	box-shadow: 6px 6px 6px black;
-
-}
-.lienMenu /* Juste utile pour enlever le surlignage du au lien */
-{
-	color: black;
 	text-decoration-line: none;
+	color: black;
 
 }
+.listeMenu:hover
+{
+	box-shadow: 0px 0px 0px;
+}
+
 .menu /* Comprend tout le bloc menu */
 {
 	
@@ -39,7 +35,7 @@ body
 	margin-top: 150px;
 	border: solid 3px black;
 	width: 250px;
-	background-color: rgba(27,1,155,0.5); 
+	background-color: rgba(27,1,155,0.5); ;
 
 }
 #ulmenu /* Contien tous les blocs avec les liens (pour flexbox)  */
@@ -50,13 +46,16 @@ body
 .Mdeconnexion /* Bouton déconnecter */
 {
 	border:solid 2px black;
-	width: 130px;
-	text-align: center;
 	background-color: white;
-	margin: 25px 0px 25px 100px ;
+	margin-left: 100px;
 	padding: 2px;
 	box-shadow: 6px 6px 6px black;
+	text-decoration-line: none;
+	color: black;
 }
-
+.Mdeconnexion:hover
+{
+	box-shadow: 0px 0px 0px;
+}
 
 /* -------------------------*/
