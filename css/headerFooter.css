@@ -12,7 +12,7 @@
 {
     height: 100%;
     width: 15%;
-    box-sizing: border-box;
+    
     
     
 }
@@ -30,9 +30,9 @@ img
     width: 85%;
     height: 100%;
     display: flex;
-    /*background-color:rgba(50,33,140,0.5);*/
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 #bas
@@ -43,4 +43,5 @@ img
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
