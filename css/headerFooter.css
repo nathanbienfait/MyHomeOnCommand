@@ -1,0 +1,46 @@
+#bandeau_accueil
+{
+    display:flex;
+    height: 150px;
+    width: 99.9%;
+    background: url("../images/image.png") no-repeat center center fixed ; 
+    background-size: cover;
+    background-color: rgba(105,104,189,1);
+}
+
+#logo
+{
+    height: 100%;
+    width: 15%;
+    box-sizing: border-box;
+    
+    
+}
+
+img
+{
+    width: 100%;
+    height:100%;
+    margin: 0;
+    padding: 0;
+}
+
+#titre
+{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    /*background-color:rgba(50,33,140,0.5);*/
+    justify-content: center;
+    align-items: center;
+}
+
+#bas
+{
+    height: 100px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
