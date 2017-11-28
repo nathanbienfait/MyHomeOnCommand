@@ -1,12 +1,13 @@
      <div class="menu">
     	<h1 id="h1Menu">Menu</h1>
         <ul id="ulmenu">
-            <li class="listeMenu"><a href="panneauControleClient.php" class="lienMenu">Panneau de Controle</a></li>
-            <li class="listeMenu"><a href="gestionProfilClientt.php" class="lienMenu">Gestion du profil</a></li>
-            <li class="listeMenu"><a href="gestionHabitationClient.php" class="lienMenu">Gestion de l'habitation</a></li>
-            <li class="listeMenu"><a href="supportClient.php" class="lienMenu">Support</a></li>
-            <li class="listeMenu"><a href="consomationClient.php" class="lienMenu">Consomation</a></li>
+            <a href="panneauControleClient.php" class="listeMenu">Panneau de Controle<li></li></a>
+            <a href="gestionProfilClientt.php" class="listeMenu">Gestion du profil<li></li></a>
+            <a href="gestionHabitationClient.php" class="listeMenu">Gestion de l'habitation<li></li></a>
+            <a href="supportClient.php" class="listeMenu">Support<li></li></a>
+            <a href="consomationClient.php" class="listeMenu">Consomation<li"></li></a>
             
         </ul>
-        <div class="Mdeconnexion"><a href="deconnexion.php" class="lienMenu">Se deconnecter</a></div>
+        <a href="deconnexion.php" class="Mdeconnexion">Se deconnecter</a>
+
     </div>
