@@ -53,4 +53,10 @@
     justify-content: center;
     align-items: center;
     color: white;
+    list-style-type: none;
+}
+
+li
+{
+    padding: 10px;
 }
