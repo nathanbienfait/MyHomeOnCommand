@@ -1,0 +1,70 @@
+#CorpTexte /* Contient le carré spécifique de la page (sans le menu) */
+{
+	background-color: rgba(255, 255, 255, 0.5);
+	border:solid black 0.3em;
+	border-left: 0em;
+	width: 78.7em;
+	height: 33.5em;
+	overflow: auto;
+}
+
+#flex /* Contient les éléments de la page y compris le menu (sauf header et footer) */
+{
+	display: flex;
+}
+#maRecherche /*Contient la case recherche */
+{
+	border:solid black 0.1em;
+	position: absolute;
+	width: 16%;
+	height: 6%;
+	padding:;
+	margin:1.5% 0% 0% 60%;
+	font-size: 1em;
+	padding-left: 1%;
+}
+
+#contactSupport /* Case contact support*/
+{
+
+	height: 7.3%;
+	width: 13%;
+	text-align: center;
+	padding: 2px;
+	margin:25% 0% 0% 63%;
+	border: solid black 0.3em;
+	background-color: white;
+	position: absolute;
+	box-shadow: 0.3em 0.3em 0.3em black;
+
+}
+#contactSupport:hover
+{
+	box-shadow: 0% 0% 0% black;
+}
+
+#textcontact /* gère l'intérieur de la case contact (et son texte) */
+{
+	text-decoration-line: none;
+	color: black;
+	font-size: 1.5em;
+}
+.groupeq /* contient les encadrés avec les questions */
+{
+	border:solid black 0.15em;
+	width: 60%;
+	background-color: white;
+	color: black;
+	margin: 7% 0% 0% 4%;
+	border-bottom: 0px;
+	padding: 0.4em;
+}
+.grouper /* contient les encadrés avec les réponses */
+{
+	border:solid black 0.15em;
+	width: 60%;
+	background-color: white;
+	color: black;
+	margin: 0% 0% 5% 4%;
+	padding: 0.4em;
+}
