@@ -49,15 +49,25 @@
 #bas
 {
     height: 100px;
-    width: auto;
+    width: 100%;
     background-color: rgba(0,0,0,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    
-    
+    list-style-type: none;
 }
+
+li
+{
+    padding: 10px;
+}
+
+a
+{
+    color: silver;
+}
+
 #bandeau_invisible
 {
     height: 150px;
