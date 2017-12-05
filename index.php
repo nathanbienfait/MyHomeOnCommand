@@ -1,17 +1,16 @@
 <?php
 session_start();
-include('controleur/controleur.php');
-include('modele/modele.php');
-function route($x)
+
+require_once('controleur/controleur_accueil.php');
+require_once('controleur/controleur_admin.php');
+require_once('modele/modele_accueil.php');
+require_once('modele/modele_admin.php');
+
+
+function route()
 {
-if($x==null)
-{
+
 $page=$_GET['page'];
-}
-else
-{
-$page=$x;    
-}
 switch($page)
 {
     case 'accueil':
@@ -71,6 +70,7 @@ switch($page)
         {
             if($_SESSION['type']==1)
             {
+                
                 if(isset($_POST['bouton_modifier']))
                 {
                    adminModifInfoClient($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone'],$_POST['type'],$_POST['pseudo'],$_POST['mdp'],$_POST['idClient']);
@@ -94,7 +94,7 @@ switch($page)
 
 if(isset($_GET['page']))
 {
-    route(null);
+    route();
 }
 
 else
