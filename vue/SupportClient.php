@@ -4,8 +4,8 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/Style_General.css" />
         <link rel="stylesheet" href="css/SupportClient.css" />
-        <link rel="stylesheet" type="text/css" href="css/Menu6.css">
-        <link rel="stylesheet" type="text/css" href="css/headerFooter2.css">
+        <link rel="stylesheet" type="text/css" href="css/Menu.css">
+        <link rel="stylesheet" type="text/css" href="css/headerFooter.css">
         <title>MyHomeOnCommand</title>
     </head>
     <?php include('Header.php');?>
