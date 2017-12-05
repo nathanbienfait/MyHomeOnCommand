@@ -77,7 +77,7 @@ switch($page)
                 
                 }
                 $info=adminInfoClient();
-                require_once('vue/panneauControleClient.php');
+                require_once('vue/Page_adminDonneeClient.php');
             }
         }
         break;
