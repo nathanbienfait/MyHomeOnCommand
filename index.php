@@ -28,7 +28,7 @@ switch($page)
         {
             if($_SESSION['type']==3)
             {
-                require_once('vue/vue.php');
+                require_once('controleur/Controleur_client_panneaucapteurs.php');
             }
             if($_SESSION['type']==1)
             {
