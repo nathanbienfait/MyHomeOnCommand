@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once('controleur/controleur_accueil.php');
-require_once('controleur/controleur_admin.php');
-require_once('modele/modele_accueil.php');
-require_once('modele/modele_admin.php');
+require_once('controleur/controleurAccueil.php');
+require_once('controleur/controleurAdmin.php');
+require_once('modele/modeleAccueil.php');
+require_once('modele/modeleAdmin.php');
 
 
 function route()
@@ -28,7 +28,7 @@ switch($page)
         {
             if($_SESSION['type']==3)
             {
-                require_once('controleur/Controleur_client_panneaucapteurs.php');
+                require_once('controleur/controleurPanneauCapteursClient.php');
             }
             if($_SESSION['type']==1)
             {
@@ -56,7 +56,7 @@ switch($page)
         }
         if($verif==1)
         {
-            require_once('vue/Page_inscription_reussi.php');
+            require_once('vue/inscriptionReussie.php');
         }
         else
         {
@@ -77,7 +77,7 @@ switch($page)
                 
                 }
                 $info=adminInfoClient();
-                require_once('vue/Page_adminDonneeClient.php');
+                require_once('vue/donneesClientAdmin.php');
             }
         }
         break;
