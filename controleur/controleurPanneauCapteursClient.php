@@ -1,5 +1,5 @@
 <?php
-require('modele/modeleClientPanneauCapteurs.php');
+require('modele/modelePanneauCapteursClient.php');
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
