@@ -7,7 +7,7 @@ function afficheAccueil()
         session_unset();
         session_destroy();
     }
-    require_once('vue/pageAccueil.php');
+    require_once('vue/Accueil.php');
     
 }
 function login($login,$mdp)
