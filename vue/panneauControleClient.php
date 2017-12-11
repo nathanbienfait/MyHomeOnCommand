@@ -4,7 +4,7 @@
 
 		<head>
 			<meta charset='utf-8'/>
-			<link rel="stylesheet" href="stylePanneauControle"/>
+			<link rel="stylesheet" href="stylePanneauControleClient"/>
 			<title> <?php htmlspecialchars($title); ?> </title>
 		</head>
 
