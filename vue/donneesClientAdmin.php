@@ -2,16 +2,16 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/Style_General.css" />
-        <link rel="stylesheet" href="css/headerFooter.css" />
-        <link rel="stylesheet" href="css/Style_adminDonneeClient.css" />
-        <link rel="stylesheet" href="css/Menu.css" />
+        <link rel="stylesheet" href="css/styleGeneral.css" />
+        <link rel="stylesheet" href="css/styleHeaderFooter.css" />
+        <link rel="stylesheet" href="css/styleaDonneesClientAdmin.css" />
+        <link rel="stylesheet" href="css/styleMenu.css" />
         <title>MyHomeOnCommand</title>
     </head>
     
     <body>
         
-        <?php include('vue/Header.php');?>
+        <?php include('vue/header.php');?>
         <div id='corps'>
         <?php include('vue/menuAdmin.php');?>
        
@@ -58,7 +58,7 @@
         </div>
         
         </div>
-        <?php include('vue/Footer.php');?>
+        <?php include('vue/footer.php');?>
             
     </body>
 </html>
