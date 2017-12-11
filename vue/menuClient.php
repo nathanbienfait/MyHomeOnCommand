@@ -5,7 +5,7 @@
             <a href="index.php?page=gestionProfilClient" class="listeMenu">Gestion du profil<li></li></a>
             <a href="index.php?page=gestionHabitationClient" class="listeMenu">Gestion de l'habitation<li></li></a>
             <a href="index.php?page=supportClient" class="listeMenu">Support<li></li></a>
-            <a href="index.php?page=consomationClient" class="listeMenu">Consommation<li"></li></a>
+            <a href="index.php?page=consommationClient" class="listeMenu">Consommation<li"></li></a>
             
         </ul>
         <a href="index.php?page=accueil" class="Mdeconnexion">Se deconnecter</a>
