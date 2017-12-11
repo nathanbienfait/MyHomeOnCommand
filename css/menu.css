@@ -1,4 +1,4 @@
-/* ---------MENU--------*/
+* ---------MENU--------*/
 
 
 #h1Menu /* gère le titre du menu */
@@ -21,6 +21,7 @@
 	box-shadow: 0.35em 0.35em 0.35em black;
 	text-decoration-line: none;
 	color: black;
+	height: 1em;
 
 }
 .listeMenu:hover
