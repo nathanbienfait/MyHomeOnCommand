@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/Style_General.css" />
-        <link rel="stylesheet" href="css/Style_Accueil.css" />
-        <link rel="stylesheet" href="css/headerFooter.css" />
+        <link rel="stylesheet" href="css/styleGeneral.css" />
+        <link rel="stylesheet" href="css/styleAccueil.css" />
+        <link rel="stylesheet" href="css/styleHeaderFooter.css" />
         <title>MyHomeOnCommand</title>
     </head>
     
     <body>
-        <?php include('vue/Header.php');?>
+        <?php include('vue/header.php');?>
         <div id="corps">
         <div id="barre_gauche_accueil">
             <div id="description_accueil">
@@ -85,7 +85,7 @@
         
         </div>
     </div>
-    <?php include('vue/Footer.php');?>
+    <?php include('vue/footer.php');?>
     <script>
         document.inscription.onsubmit = function()
         {
