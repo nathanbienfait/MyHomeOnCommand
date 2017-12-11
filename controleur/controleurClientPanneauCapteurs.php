@@ -1,5 +1,5 @@
 <?php
-require('modele/Modèle_client_panneaucapteurs.php');
+require('modele/modeleClientPanneauCapteurs.php');
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
@@ -13,7 +13,7 @@ else
 switch ($fonction)
 {
 	case 'capteurs' :
-		$vue='Client_panneau_controle';
+		$vue='clientPanneauControle';
 		$title='Vos capteurs';
 		$entete= 'Les capteurs de votre domicile' . $_SESSION['prenom'];
 		$id_utilisateur= Obtenir_id_utilisateur($_SESSION['prenom'], $_SESSION['mdp']);
@@ -36,7 +36,7 @@ switch ($fonction)
 }
 
 
-include('vue/Header.php');
+include('vue/header.php');
 include('vue/' . $vue . '.php');
 include('vue/menuClient.php');
-include('vue/Footer.php');
+include('vue/footer.php');
