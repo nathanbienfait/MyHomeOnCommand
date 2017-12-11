@@ -1,5 +1,5 @@
 <div id="bandeau_accueil">
-    <div id="logo"><a href="index.php?page=accueil" title="Accueil"><img id="imagelogo" src="images/Logoetnomsite2white.png" alt="Logo de MyHomeOnCommand" /></a></div>
+    <div id="logo"><a href="index.php?page=accueil" title="Accueil"><img id="imagelogo" src="images/Logo.png" alt="Logo de MyHomeOnCommand" /></a></div>
         <div id="titre">A connected home in a connected world
     <?php 
         if(isset($_SESSION['prenom']))
