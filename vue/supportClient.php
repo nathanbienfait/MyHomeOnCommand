@@ -2,13 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/Style_General.css" />
-        <link rel="stylesheet" href="css/SupportClient.css" />
-        <link rel="stylesheet" type="text/css" href="css/Menu.css">
-        <link rel="stylesheet" type="text/css" href="css/headerFooter.css">
+        <link rel="stylesheet" href="css/styleGeneral.css" />
+        <link rel="stylesheet" href="css/styleSupportClient.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="css/styleHeaderFooter.css">
         <title>MyHomeOnCommand</title>
     </head>
-    <?php include('Header.php');?>
+    <?php include('header.php');?>
     <body>
         <div id="flex">
     	   <?php include('menuClient.php');?>
@@ -37,5 +37,5 @@
         </div>
 
     </body>
-    <?php include('Footer.php');?>
+    <?php include('footer.php');?>
 </html>
