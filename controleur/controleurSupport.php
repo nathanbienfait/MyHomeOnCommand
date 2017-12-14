@@ -1,4 +1,5 @@
 /* fonction créant un tableau contenant les cases questions/réponses */
+
 function tableauqr()
 {
     $clientqr=new QuestionReponse; /* Permet d'ouvrir l'objet contenant les fonctions correspondant au service question/réponse */
