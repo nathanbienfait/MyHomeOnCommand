@@ -1,0 +1,1 @@
+<div id="bas"><a href="index.php?page=conditions">conditions d'utilisation</a>&nbsp&nbsp&nbsp&nbsp<a href="index.php?page=mentionsLegales">mentions légales</a></div>

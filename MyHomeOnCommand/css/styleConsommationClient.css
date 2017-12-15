@@ -1,0 +1,41 @@
+#corps
+{
+	display:flex;
+    min-height: 100%;
+    font-size:16px; 
+}
+
+#liste_graph
+{
+	width:80%;
+	display:flex;
+	list-style-type:none;
+	justify-content:space-between;
+	color:black;
+	flex-wrap:wrap;
+
+}
+
+#lumieres,#eau,#electricite,#gaz
+{
+	width:40%;
+	height:50%;
+	text-align:center;
+	border:solid black 4px;
+	background-color:white; 
+	justify-content:center;
+	opacity:0.8;
+	margin-top:40px;
+	padding-top:10px;
+}
+
+#imagegraphe1,#imagegraphe2
+{
+	width:70%;
+	padding-top:15%
+}
+
+#graph
+{
+    width: 80%;
+}
