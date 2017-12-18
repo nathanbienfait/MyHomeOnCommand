@@ -190,6 +190,10 @@ switch($page)
             {
                 $tableauqr=tableauqr();
                 require_once('vue/supportAdmin.php');
+                if(isset($_POST['supprimer']))
+                        {
+                            supprimerqr($_POST['supprimer']);
+                        }
             }         
         
         }
