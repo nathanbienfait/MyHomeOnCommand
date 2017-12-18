@@ -23,7 +23,8 @@ class QuestionReponse
 
     public function supprimer($id)
     {
-        $bd=$this->dbconnect();
-        $Supprime = $db->prepare ('DELETE FROM qr WHERE id_qr="'.$id.'"');
+        $bdd=$this->dbconnect();
+        $supprime = $bdd->prepare('DELETE FROM qr WHERE id_qr=:id');
+        $supprime->execute(array('id'=>$_POST['supprimer']));
     }
 }
