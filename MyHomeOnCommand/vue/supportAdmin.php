@@ -22,6 +22,7 @@
                 
             </div>
                <div>
+                    
                     <?php 
                         $questionsreponses=tableauqr();
                         $taille=count($questionsreponses);
@@ -40,24 +41,17 @@
                                     </table>
                                     <form class="bouton" action="index.php?page=supportAdmin" method="Post">
                                         <input class="png" type="image" src="images/delete.png" name="supprimer" value='.$questionsreponses[$x+2].'>
-                                        <input class="png" type="image" src="images/edit.png" name="edit" value='.$questionsreponses[$x+2].'>
+                                        <input class="png2" type="image" src="images/edit.png" name="edit" value='.$questionsreponses[$x+2].'>
+                                        
                                     </form>
+                                    
 
                                 </div>';
                             $x=$x + 3;
                         }
-                        if(isset($_POST['supprimer']))
-                        {
-                            echo" Vous voullez supprimer l'id numéro" . $_POST['supprimer'];
-                            supprimerqr($_POST['supprimer']);
-
-                        }
-                        if(isset($_POST['edit']))
-                        {
-                            echo" Vous voullez modifier l'id numéro " . $_POST['edit'];
-
-                        }
+                        
                     ?>
+                
                </div>
                 
            </div>
