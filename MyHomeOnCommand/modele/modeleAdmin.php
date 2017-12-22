@@ -7,7 +7,7 @@ class admin
         $req = $db->query('SELECT * FROM info_utilisateur NATURAL JOIN utilisateur');
         return $req;
     }
-    
+
     public function modifDonneeClient($prenom,$nom,$email,$telephone,$statut, $id)
     {
         $db=$this->dbConnect();
@@ -20,26 +20,25 @@ class admin
             'statut' => $statut,
             'id' => $id
         ));
-        
+
     }
-    
-    public function modifCompteClient($login,$mdp,$id)
+
+    public function modifCompteClient($login,$id)
     {
         $db=$this->dbConnect();
-        $req=$db->prepare('UPDATE utilisateur SET login = :login, password = :mdp WHERE id_utilisateur = :id');
+        $req=$db->prepare('UPDATE utilisateur SET login = :login WHERE id_utilisateur = :id');
         $req->execute(array(
             'login' => $login,
-            'mdp' => $mdp,
             'id' => $id
         ));
-        
+
     }
-    
+
     private function dbConnect()
     {
        try
         {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', 'root');
         }
         catch (Exception $e)
         {
@@ -47,5 +46,5 @@ class admin
         }
         return $db;
     }
-    
+
 }
