@@ -20,7 +20,7 @@ function login($login,$mdp)
     {
         if($verif['login']==$login)
         {
-            if($verif['password']==$mdp)
+            if(password_verify($mdp,$verif['password']))
             {
                 
                 $_SESSION['prenom'] = $verif['login'];
@@ -59,7 +59,9 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
         
         if ($verif==0)
         {
-            $utilisateur->setUtilisateur($pseudo,$mdp);
+            
+            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+            $utilisateur->setUtilisateur($pseudo,$criptedMdp);
             $idUtil=$utilisateur->getIdUtilisateur($pseudo);
             $id=$idUtil->fetch();
             $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur']);
@@ -91,3 +93,4 @@ function infoBandeau($idClient)
     $information=$info->fetch();
     return $information;
 }
+
