@@ -13,8 +13,14 @@ function tableauqr()
     }
     return $tableauqr;
 }
+
 function supprimerqr($id)
 {
     $clientqr=new QuestionReponse;
-    $supprimer=$clientqr->supprimer($id);
+    $supprimer=$clientqr->supprimer($id); 
+}
+function modifqr($idqr,$contenur,$contenuq)
+{
+    $qr = new QuestionReponse;
+    $qr->modifier($idqr,$contenur,$contenuq);
 }
