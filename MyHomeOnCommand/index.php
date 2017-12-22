@@ -182,19 +182,24 @@ switch($page)
         }
         break;
 
-    case 'supportAdmin':
+        case 'supportAdmin':
 
         if (isset($_SESSION['type']))
         {
             if ($_SESSION['type']==1) 
             {
                 $tableauqr=tableauqr();
-                require_once('vue/supportAdmin.php');
                 if(isset($_POST['supprimer']))
-                        {
-                            supprimerqr($_POST['supprimer']);
-                        }
-            }         
+                {
+                    supprimerqr($_POST['supprimer']);
+                }
+                 
+                if(isset($_POST['edit2']))
+                {
+                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']);
+                }
+                require_once('vue/supportAdmin.php');
+            }        
         
         }
         break;
