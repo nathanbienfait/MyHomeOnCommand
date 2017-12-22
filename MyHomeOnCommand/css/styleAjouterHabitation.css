@@ -2,19 +2,60 @@
 {
     display: flex;
     min-height: 100%;
-    justify-content: space-between;
+    
     
     
 }
 
-.tableauDajout
+.titre
+{
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1%;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.titre:hover
+{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+form
 {
     border: 1px solid black;
     background-color: rgba(0, 0, 0, 0.9);
     margin-right: 2%;
     margin-top: 3%;
-   
+    width: ;
     padding: 1%;
     padding-top: 0%;
     border-radius: 5px;
+}
+
+#corpsdroit
+{
+    display: flex;
+    
+    
+    margin: 2%;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 80%;
+    padding:2%; 
+    border-radius: 5px;
+}
+
+#partieBouton
+{
+    display: flex;
+    flex-direction: column;
+   
+    width: 50%;
+    
+}
+#partieForm
+{
+    display: flex;
+    flex-direction: column;
+    
+  
+    
 }
