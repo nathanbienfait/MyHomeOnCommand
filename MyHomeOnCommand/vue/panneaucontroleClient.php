@@ -25,9 +25,7 @@
 						{
 							echo '<div class=\'case_logement\'>';
 								$nom_logement=Obtenir_nom_logement($id_logement);
-								echo '<h1>';
-								echo $nom_logement;
-								echo '</h1>';
+								echo '<h1>' . $nom_logement . '</h1>';
 								$id_pieces=Obtenir_id_pieces($id_logement);
 								echo '<div class=\'liste_pieces\'>';
 								foreach(Obtenir_id_pieces($id_logement) as $id_piece)
@@ -87,18 +85,19 @@
 						?>
 					</div>
 
-					<!--<div id='trier'>
-						<form action="" method="post">
+					<div id='trier'>
+						<form action="index.php?page=panneau" method="post">
 						<p>
 						<label for="tri">Trier les équipements par :</label>
 						<select name="tri" id="tri">
-							<option value="piece">Pièce</option>
+							<option value="piece" selected>Pièce</option>
 							<option value="type_commande">Type de commande</option>
 							<option value="type_parametre">Type de paramètre</option>
 						</select>
+						<input type="submit" value="Trier" id="bouton_tri"/>
 						</p>
 						</form>
-					</div>!-->
+					</div>
 
 				</div>
 			</div>
