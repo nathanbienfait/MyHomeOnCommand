@@ -1,0 +1,125 @@
+#corps
+{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+#paslemenu
+{
+	display: flex;
+	flex-direction: row;
+	width: 80%;
+	justify-content: space-between;
+}
+
+#panneau_controle_bloc_principal
+{
+	display: flex;
+	flex-direction: column;
+	color: black;
+	width: 90%;
+}
+
+#trier
+{
+	color: white;
+	padding-left: 0%;
+	padding-right: 0%;
+	align-content: right;
+}
+
+.bloc_type_equipement
+{
+	display: flex;
+	flex-direction: column;
+	margin: 1% 2% 1% 2%;
+	height: 200px;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.titre_image
+{
+	display: flex;
+	flex-direction: row;
+	width: 22%;
+	min-width: 22%;
+	height: 30%;
+	background-color: rgba(100,100,100,0.9);
+	justify-content: space-between;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+	border-radius: 20px 20px 0 0;
+}
+
+.titre_image h1
+{
+	margin-top: 0%;
+	padding-left: 1%;
+	height: 100%;
+}
+
+.thermometre
+{
+	width: 30%;
+	height: 100%;
+	margin-left: 30%;
+}
+
+.humidite
+{
+	width: 20%;
+	height: 100%;
+	margin-left: 30%;
+}
+
+.ouverture
+{
+	width: 50%;
+	height: 100%;
+	margin-left: 30%;
+}
+
+.pas_equipement
+{
+	padding-top: 25px;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-bottom: 25px;
+	background-color: rgba(255,255,255,0.6);
+}
+
+.nom_logement
+{
+	background-color: rgba(150,150,150,0.8);
+	width: 50%;
+	border-radius: 0 20px 0 0;
+}
+
+.liste_donnees
+{
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	background-color: rgba(255,255,255,0.6);
+	border-radius: 0 20px 0 0;
+}
+
+.bloc_donnees
+{
+	height: 1%;
+	width: 100%;
+	max-width: 25%;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: 1%;
+	margin-bottom: 5%;
+	background-color: red;
+
+	border-radius: 20px 20px 20px 20px;
+	background-color: rgba(255,255,255,0.6);
+
+}
