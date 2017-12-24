@@ -40,7 +40,7 @@ switch($page)
                 $title='Vos capteurs';
                 $entete= 'Les capteurs de votre domicile' . '' . $_SESSION['prenom'];
                 $id_logements=Obtenir_id_logements($_SESSION['id']);
-                require_once('vue/panneaucontroleClient.php');
+                require_once('controleur/controleurPanneaucapteursClient.php');
             }
             if($_SESSION['type']==1)
             {
