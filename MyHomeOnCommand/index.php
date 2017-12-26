@@ -88,6 +88,15 @@ switch($page)
                    adminModifInfoClient($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone'],$_POST['type'],$_POST['pseudo'],$_POST['mdp'],$_POST['idClient']);
                 
                 }
+                
+                // Modifier le slogan
+                if (!empty($_POST['Modifier_le_slogan']))
+                {
+                    $bdd = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+                    $req=$bdd->prepare('UPDATE slogan SET contenu = ? WHERE id_slogan = 1');
+                    $req->execute (array( $_POST["Modifier_le_slogan"] ));
+                 }
+            
                 $info=adminInfoClient();
                 require_once('vue/adminDonneeClient.php');
             }
