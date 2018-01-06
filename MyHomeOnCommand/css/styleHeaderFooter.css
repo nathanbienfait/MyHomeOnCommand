@@ -47,6 +47,27 @@
     font-size: 0.5em;
 }
 
+#basHeader
+{
+    display :flex;
+    width:100%;
+}
+
+#modifier
+{
+    font-size: 0.5em;
+    height:15%;
+    width: 150%;
+    margin-left: 15%;
+}
+
+#bonjour
+{
+    height:15%;
+    margin-left: 38%;
+    width: 100%;
+    font-size: 0.5em;
+    
 #bas
 {
     height: 100px;
