@@ -105,3 +105,34 @@ function afficherHabitation($idClient)
     $habitation=$infos->getNomCemac($idClient);
     return $habitation;
 }
+
+function verifInfoClient()
+{
+    if(!isset($_SESSION['id']))
+    {
+        return 0;
+    }
+    $idClient=$_SESSION['id'];
+   
+    $utilisateur=new gestionProfilClient;
+
+    $info=$utilisateur->getUtilisateur($idClient);
+    $tab=[];
+
+    while ($donnees = $info->fetch())
+    {
+        $tab[0]=htmlentities($donnees["login"], ENT_QUOTES);
+        $tab[1]=htmlentities($donnees["password"], ENT_QUOTES);
+        $tab[2]=htmlentities($donnees["prenom"], ENT_QUOTES);
+        $tab[3]=htmlentities($donnees["nom"], ENT_QUOTES);
+        $tab[4]=htmlentities($donnees["email"], ENT_QUOTES);
+        $tab[5]=htmlentities($donnees["telephone"], ENT_QUOTES);
+    }
+    
+    if($tab[4]==null||$tab[5]==null)
+    {
+        return 1;
+    }
+    else 
+    {return 0;}
+}
