@@ -91,6 +91,21 @@ function nomTypeEquipement()
     return $tableType;
 }
 
+function nomEquipement($idClient)
+{
+    $nom=new ajout;
+    $equipements=$nom->getNomEquipement($idClient);
+    $x=0;
+    $tableEquipement=[];
+    while($equipement=$equipements->fetch())
+    {
+        $tableEquipement[$x]=$equipement['id_equipement'];
+        $tableEquipement[$x+1]=$equipement['nom_equipement'];
+        $tableEquipement[$x+2]=$equipement['id_cemac'];
+        $x=$x+3;
+    }
+    return $tableEquipement;
+}
 function ajouterEquipement($idCemac,$idType,$nomEquipement)
 {
     $equip=new ajout;
@@ -135,4 +150,34 @@ function verifInfoClient()
     }
     else 
     {return 0;}
+}
+
+function modifierNomLogement($nom,$id)
+{
+    $nouveauNom=new ajout; 
+    $nouveauNom->modifNomLogement($id,$nom);
+    echo "<script>alert(\"Modifications réalisées\")</script>";
+    
+}
+
+function modifierNomPiece($nom,$id)
+{
+    $nouveauNom=new ajout; 
+    $nouveauNom->modifNomPiece($id,$nom);
+    echo "<script>alert(\"Modifications réalisées\")</script>";
+    
+}
+
+function modifierNomCemac($nom,$id)
+{
+    $nouveauNom=new ajout; 
+    $nouveauNom->modifNomCemac($id,$nom);
+    echo "<script>alert(\"Modifications réalisées\")</script>";
+}
+
+function modifierNomEquipement($nom,$id)
+{
+    $nouveauNom=new ajout; 
+    $nouveauNom->modifNomEquipement($id,$nom);
+    echo "<script>alert(\"Modifications réalisées\")</script>";
 }
