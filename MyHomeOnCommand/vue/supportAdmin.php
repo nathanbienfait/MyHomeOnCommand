@@ -12,94 +12,108 @@
     </head>
     <?php include('vue/header.php');?>
     <body>
-        <script>
-            function show($x)
-            {
-                if ($x==2)
-                {
-                    return confirm('Voulez-vous supprimer cette question ?');
-                }
-                else if ($x==1)
-                {
-                    return confirm('Voulez-vous modifier cette question ?');
-                }
-            }
-            
-        </script>
+        
+    
+
     <div id="flex">
+
            <?php include('vue/menuAdmin.php');?>
+           
+            <div id="CorpTexte">
+                <button class="bouton_aff_modal" data-modal="modal1">Ajouter</button>
+                <div class='modal' id="modal1">
+                          <div class='modal-content'>
+                            <span class='close' >&times;</span>
+                               <form class="ajout" method="Post" action="index.php?page=supportAdmin" >
+                                    <strong>Question :</strong><textarea class="ajoutqr" name="ajoutQ"></textarea><br>
+                                    <strong>Réponse :</strong><textarea class="ajoutqr" name="ajoutR"></textarea><br>
+                                    <strong>Date de la question :</strong><input type="date" name="dateQ" classe="inputAjout"><br>
+                                    <strong>Date de la réponse :</strong><input type="date" name="dateR" classe="inputAjout">
+                                    <input type="submit" name="envoitAjout" onclick="return show(3)" class="envoie">
+                                </form>
+                          </div>
+                        </div>    
+                    <div class="qrBouton">
 
-           <div id="CorpTexte">
-                <form action="index.php?page=supportAdmin">
-                    <input type="search" id="maRecherche" name="q" placeholder="Recherche" action="index.php?page=supportAdmin">
-                </form>
-            <div>
-                      
-            </div>
-               <div>
-                   
-                    <?php 
-                        $questionsreponses=tableauqr();
-                        $taille=count($questionsreponses);
-                        $x=0;
-                        while ($x < $taille-1)
-                        {
-                            if (isset($_POST['edit']) && $_POST['edit'] == $questionsreponses[$x+2])
-                            {
-                                echo '
-                                <form method="Post" action="index.php?page=supportAdmin">
-                                <div class="qrBouton">
-                                    <table class="groupeq">
-                                        <tr>
-                                            <td><strong>QUESTION: </strong><textarea class="modif" name="modifq">'.$questionsreponses[$x].'</textarea></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>REPONSE: </strong><textarea class="modif" name="modifr">'. $questionsreponses[$x+1].'</textarea></td>
-                                        </tr>
-                                    </table>
-
-                                        <input id="edit" onclick="return show(1); " class="png2" type="image" src="images/edit.png" name="edit2" value='.$questionsreponses[$x+2].'>
-                                </form>        
-
-                                    
-
-                                </div>';
-                            }
-                            else
-                            {
-                            echo '
-                                <div class="qrBouton">
-                                    <table class="groupeq">
-                                        <tr>
-                                            <td><strong>QUESTION: </strong><br>'.nl2br($questionsreponses[$x]).'</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>REPONSE: </strong><br>'.nl2br($questionsreponses[$x+1]).'</td>
-                                        </tr>
-                                    </table>
-                                    <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="action" >
-                                        <input class="png" onclick="return show(2); " type="image" src="images/delete.png" name="supprimer" value='.$questionsreponses[$x+2].' ></form>
-                                    <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="action" >
-                                        <input id="edit" class="png2" type="image" src="images/edit.png" name="edit" value='.$questionsreponses[$x+2].'>
-                                        
-                                    </form>
-                                    
-
-                                </div>';
-                            }
-                            $x=$x + 3;
-                             
-                        }
+                    <?php foreach($tableauqr as $truc): ?>
                         
-                    ?>
-                
-               </div>
+                                        <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
+                                        <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
+                                  
+                                    <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
+                                        <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
 
+                                    
+                                        <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2" required/>
+                                            <div class='modal' id="modal2">
+                                                <div class='modal-content'>
+                                                    <span class='close' >&times;</span>
+                                                        <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="edit" >
+                                                            <strong>Question :</strong><textarea name="modifq" ><?php echo nl2br($truc['contenu_q']) ; ?></textarea><br>
+                                                            <strong>Réponse :</strong><textarea name="modifr"><?php echo nl2br($truc['contenu_r']) ; ?></textarea><br>
+                                                            <input type="image" class="png2" name="edit2" onclick="return show(1);" src="images/edit.png" value="<?php echo $truc['id_qr']; ?>">
+                                                        </form>
+
+                                                </div>
+                                            </div>   
+
+                            
+                    <?php endforeach;  ?>
+                        </div>
+                   
            </div>
     </div>
-    <script>
-  
-</script>
+
+<script>
+            function show($x)
+            {
+                switch($x)
+                {
+                    case 2:
+                        return confirm('Voulez-vous supprimer cette question ?');
+                    break;
+
+                    case 1:
+                        return confirm('Voulez-vous modifier cette question ?');
+                    break;
+
+                    case 3:
+                        return confirm('Voulez-vous ajouter cette question ?');
+                    break;
+                }
+            }
+        var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
+            boutonsAffModal.forEach(function(bouton){
+                bouton.onclick=function(){
+                    var modal=bouton.getAttribute('data-modal');
+                    document.getElementById(modal).style.display='block';
+                }
+            })
+        var boutonsAffModal=document.querySelectorAll(".png2");
+            boutonsAffModal.forEach(function(bouton){
+                bouton.onclick=function(){
+                    var modal=bouton.getAttribute('data-modal');
+                    document.getElementById(modal).style.display='block';
+                }
+            })
+            
+            var boutonsFermer=document.querySelectorAll(".close");
+            boutonsFermer.forEach(function(bouton){
+                bouton.onclick=function(){
+                    var modal=bouton.closest('.modal');
+                    modal.style.display='none';
+                }
+            })
+            
+
+            window.onclick = function(event){
+                if(event.target.className== "modal")
+                    {
+                        event.target.style.display='none';
+                        
+                    }
+            }  
+        </script>
     </body>
     <?php include('vue/footer.php');?>
 </html>
