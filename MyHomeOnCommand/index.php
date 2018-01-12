@@ -197,16 +197,22 @@ switch($page)
         {
             if ($_SESSION['type']==1) 
             {
-                $tableauqr=tableauqr();
-                if(isset($_POST['supprimer']))
+                
+                if(isset($_POST['boutton_supprimer']))
                 {
-                    supprimerqr($_POST['supprimer']);
+                    supprimerqr($_POST['boutton_supprimer']);
                 }
                  
                 if(isset($_POST['edit2']))
                 {
-                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']);
+                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']); 
                 }
+
+                if(isset($_POST['envoitAjout']))
+                {
+                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$_POST['dateQ'],$_POST['dateR']);
+                }
+                $tableauqr=tableauqr();
                 require_once('vue/supportAdmin.php');
             }        
         
