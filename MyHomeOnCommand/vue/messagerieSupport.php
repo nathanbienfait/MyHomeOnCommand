@@ -19,22 +19,22 @@
         <div id="corps">
 
     	   <?php
-           include('vue/menuClient.php');
+           include('vue/menuOperateur.php');
            ?>
 
             <div id="CorpTexte">
 
-                <?php foreach($tab as $truc): ?>
+                <?php foreach($tabou as $truc): ?>
                     <div class="boiteQ">
-                        <?php echo nl2br($truc['contenu_q']); ?>
+                        <?php echo nl2br($truc['contenu_r']); ?>
                     </div>
                     <div class="boiteR">
-                        <?php echo nl2br($truc['contenu_r']); ?>
+                        <?php echo nl2br($truc['contenu_q']); ?>
                     </div>
                 <?php endforeach ?>
                 
-                <form method="post" id="formQ">
-                    <textarea name="textQ" id="textQ" rows="7" cols="50" placeholder="Saisissez-votre question ici"></textarea>
+                <form method="post" id="formR">
+                    <textarea name="textR" id="textR" rows="7" cols="50" placeholder="Saisissez-votre question ici"></textarea>
                     <input name="Bouton_question" class="Bouton" type="submit" value="Envoyer">
                 </form>
 

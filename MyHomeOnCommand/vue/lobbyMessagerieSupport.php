@@ -19,24 +19,21 @@
         <div id="corps">
 
     	   <?php
-           include('vue/menuClient.php');
+           include('vue/menuOperateur.php');
            ?>
 
-            <div id="CorpTexte">
+           <div id="CorpTexte">
 
-                <?php foreach($tab as $truc): ?>
-                    <div class="boiteQ">
-                        <?php echo nl2br($truc['contenu_q']); ?>
+                <?php foreach($tab as $item): ?>
+                    <p class="blacktext">Question posée par <?php echo nl2br($item['prenom']); ?> <?php echo nl2br($item['nom']) ?> : </p>
+                    <div class="boiteNewQuest">
+                        <?php echo nl2br($item['contenu_q']); ?>
                     </div>
-                    <div class="boiteR">
-                        <?php echo nl2br($truc['contenu_r']); ?>
-                    </div>
+                    <form method="post">
+                        <input type="hidden" name="id_name" value=<?php echo $item['id_utilisateur']; ?>>
+                        <input name="bouton_lobby_repondre" class="bouton_lobby_repondre" type="submit" value="Répondre">
+                    </form>
                 <?php endforeach ?>
-                
-                <form method="post" id="formQ">
-                    <textarea name="textQ" id="textQ" rows="7" cols="50" placeholder="Saisissez-votre question ici"></textarea>
-                    <input name="Bouton_question" class="Bouton" type="submit" value="Envoyer">
-                </form>
 
             </div>
 
