@@ -93,4 +93,3 @@ function infoBandeau($idClient)
     $information=$info->fetch();
     return $information;
 }
-
