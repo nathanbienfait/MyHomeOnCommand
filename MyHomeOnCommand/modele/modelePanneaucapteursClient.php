@@ -30,7 +30,7 @@ function Obtenir_type_equipement($id_equipement)
 function Obtenir_derniere_donnee_equipement($id_equipement)
 {
 	$bdd=Ouvrir_BDD();
-	$donnees_equipement = $bdd->prepare('SELECT * FROM donnees_equipement WHERE id_equipement =? ORDER BY time DESC LIMIT 0,1');
+	$donnees_equipement = $bdd->prepare('SELECT * FROM donnees_equipement WHERE id_equipement =? ORDER BY temps DESC LIMIT 0,1');
 	$donnees_equipement->execute(array($id_equipement));
 	$info=null;
 	$donnee=$donnees_equipement->fetch();
@@ -40,20 +40,6 @@ function Obtenir_derniere_donnee_equipement($id_equipement)
 	return $info;
 }
 
-/*
-
-function Trier_capteurs($tri, $table)
-{
-	$bdd=Ouvrir_BDD();
-	$donnees_triees = $bdd->prepare('SELECT * FROM :table ORDER BY :tri');
-	$donnees_triees->execute(array(
-		'table' => $table,
-		'tri' => $tri
-		));
-	return $donnees_triees;  //je sais pas ....
-}
-
-*/
 
 function Obtenir_id_logements($id_utilisateur)
 {
@@ -148,4 +134,124 @@ function Obtenir_id_equipements($id_piece)
 	}
 	$req->closeCursor();
 	return $equipements_piece;
+}
+
+function Obtenir_tous_id_type_equipement()
+{
+	$bdd=Ouvrir_BDD();
+	$req = $bdd->query('SELECT id_type_equipement FROM type_equipement');
+
+	$idtypesequipement = array();
+	while($donnees = $req->fetch())
+	{
+		$idtypesequipement[] = $donnees['id_type_equipement'];
+	}
+	$req->closeCursor();
+	return $idtypesequipement;
+}
+
+function ObtenirTypeEquipementDepuisId($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT nom_type_equipement FROM type_equipement WHERE id_type_equipement=?');
+	$req->execute(array($id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$info = $donnees['nom_type_equipement'];
+	}
+	$req->closeCursor();
+	return $info;
+}
+
+function ObtenirEquipementsDunTypeEtLogement($id_type_equipement,$id_logement,$id_utilisateur)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('
+		SELECT * FROM equipement 
+			INNER JOIN cemac
+				ON equipement.id_cemac = cemac.id_cemac 
+			INNER JOIN relation_piece_cemac
+				ON cemac.id_cemac = relation_piece_cemac.id_cemac
+			INNER JOIN piece
+				ON piece.id_piece = relation_piece_cemac.id_piece
+			INNER JOIN logement
+				ON logement.id_logement = piece.id_logement
+			INNER JOIN relation_logement_utilisateur
+				ON logement.id_logement = relation_logement_utilisateur.id_logement
+			WHERE logement.id_logement =:id_logement AND equipement.id_type_equipement =:id_type_equipement AND relation_logement_utilisateur.id_utilisateur =:id_utilisateur');
+	$req->execute(array('id_type_equipement' => $id_type_equipement, 'id_logement' => $id_logement, 'id_utilisateur' => $id_utilisateur));
+
+	$equipements = array();
+	while($donnees = $req->fetch())
+	{
+		$equipements[]=$donnees['id_equipement'];
+	}
+	$req->closeCursor();
+	return $equipements;
+}
+
+function ObtenirLogementsAvecType($id_type_equipement, $id_utilisateur) /* on met dans un tableau tous les logements de l'utilisateur comportant le type d'équipement donné */
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('
+		SELECT * FROM relation_logement_utilisateur
+			INNER JOIN logement
+				ON logement.id_logement = relation_logement_utilisateur.id_logement
+			INNER JOIN piece
+				ON piece.id_logement = logement.id_logement
+			INNER JOIN relation_piece_cemac
+				ON piece.id_piece = relation_piece_cemac.id_piece
+			INNER JOIN cemac
+				ON cemac.id_cemac = relation_piece_cemac.id_cemac
+			INNER JOIN equipement
+				ON equipement.id_cemac = cemac.id_cemac
+			INNER JOIN type_equipement
+				ON type_equipement.id_type_equipement = equipement.id_type_equipement
+			WHERE relation_logement_utilisateur.id_utilisateur =:id_utilisateur AND type_equipement.id_type_equipement =:id_type_equipement');
+	$req->execute(array('id_utilisateur' => $id_utilisateur, 'id_type_equipement' => $id_type_equipement));
+
+	$logements = array();
+	while($donnees = $req->fetch())
+	{
+		if($donnees['id_logement'] != end($logements))
+		{
+			$logements[] = $donnees['id_logement'];
+		}
+	}
+	$req->closeCursor();
+	return $logements;
+}
+
+function ObtenirPieceDeLequipement($id_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('
+		SELECT * FROM piece
+			INNER JOIN relation_piece_cemac
+				ON piece.id_piece = relation_piece_cemac.id_piece
+			INNER JOIN cemac
+				ON cemac.id_cemac = relation_piece_cemac.id_cemac
+			INNER JOIN equipement
+				ON cemac.id_cemac = equipement.id_cemac
+			WHERE equipement.id_equipement =:id_equipement');
+	$req->execute(array('id_equipement' => $id_equipement));
+	while($donnees = $req->fetch())
+	{
+		$info=$donnees['nom_piece'];
+	}
+	$req->closeCursor();
+	return $info;
+}
+
+function ObtenirEtatEquipement($id_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT etat FROM equipement WHERE id_equipement = :id_equipement');
+	$req->execute(array('id_equipement' => $id_equipement));
+	while($donnees = $req->fetch())
+	{
+		$etat=$donnees['etat'];
+	}
+	$req->closeCursor();
+	return $etat;
 }
