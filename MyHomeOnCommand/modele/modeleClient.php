@@ -14,17 +14,17 @@ class ajout
             'pays' => $pays
 	));
     }
-    
+
     public function getIdNewLogement()
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT MAX(id_logement) FROM logement');
         return $req;
     }
-    
+
     public function ajoutRelLogementClient($idClient,$idLogement)
     {
-        
+
         $db=$this->dbConnect();
         $req = $db->prepare('INSERT INTO relation_logement_utilisateur(id_logement, id_utilisateur) VALUES(:idLog, :idUtil)');
         $req->execute(array(
@@ -32,8 +32,8 @@ class ajout
             'idUtil' => $idClient
 	));
     }
-    
-    
+
+
     public function getNomLogements($idClient)
     {
         $db=$this->dbConnect();
@@ -43,10 +43,10 @@ class ajout
         ));
         return $req;
     }
-    
+
     public function getNomPiece($idClient)
     {
-        $db=$this->dbConnect();  
+        $db=$this->dbConnect();
         $req = $db->prepare('SELECT piece.*, logement.*, relation_logement_utilisateur.* FROM piece JOIN logement ON piece.id_logement = logement.id_logement JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement WHERE relation_logement_utilisateur.id_utilisateur= :id');
         $req->execute(array(
             'id' => $idClient
@@ -54,7 +54,7 @@ class ajout
         return $req;
 
     }
-    
+
     public function ajoutPiece($idLogement,$nomPiece)
     {
         $db=$this->dbConnect();
@@ -64,7 +64,7 @@ class ajout
             'idLog' => $idLogement
 	   ));
     }
-    
+
     public function ajoutCemac($nomCemac)
     {
         $db=$this->dbConnect();
@@ -73,17 +73,17 @@ class ajout
             'nomCemac' => $nomCemac
         ));
     }
-    
+
     public function getIdNewCemac()
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT MAX(id_cemac) FROM cemac');
         return $req;
     }
-    
+
     public function ajoutRelPieceCemac($idPiece,$idCemac)
     {
-        
+
         $db=$this->dbConnect();
         $req = $db->prepare('INSERT INTO relation_piece_cemac(id_piece, id_cemac) VALUES(:idPiece, :idCemac)');
         $req->execute(array(
@@ -91,10 +91,10 @@ class ajout
             'idCemac' => $idCemac
 	));
     }
-    
+
     public function getNomCemac($idClient)
     {
-        $db=$this->dbConnect();  
+        $db=$this->dbConnect();
         $req = $db->prepare('SELECT cemac.*, relation_piece_cemac.*, piece.*, logement.*, relation_logement_utilisateur.* FROM cemac JOIN relation_piece_cemac ON cemac.id_cemac = relation_piece_cemac.id_cemac JOIN piece ON relation_piece_cemac.id_piece = piece.id_piece JOIN logement ON piece.id_logement = logement.id_logement JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement WHERE relation_logement_utilisateur.id_utilisateur= :id');
         $req->execute(array(
             'id' => $idClient
@@ -102,7 +102,7 @@ class ajout
         return $req;
 
     }
-    
+
     public function getNomType()
     {
         $db=$this->dbConnect();
@@ -110,6 +110,16 @@ class ajout
         return $req;
     }
     
+    public function getNomEquipement($idClient)
+    {
+        $db=$this->dbConnect();
+        $req = $db->prepare('SELECT equipement.*, cemac.*, relation_piece_cemac.*, piece.*, logement.*, relation_logement_utilisateur.* FROM equipement JOIN cemac ON equipement.id_cemac=cemac.id_cemac JOIN relation_piece_cemac ON cemac.id_cemac = relation_piece_cemac.id_cemac JOIN piece ON relation_piece_cemac.id_piece = piece.id_piece JOIN logement ON piece.id_logement = logement.id_logement JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement WHERE relation_logement_utilisateur.id_utilisateur= :id');
+        $req->execute(array(
+            'id' => $idClient
+        ));
+        return $req;
+    }
+
     public function ajoutEquipement($idCemac,$idType,$nomEquipement)
     {
         $db=$this->dbConnect();
@@ -121,11 +131,51 @@ class ajout
 	   ));
     }
     
+    public function modifNomLogement($id,$nom)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE logement SET nom_logement = :nom WHERE id_logement = :id');
+        $req->execute(array(
+            'nom' => $nom,
+            'id' => $id
+        ));
+    }
+    
+    public function modifNomPiece($id,$nom)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE piece SET nom_piece = :nom WHERE id_piece = :id');
+        $req->execute(array(
+            'nom' => $nom,
+            'id' => $id
+        ));
+    }
+    
+    public function modifNomCemac($id,$nom)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE cemac SET nom_cemac = :nom WHERE id_cemac = :id');
+        $req->execute(array(
+            'nom' => $nom,
+            'id' => $id
+        ));   
+    }
+    
+    public function modifNomEquipement($id,$nom)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE equipement SET nom_equipement = :nom WHERE id_equipement = :id');
+        $req->execute(array(
+            'nom' => $nom,
+            'id' => $id
+        )); 
+    }
+
     private function dbConnect()
     {
        try
         {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', 'root');
         }
         catch (Exception $e)
         {
@@ -134,4 +184,3 @@ class ajout
         return $db;
     }
 }
-
