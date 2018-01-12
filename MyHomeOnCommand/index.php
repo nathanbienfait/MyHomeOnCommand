@@ -109,7 +109,30 @@ switch($page)
         {
             if($_SESSION['type']==3)
             {
-                $id_logements=Obtenir_id_logements($_SESSION['id']);
+                if(isset($_POST['bouton_modifier_logement']))
+                {
+                    $nom=htmlspecialchars($_POST['nom']);
+                    modifierNomLogement($nom,$_POST['id']);
+                }
+                if(isset($_POST['bouton_modifier_piece']))
+                {
+                    $nom=htmlspecialchars($_POST['nom']);
+                    modifierNomPiece($nom,$_POST['id']);
+                }
+                if(isset($_POST['bouton_modifier_cemac']))
+                {
+                    $nom=htmlspecialchars($_POST['nom']);
+                    modifierNomCemac($nom,$_POST['id']);
+                }
+                if(isset($_POST['bouton_modifier_equipement']))
+                {
+                    $nom=htmlspecialchars($_POST['nom']);
+                    modifierNomEquipement($nom,$_POST['id']);
+                }
+                $logements=nomLogement($_SESSION['id']);
+                $pieces=nomPiece($_SESSION['id']);
+                $cemacs=nomCemac($_SESSION['id']);
+                $equipements=nomEquipement($_SESSION['id']);
                 require_once('vue/gestionHabitation.php');
             }
         }
