@@ -93,3 +93,31 @@ function infoBandeau($idClient)
     $information=$info->fetch();
     return $information;
 }
+
+function afficheslogan()
+{
+    $affiche=new InscriptionUtilisateur;
+    $slogan =$affiche->getSlogan();
+    $slogan=$slogan->fetch()[0];
+    return $slogan;
+}
+function afficheModif()
+{
+    if (!empty($_POST['Modifier_le_slogan']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $modifslogan =$affiche->modifSlogan();
+        return $modifslogan;  
+    }
+    
+}
+
+function afficheCapteur()
+{
+    if (!empty($_POST['Ajouter_un_capteur']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $ajoutCapteur =$affiche->ajoutCapteur();
+        return $ajoutCapteur;
+    }
+}
