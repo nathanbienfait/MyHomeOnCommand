@@ -1,8 +1,10 @@
 <script src="https://use.fontawesome.com/584565f215.js"></script>
 <div id="bandeau_accueil">
     <div id="logo"><a href="index.php?page=<?php if(isset($_SESSION['type'])){if($_SESSION['type']==3){echo "panneau";}if($_SESSION['type']==1){echo "adminPanneauClient";}}else{echo "accueil";} ?>" title="Accueil"><img id="imagelogo" src="images/logo.png" alt="Logo de MyHomeOnCommand" /></a></div>
-        <div id="titre">A connected home in a connected world
+        <div id="titre">
     <?php 
+        echo afficheslogan();
+            
         if(isset($_SESSION['prenom']))
         {
             if($_SESSION['type']==3)
