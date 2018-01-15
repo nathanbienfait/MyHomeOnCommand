@@ -10,9 +10,9 @@ $tab=[];
 
 while ($donnees = $info->fetch())
 {
-	$tab[0]=htmlentities($donnees["login"], ENT_QUOTES);
-    $tab[1]=htmlentities($donnees["password"], ENT_QUOTES);
-    $tab[2]=htmlentities($donnees["prenom"], ENT_QUOTES);
+	$tab[0]=htmlentities($donnees["login"], ENT_QUOTES);       //Chaque $tab correspond a un formulaire pré-remplit
+    $tab[1]=htmlentities($donnees["password"], ENT_QUOTES);     
+    $tab[2]=htmlentities($donnees["prenom"], ENT_QUOTES);       //htmlentities([..], ENT_QUOTES) converti les guillemets double en guillemens simple
     $tab[3]=htmlentities($donnees["nom"], ENT_QUOTES);
     
     $tab[4]=htmlentities($donnees["email"], ENT_QUOTES);
