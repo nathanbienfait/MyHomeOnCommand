@@ -35,27 +35,23 @@
                         </div>    
                     <div class="qrBouton">
 
-                    <?php foreach($tableauqr as $truc): ?>
-                        
-                                        <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
-                                        <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
+                    <?php foreach($tableauqr as $truc): ?>   
+                        <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
+                        <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
                                   
-                                    <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
-                                        <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
-
-                                    
-                                        <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2" required/>
-                                            <div class='modal' id="modal2">
-                                                <div class='modal-content'>
-                                                    <span class='close' >&times;</span>
-                                                        <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="edit" >
-                                                            <strong>Question :</strong><textarea name="modifq" ><?php echo nl2br($truc['contenu_q']) ; ?></textarea><br>
-                                                            <strong>Réponse :</strong><textarea name="modifr"><?php echo nl2br($truc['contenu_r']) ; ?></textarea><br>
-                                                            <input type="image" class="png2" name="edit2" onclick="return show(1);" src="images/edit.png" value="<?php echo $truc['id_qr']; ?>">
-                                                        </form>
-
-                                                </div>
-                                            </div>   
+                        <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
+                                <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
+                        <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2<?php echo $truc['id_qr'];?>" required/>
+                            <div class='modal' id="modal2<?php echo $truc['id_qr'];?>">
+                                <div class='modal-content'>
+                                    <span class='close' >&times;</span>
+                                        <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="edit" >
+                                            <strong>Question :</strong><textarea name="modifq" ><?php echo nl2br($truc['contenu_q']) ; ?></textarea><br>
+                                            <strong>Réponse :</strong><textarea name="modifr"><?php echo nl2br($truc['contenu_r']) ; ?></textarea><br>
+                                            <input type="image" class="png2" name="edit2" onclick="return show(1);" src="images/edit.png" value="<?php echo $truc['id_qr']; ?>">
+                                        </form>
+                                </div>
+                            </div>   
 
                             
                     <?php endforeach;  ?>
