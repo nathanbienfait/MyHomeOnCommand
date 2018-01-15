@@ -77,10 +77,25 @@
 											if($donnee_equipement == 0)
 											{
 												echo "Fermé";
+												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
+												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
+												echo '<select name=\'valeur_cible\'>';
+												echo '<option value=\'ouvert\'selected>Ouvrir</option>';
+												echo '<option value=\'type_parametre\'>Fermer</option>';
+												echo '</select>';
+												echo '<input type=\'submit\' value=\'Appliquer\'/>';
+
 											}
 											else
 											{
 												echo "Ouvert";
+												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
+												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
+												echo '<select name=\'valeur_cible\'>';
+												echo '<option value=\'ouvert\'>Ouvrir</option>';
+												echo '<option value=\'type_parametre\'selected>Fermer</option>';
+												echo '</select>';
+												echo '<input type=\'submit\' value=\'Appliquer\'/>';
 											}
 										}
 										else
@@ -131,24 +146,52 @@
 			</div>
 			<?php include('vue/footer.php'); ?>
 
-		<script>
+		<script type="text/javascript">
+		<!--
+		/*
+			var boutonTypes;
+			var voirLogements;
+			var voirDonnees;
 			var tabTypes = new Array();
 			var tabLogements = new Array();
 			var tabDonnees = new Array();
-			var divTypes;
-			var divLogements;
-			var divDonnees;
-			for(var i = 0, c= <?php $compteType ?> ; i<c ; i++)
+			for(var i = 1, c= <?php $compteType ?> ; i<c ; i++)
 			{
-				for(var j = 0, d= <?php $compteLogement ?> ; i<d ; j++)
+				for(var j = 1, d= <?php $compteLogement ?> ; j<d ; j++)
 				{
-					div ='bouton' + i;
-					tab[i] = document.getElementById(div)
+					boutonTypes = 'bouton' + i;
+					boutonLogements = 'voirLogements' + i + '_' + j;
+					voirDonnees = 'voirDonnees' + i + '_' + j;
+					tabTypes[i] = document.getElementById(boutonTypes);
+					tabLogements[i] = new Array();
+					tabLogements[i][j] = document.getElementById(boutonLogements);
+					tabDonnees[i] = new Array();
+					tabDonnees[i][j] = document.getElementById(voirDonnees);
 				}
 			}
-			var bouton_type= document.getElementsById('titre_image');
-			var bouton_logements= document.getElementsById('nom_logement');
-			var listeDonnees= document.getElementsById('liste_donnees');
+
+			function Afficher_Cacher(x)
+			{
+				if(x.style.display=="block")
+				{
+					x.style.display = "none";
+				}
+				else
+				{
+					x.style.display = "block";
+				}
+			}
+
+			for(var i = 1, c= <?php $compteType ?> ; i<c ; i++)
+			{
+				for(var j = 1, d= <?php $compteLogement ?> ; j<d ; j++)
+				{
+					tabTypes[i].addEventListener("click", Afficher_Cacher(tabLogements[i][j]));
+					tabLogements[i][j].addEventListener("click", Afficher_Cacher(tabDonnees[i][j]));
+				}
+			}
+		*/
+		//-->
 		</script>
 		</body>
 	</html>
