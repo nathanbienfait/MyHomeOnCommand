@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Gestion du profil</title>
-		<link rel="stylesheet" href="css/gestionProfilClient.css" />
+		<link rel="stylesheet" href="css/styleGestionProfilClient.css" />
 		<link rel="stylesheet" href="css/styleMenu.css" />
         <link rel="stylesheet" href="css/styleHeaderFooter.css" />
        
