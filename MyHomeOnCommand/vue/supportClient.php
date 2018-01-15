@@ -21,16 +21,10 @@
                     <a id="textcontact" href="mailto:support@domeisep.com">contactez le support</a>
                </div>
                <div>
-                    <?php 
-                        $questionsreponses=tableauqr();
-                        $taille=count($questionsreponses);
-                        $x=0;
-                        while ($x < $taille - 1)
-                        {
-                            echo '<p class="groupeq"><strong>QUESTION: </strong><br>'.$questionsreponses[$x].'</p><p class="grouper"><strong>REPONSE: </strong><br>'. $questionsreponses[$x+1]."</p>";
-                            $x=$x + 2;
-                        }
-                    ?>
+                    <?php foreach($tableauqr as $truc): ?>
+                        <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
+                        <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
+                    <?php endforeach;  ?>
                </div>
                 
     	   </div>
