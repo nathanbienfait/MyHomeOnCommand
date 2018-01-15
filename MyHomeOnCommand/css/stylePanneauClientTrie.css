@@ -33,7 +33,7 @@
 	display: flex;
 	flex-direction: column;
 	margin: 1% 2% 1% 2%;
-	border-radius: 20px;
+	border-radius: 20px 20px 0 0;
 	min-width: 400px;
 	min-height: 50px;
 	border: white solid 3px;
@@ -59,7 +59,7 @@
 	margin-top: 0%;
 	height: 100%;
 	width: 100%;
-	margin-left: 42%;
+	text-align: center;
 	color: black;
 }
 
@@ -112,7 +112,6 @@
 	padding-left: 20%;
 	padding-right: 20%;
 	background-color: rgba(255,255,255,1);
-	border-radius: 0 0 20px 20px;
 	color: black;
 	height: 100%;
 
@@ -130,6 +129,11 @@
 	max-height: 50px;
 	color: rgb(50,50,50);
 	text-align: center;
+}
+
+.nom_logement h2
+{
+	margin-top: 1%;
 }
 
 .liste_donnees
@@ -150,8 +154,9 @@
 	text-align: center;
 	font-size: 1.5em;
 	font-weight: bold;
-	margin-top: 1%;
-	margin-bottom: 5%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	flex-wrap: wrap;
 
 	border-radius: 20px 20px 20px 20px;
 	background-color: rgba(255,255,255,1);
@@ -163,4 +168,10 @@
 	width: 7%;
 	height: auto;
 	margin-top: 5%;
+}
+
+.label
+{
+	font-size: 0.6em;
+	font-weight: normal;
 }
