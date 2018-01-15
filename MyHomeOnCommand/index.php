@@ -209,7 +209,7 @@ switch($page)
             if ($_SESSION['type']==3) 
             {
                 $tableauqr=tableauqr();
-                require_once('vue/supportClient.php');
+                require_once('vue/SupportClient.php');
             }
         }
         break;
