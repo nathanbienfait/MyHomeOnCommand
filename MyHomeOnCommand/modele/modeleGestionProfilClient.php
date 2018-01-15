@@ -1,7 +1,7 @@
 <?php
 class gestionProfilClient
 {
-	 private function dbConnect()
+	private function dbConnect()
     {
         try
         {
@@ -48,4 +48,5 @@ class gestionProfilClient
 	
 }
 
+?>
 
