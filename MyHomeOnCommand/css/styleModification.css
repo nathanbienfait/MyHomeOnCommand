@@ -1,0 +1,52 @@
+#corps
+{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+    min-height: 100%
+	
+}
+
+#modification
+{
+	margin-left:3%;
+	margin-top: 3%;
+}
+
+#slogan
+{
+	margin-bottom:5%;
+	background-color:black;
+	opacity:0.8;
+	border-radius:10px;
+	
+	width:90%;
+	text-align:center;
+}
+
+#capteur
+{
+	background-color:black;
+	opacity:0.8;
+	border-radius:10px;
+	
+	width:90%;
+	text-align:center;
+}
+
+#onglet
+{
+    width: 20%;
+    margin-top: 20px;
+}
+span
+{
+    background-color:black;
+	opacity:0.8;
+	border-radius:10px;
+	height:20%;
+	width:90%;
+	text-align:center;
+    padding: 3%;
+    margin: 3%; 
+}
