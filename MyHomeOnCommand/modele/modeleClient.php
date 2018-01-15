@@ -175,7 +175,7 @@ class ajout
     {
        try
         {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', 'root');
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
         }
         catch (Exception $e)
         {
