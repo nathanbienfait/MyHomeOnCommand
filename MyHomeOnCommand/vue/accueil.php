@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="css/styleGeneral.css" />
         <link rel="stylesheet" href="css/styleAccueil.css" />
         <link rel="stylesheet" href="css/styleHeaderFooter.css" />
+        
+        
         <title>MyHomeOnCommand</title>
     </head>
     
@@ -24,7 +26,7 @@
                 <form id="connexion" method="post" action="index.php?page=panneau">
                     <p>Connexion:</p>
                     <p>
-                        <label for="login">Pseudo:</label>
+                        <label for="login">Identifiant:</label>
                         </br>
                         <input type="text" id="login" name="login" required/>
                         </br>
@@ -53,17 +55,7 @@
                         <input type="text" id="prenom_inscription" name="prenom_inscription" required/>
                         </br>
                         </br>
-                        <label for="telephone_inscription">Numéro de téléphone:</label>
-                        </br>
-                        <input type="text" id="telephone_inscription" name="telephone_inscription" required/>
-                        </br>
-                        </br>
-                        <label for="email_inscription">Email:</label>
-                        </br>
-                        <input type="text" id="email_inscription" name="email_inscription" required/>
-                        </br>
-                        </br>
-                        <label for="pseudo_inscription">Pseudo:</label>
+                        <label for="pseudo_inscription">Identifiant:</label>
                         </br>
                         <input type="text" id="pseudo_inscription" name="pseudo_inscription" required/>
                         </br>
@@ -78,6 +70,10 @@
                         <input type="password" id="mdpconf_inscription" name="mdpconf_inscription" required/>
                         </br>
                         </br>
+                        <input type="checkbox" name="checkconditions"required/>
+                        <label for="checkconditions">J'accepte les <span id='myBtn' style='color:blue; text-decoration:underline;'>conditions d'utilisation</span></label>
+                        </br>
+                        </br>
                         <input type="submit" value="S'inscrire" name="bouton_inscription"/>  
                     </p>
                 </form>
@@ -85,11 +81,32 @@
         
         </div>
     </div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Conditions légales d'utilisation</p>
+  </div>
+</div>
     <?php include('vue/footer.php');?>
     <script>
         document.inscription.onsubmit = function()
         {
             return confirm('Confirmez votre inscriptions?');
+        }       
+        var modal = document.getElementById('modal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[1];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        console.log(span);
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
     </body>
