@@ -79,7 +79,27 @@ class InscriptionUtilisateur
        
         return $req;
     }
-    
+     public function getSlogan()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT contenu FROM slogan');
+        return $req; 
+     }
+    public function modifSlogan()
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE slogan SET contenu = ? WHERE id_slogan = 1');
+        $req->execute (array( $_POST["Modifier_le_slogan"] ));
+        return $req;
+    }
+
+    public function ajoutCapteur()
+    {
+        $db=$this->dbConnect();
+        $req = $db -> prepare ('INSERT INTO type_equipement(nom_type_equipement) VALUES (:Ajouter_un_capteur)');
+        $req -> execute(array('Ajouter_un_capteur' => $_POST["Ajouter_un_capteur"]));
+        return $req;
+    }
     private function dbConnect()
     {
        try
