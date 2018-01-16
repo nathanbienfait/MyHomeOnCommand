@@ -23,14 +23,15 @@
     margin:1%;
     padding: 1%;
     display: flex;
+    justify-content: space-between;
     
     
 }
 .ensemble
 {
     border: 2px black solid;
-    margin:2%;
-    padding: 1%;
+    margin:5%;
+    padding: 3px;
     display: flex;
     flex-direction: column;
 }
