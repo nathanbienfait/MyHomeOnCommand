@@ -48,7 +48,7 @@ class InscriptionUtilisateur
 	));
 
     }
-    
+
     public function setInfoUtilisateur($prenom,$nom,$email,$telephone,$statut,$id)
     {
         $db=$this->dbConnect();
