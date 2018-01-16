@@ -46,32 +46,32 @@
         </div>
         </div>
             <div id="partieForm">
-                <form id="logement" method="post" action="index.php?page=ajouterHabitation">
+                <form id="logement" method="post" action="index.php?page=ajouterHabitation" onsubmit="return verifForm(this)">
 
                     <p>
                         <label for="nomLogement">Nom de votre logement:</label>
                         </br>
-                        <input type="text" id="nomLogement" name="nomLogement" required/>
+                        <input type="text" id="nomLogement" name="nomLogement" onblur="verifNom(this)" required/>
                         </br>
                         </br>
                         <label for="rue">Rue:</label>
                         </br>
-                        <input type="text" id="rue" name="rue" required/>
+                        <input type="text" id="rue" name="rue" onblur="verifNom(this)" required/>
                         </br>
                         </br>
                         <label for="ville">Ville:</label>
                         </br>
-                        <input type="text" id="ville" name="ville" required/>
+                        <input type="text" id="ville" name="ville" onblur="verifNom(this)" required/>
                         </br>
                         </br>
                         <label for="cp">Code postal:</label>
                         </br>
-                        <input type="text" id="cp" name="cp" required/>
+                        <input type="text" id="cp" name="cp" onblur="verifNum(this)" required/>
                         </br>
                         </br>
                         <label for="pays">Pays:</label>
                         </br>
-                        <input type="text" id="pays" name="pays" required/>
+                        <input type="text" id="pays" name="pays" onblur="verifNom(this)" required/>
                         </br>
                         </br>
                         <input type="submit" value="Ajouter le logement" name="bouton_ajouter_logement" />
@@ -239,6 +239,62 @@
 
 
 <script>
+function surligne(champ, erreur)
+    {
+       if(erreur)
+          champ.style.backgroundColor = "#fba";
+       else
+          champ.style.backgroundColor = "";
+    }
+    function verifNom(champ)
+    {
+        if(champ.value.length < 2 || champ.value.length >200)
+       {
+          surligne(champ, true);
+          return false;
+       }
+       else
+       {
+          surligne(champ, false);
+          return true;
+
+       }
+
+    }
+    function verifNum(champ)
+    {
+       var num = parseInt(champ.value);
+       if(isNaN(num))
+       {
+          surligne(champ, true);
+          return false;
+       }
+       else
+       {
+          surligne(champ, false);
+          return true;
+       }
+    }
+function verifForm(f)
+{
+    var nomOk = verifNom(f.nomLogement);
+    var rueOk = verifNom (f.rue);
+    var villeOk = verifNom(f.ville);
+    var cpOk = verifNum(f.cp);
+    var paysOk = verifNom(f.pays);
+    if(nomOk && rueOk && villeOk && cpOk && paysOk )
+    {
+        return true;
+    }
+    else
+    {
+        alert("Veuillez remplir correctement tous les champs");
+        return false;
+    }
+}
+  
+    
+    
 var cas1 = document.querySelector('#logement');
 cas1.style.display="none";
 var cas2 = document.querySelector('#piece');
@@ -348,7 +404,7 @@ tab4.addEventListener('click', function() {
         {
             if(opt[x].id==idLogement)
             {
-                opt[x].style.display="inline";
+                opt[x].style.display="block";
             }
             x++;
         }
@@ -368,7 +424,7 @@ tab4.addEventListener('click', function() {
         {
             if(opt[x].id==idLogement)
             {
-                opt[x].style.display="inline";
+                opt[x].style.display="block";
             }
             x++;
         }
@@ -388,7 +444,7 @@ tab4.addEventListener('click', function() {
         {
             if(opt[x].id==idPiece)
             {
-                opt[x].style.display="inline";
+                opt[x].style.display="block";
             }
             x++;
         }
