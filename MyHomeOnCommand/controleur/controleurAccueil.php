@@ -93,7 +93,6 @@ function infoBandeau($idClient)
     $information=$info->fetch();
     return $information;
 }
-
 function afficheslogan()
 {
     $affiche=new InscriptionUtilisateur;
@@ -101,48 +100,24 @@ function afficheslogan()
     $slogan=$slogan->fetch()[0];
     return $slogan;
 }
-
-function afficheModif($slog)
+function afficheModif()
 {
     if (!empty($_POST['Modifier_le_slogan']))
     {
         $affiche=new InscriptionUtilisateur;
-        $modifslogan =$affiche->modifSlogan($slog);
+        $modifslogan =$affiche->modifSlogan();
         return $modifslogan;  
     }
     
 }
 
-function afficheCapteur($capteur)
+function afficheCapteur()
 {
     if (!empty($_POST['Ajouter_un_capteur']))
     {
         $affiche=new InscriptionUtilisateur;
-        $ajoutCapteur =$affiche->ajoutCapteur($capteur);
+        $ajoutCapteur =$affiche->ajoutCapteur();
         return $ajoutCapteur;
     }
 }
-
-function afficheAdmin($id,$mdp)
-{
-    if (isset ($_POST['login_admin'],$_POST['password_admin']))
-    {
-        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-        $affiche=new InscriptionUtilisateur;
-        $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
-        return $ajoutAdmin;
-    }
-}
-
-function afficheOp($id,$mdp)
-{
-    if (isset ($_POST['login_op'],$_POST['password_op']))
-    {
-        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-        $affiche=new InscriptionUtilisateur;
-        $ajoutAdmin =$affiche->ajoutOp($id,$criptedMdp);
-        return $ajoutAdmin;
-    }
-}
-
-
+    
