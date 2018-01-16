@@ -268,11 +268,6 @@ switch($page)
         require_once('vue/conditionsUtilisation.php');
         break;
         
-    case 'modification':
-        afficheModif();
-        afficheCapteur();
-        require_once('vue/modification.php');
-        break;
    
     case 'modification':
         
