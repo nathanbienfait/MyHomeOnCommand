@@ -77,6 +77,7 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
     }
     return 0;
 }
+
 function erreur($message)
 {
     echo "<script>alert(\"".$message."\")</script>";
