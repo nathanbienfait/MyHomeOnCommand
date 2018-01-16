@@ -1,0 +1,109 @@
+
+			/* Styles de fond */
+
+#corps
+{
+    display: flex;     
+}
+
+#corpsTexte /* Contient le carré spécifique de la page (sans le menu) */
+{
+	background-color: rgba(255, 255, 255, 0.7);
+	border:solid black 0.3em;
+	border-left: 0em;
+	width: 82%;
+	height: 33.5em;
+	overflow: auto;
+}
+
+
+
+		/* Styles des textes et zones de texte */
+
+
+.blacktext
+{
+	color : black;
+	margin-left: 1em;
+}
+
+.boiteNewQuest
+{
+	background-color: white;
+	border:solid black 0.2em;
+	padding: 0.4em;
+	color: black;
+	margin: 1%;
+}
+
+.boiteQ, .boiteR
+{
+	border:solid black 0.15em;
+	padding: 0.4em;
+	margin: 3%;
+	color: black;
+}
+
+.boiteQ
+{
+	margin-left: 40%;
+	background-color: white;
+}
+
+.boiteR
+{
+	margin-right: 40%;
+	background-color: rgb(240, 240, 255);
+}
+
+#textQ, #textR
+{
+	border:solid black 0.15em;
+	background-color: rgb(240, 240, 255);
+}
+
+#formQ, #formR
+{
+	color: black;
+	margin-left: 66%;
+	margin-top: 5%;
+}
+
+
+			/* Styles des boutons */
+
+
+.Bouton
+{
+	width: 100px ;
+	border:solid 2px black;
+	background-color: white;
+	text-decoration-line: none;
+	color: black;
+	box-shadow: 6px 6px 6px black;
+	padding: 2px;
+	text-align: center;
+}
+
+.Bouton:hover
+{
+	box-shadow: 0px 0px 0px;
+}
+
+.bouton_lobby_repondre
+{
+	width: 100px ;
+	border:solid 2px black;
+	background-color: white;
+	text-decoration-line: none;
+	color: black;
+	box-shadow: 6px 6px 6px black;
+	padding: 2px;
+	margin-left: 88%;
+	text-align: center;
+}
+
+.bouton_lobby_repondre:hover
+{
+	box-shadow: 0px 0px 0px;
+}
