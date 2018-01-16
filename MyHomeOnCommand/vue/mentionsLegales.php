@@ -13,7 +13,7 @@
 	<body>
 	<?php include("header.php"); ?>
 
-	<div style="background-color: rgba(0,0,0,0.8)"> <h1>MENTIONS LEGALES :</h1>
+	<div style="background-color: rgba(0,0,0,0.95)"> <h1>MENTIONS LEGALES :</h1>
 
 <p style="text-align:justify"><strong>1. Présentation du site :<br />
  </strong><br />
@@ -90,4 +90,3 @@ Le site <a href="http://www.myhomeoncommand.com" target="_blank">www.myhomeoncom
 
 </body>
 </html>
-
