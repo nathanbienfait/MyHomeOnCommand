@@ -24,7 +24,7 @@
 	text-align:center;
 }
 
-#capteur
+#capteur, #admin, #operateur
 {
 	background-color:black;
 	opacity:0.8;
