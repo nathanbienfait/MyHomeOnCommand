@@ -14,15 +14,6 @@ class messagerieClient
         return $db;
     }
 
-/*
-    public function getNombreQR($idUtil)
-    {
-    	$db=$this->dbConnect();
-    	$req =$db->prepare('SELECT COUNT(*) FROM qr NATURAL JOIN relation_utilisateur_qr WHERE id_utilisateur = :id AND id_type_qr = :type');
-    	$req->execute(array('id' => $idUtil, 'type' => 2));
-        return $req;
-    }
-*/
 
     public function getMessages($idUtil)    /* Obtient la discussion déjà établie ave le support */
     {
