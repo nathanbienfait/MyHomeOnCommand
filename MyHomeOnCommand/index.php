@@ -12,6 +12,10 @@ require_once('modele/modeleSupport.php');
 require_once('modele/modelePanneaucapteursClient.php');
 require_once('controleur/controleurGestionProfilClient.php');
 require_once('modele/modeleGestionProfilClient.php');
+require_once('modele/modeleMessagerieClient.php');
+require_once('controleur/controleurMessagerieClient.php');
+require_once('modele/modeleMessagerieSupport.php');
+require_once('controleur/controleurMessagerieSupport.php');
 
 
 
@@ -45,6 +49,10 @@ switch($page)
             if($_SESSION['type']==1)
             {
                 Header('refresh:0;url=index.php?page=adminPanneauClient');
+            }
+            if($_SESSION['type']==2)
+            {
+                Header('refresh:0;url=index.php?page=messagerieSupport');
             }
         }
         else
@@ -299,6 +307,54 @@ switch($page)
         }
 
         require_once('vue/modification.php');
+        break;
+        
+        case 'messagerieClient' :
+
+        if (isset($_SESSION['type']))
+        {
+            if($_SESSION['type']==3)
+            {
+
+                if(isset($_POST['Bouton_question']))
+                {
+                    postQuestionClient($_POST['textQ']);
+                    eviteAttenteSupportDoublon();
+                }
+
+                $tab=visuMessagerieClient();
+                require_once('vue/messagerieClient.php');
+            }
+        }
+        break;
+
+    case 'messagerieSupport' :
+
+        if (isset($_SESSION['type']))
+        {
+            if($_SESSION['type']==2)
+            {
+                if(isset($_POST['bouton_lobby_repondre']))
+                {
+
+                    if(isset($_POST['bouton_repondre']))
+                    {
+                        postReponseSupport($_POST['textR'], $_POST['idCurrentClient']);
+                        $_POST['id_name']=$_POST['idCurrentClient'];
+                    }
+                    
+                    $tabou=visuMessagerieSupport($_POST['id_name']);
+                    require_once('vue/messagerieSupport.php');
+
+                }
+
+                else
+                {
+                    $tab=visuLobbyMessagerieSupport();
+                    require_once('vue/lobbyMessagerieSupport.php');
+                }
+            }
+        }
         break;
 
  
