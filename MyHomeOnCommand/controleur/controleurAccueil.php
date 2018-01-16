@@ -1,5 +1,4 @@
 <?php
-
 function afficheAccueil()
 {
     if(isset($_SESSION['prenom']))
@@ -37,7 +36,6 @@ function login($login,$mdp)
         erreur("L'authentification a échoué");
     }  
 }
-
 function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
 {
     if($mdp==$mdpconf)
@@ -79,13 +77,11 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
     }
     return 0;
 }
-
 function erreur($message)
 {
     echo "<script>alert(\"".$message."\")</script>";
     
 }
-
 function infoBandeau($idClient)
 {
     $utilisateur=new LoginUtilisateur;
@@ -100,24 +96,42 @@ function afficheslogan()
     $slogan=$slogan->fetch()[0];
     return $slogan;
 }
-function afficheModif()
+function afficheModif($slog)
 {
     if (!empty($_POST['Modifier_le_slogan']))
     {
         $affiche=new InscriptionUtilisateur;
-        $modifslogan =$affiche->modifSlogan();
+        $modifslogan =$affiche->modifSlogan($slog);
         return $modifslogan;  
     }
     
 }
-
-function afficheCapteur()
+function afficheCapteur($capteur)
 {
     if (!empty($_POST['Ajouter_un_capteur']))
     {
         $affiche=new InscriptionUtilisateur;
-        $ajoutCapteur =$affiche->ajoutCapteur();
+        $ajoutCapteur =$affiche->ajoutCapteur($capteur);
         return $ajoutCapteur;
     }
 }
-    
+function afficheAdmin($id,$mdp)
+{
+    if (isset ($_POST['login_admin'],$_POST['password_admin']))
+    {
+        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+        $affiche=new InscriptionUtilisateur;
+        $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
+        return $ajoutAdmin;
+    }
+}
+function afficheOp($id,$mdp)
+{
+    if (isset ($_POST['login_op'],$_POST['password_op']))
+    {
+        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+        $affiche=new InscriptionUtilisateur;
+        $ajoutAdmin =$affiche->ajoutOp($id,$criptedMdp);
+        return $ajoutAdmin;
+    }
+}
