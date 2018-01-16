@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/styleGeneral.css" />
-        <link rel="stylesheet" href="css/styleSupportClient.css" />
+        <link rel="stylesheet" href="css/styleMessagerie.css" />
         <link rel="stylesheet" href="css/styleMenu.css" />
         <link rel="stylesheet" href="css/styleHeaderFooter.css" />
 
@@ -22,15 +22,23 @@
            include('vue/menuClient.php');
            ?>
 
-            <div id="CorpTexte">
+            <div id="corpsTexte">
 
                 <?php foreach($tab as $truc): ?>
                     <div class="boiteQ">
                         <?php echo nl2br($truc['contenu_q']); ?>
                     </div>
-                    <div class="boiteR">
-                        <?php echo nl2br($truc['contenu_r']); ?>
-                    </div>
+
+                    <?php
+                    if ($truc['contenu_r'] !== NULL)    //N'afficher la réponse que si elle n'est pas vide
+                        {
+                    ?>
+                        <div class="boiteR">
+                            <?php echo nl2br($truc['contenu_r']); ?>
+                        </div>
+                    <?php
+                        }
+                    ?>
                 <?php endforeach ?>
                 
                 <form method="post" id="formQ">
