@@ -5,6 +5,7 @@ function adminInfoClient()
     
     $tableInfoClient=$admin->getDonneeClient();
     $x=0;
+    $tableinfo=null;
     while($table=$tableInfoClient->fetch())
     {
        
@@ -25,11 +26,11 @@ function adminInfoClient()
     return $tableinfo;
 }
 
-function adminModifInfoClient($prenom,$nom,$email,$telephone,$type,$pseudo,$mdp,$idClient)
+function adminModifInfoClient($prenom,$nom,$email,$telephone,$type,$pseudo,$idClient)
 {
     $admin=new admin;
     $admin->modifDonneeClient($prenom,$nom,$email,$telephone,$type,$idClient);
-    $admin->modifCompteClient($pseudo,$mdp,$idClient);
+    $admin->modifCompteClient($pseudo,$idClient);
     echo "<script>alert(\"Modifications réalisées\")</script>";
     
 }
