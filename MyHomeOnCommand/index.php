@@ -63,12 +63,12 @@ switch($page)
     
     case 'inscription':
        
-       $verif=null; if(isset($_POST['nom_inscription'],$_POST['prenom_inscription'],$_POST['telephone_inscription'],$_POST['email_inscription'],$_POST['pseudo_inscription'],$_POST['mdp_inscription'],$_POST['mdpconf_inscription']))
+       $verif=null; if(isset($_POST['nom_inscription'],$_POST['prenom_inscription'],$_POST['pseudo_inscription'],$_POST['mdp_inscription'],$_POST['mdpconf_inscription']))
         {
         $nom=htmlspecialchars($_POST['nom_inscription']);
         $prenom=htmlspecialchars($_POST['prenom_inscription']);
-        $tel=htmlspecialchars($_POST['telephone_inscription']);
-        $email=htmlspecialchars($_POST['email_inscription']);
+        $tel=null;
+        $email=null;
         $pseudo=htmlspecialchars($_POST['pseudo_inscription']);
         $mdp=htmlspecialchars($_POST['mdp_inscription']);
         $mdpconf=htmlspecialchars($_POST['mdpconf_inscription']);
