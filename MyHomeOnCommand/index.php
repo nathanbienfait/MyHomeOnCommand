@@ -97,7 +97,7 @@ switch($page)
                 
                 }
                 
-                // Modifier le slogan
+                // Modifier le slogan   Faut pas que ça soit la 
                 if (!empty($_POST['Modifier_le_slogan']))
                 {
                     $bdd = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
