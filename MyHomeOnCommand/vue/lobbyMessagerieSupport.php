@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/styleGeneral.css" />
-        <link rel="stylesheet" href="css/styleSupportClient.css" />
+        <link rel="stylesheet" href="css/styleMessagerie.css" />
         <link rel="stylesheet" href="css/styleMenu.css" />
         <link rel="stylesheet" href="css/styleHeaderFooter.css" />
 
@@ -22,7 +22,7 @@
            include('vue/menuOperateur.php');
            ?>
 
-           <div id="CorpTexte">
+           <div id="corpsTexte">
 
                 <?php foreach($tab as $item): ?>
                     <p class="blacktext">Question posée par <?php echo nl2br($item['prenom']); ?> <?php echo nl2br($item['nom']) ?> : </p>
