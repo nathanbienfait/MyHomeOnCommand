@@ -21,4 +21,20 @@ function postQuestionClient($question)
 	$utilisateur->insertIdRelation($idClient);
 }
 
+function eviteAttenteSupportDoublon()
+{
+	$idClient=$_SESSION['id'];
+	$utilisateur=new messagerieClient;
+
+	$tab = $utilisateur->verifAttenteSupportDoublon($idClient)->fetchAll();
+
+		foreach($tab as $item):
+			$utilisateur->supprAttenteSupportDoublon($item['id_qr']);
+			$lastId=$item['id_qr'];
+		endforeach;
+
+	$utilisateur->reecrireDerniereReponse();
+	
+}
+
 ?>
