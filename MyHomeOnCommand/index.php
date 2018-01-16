@@ -273,7 +273,38 @@ switch($page)
         afficheCapteur();
         require_once('vue/modification.php');
         break;
+   
+    case 'modification':
+        
+        if(isset($_POST['bouton_valider_slogan']))
+        {
+            $slog=htmlspecialchars($_POST['Modifier_le_slogan']);
+            afficheModif($slog);
+        }
 
+        
+        if(isset($_POST['bouton_valider_capteur']))
+        {    
+            $capteur=htmlspecialchars($_POST['Ajouter_un_capteur']);
+            afficheCapteur($capteur);
+        }
+
+        if(isset($_POST['bouton_valider_admin']))
+        {
+            $id=htmlspecialchars($_POST['login_admin']);
+            $mdp=htmlspecialchars($_POST['password_admin']);
+            afficheAdmin($id,$mdp);
+        }
+
+        if(isset($_POST['bouton_valider_op']))
+        {
+            $id=htmlspecialchars($_POST['login_op']);
+            $mdp=htmlspecialchars($_POST['password_op']);
+            afficheOp($id,$mdp);
+        }
+
+        require_once('vue/modification.php');
+        break;
 
  
 }
