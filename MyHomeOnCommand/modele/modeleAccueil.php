@@ -85,21 +85,43 @@ class InscriptionUtilisateur
         $req = $db->query('SELECT contenu FROM slogan');
         return $req; 
      }
-    public function modifSlogan()
+	
+    public function modifSlogan($slog)
     {
         $db=$this->dbConnect();
-        $req=$db->prepare('UPDATE slogan SET contenu = ? WHERE id_slogan = 1');
-        $req->execute (array( $_POST["Modifier_le_slogan"] ));
+        $req=$db->prepare('UPDATE slogan SET contenu = :Modifier_le_slogan WHERE id_slogan = 1');
+        $req->execute(array('Modifier_le_slogan' => $slog ));
         return $req;
     }
 
-    public function ajoutCapteur()
+    public function ajoutCapteur($capteur)
     {
         $db=$this->dbConnect();
         $req = $db -> prepare ('INSERT INTO type_equipement(nom_type_equipement) VALUES (:Ajouter_un_capteur)');
-        $req -> execute(array('Ajouter_un_capteur' => $_POST["Ajouter_un_capteur"]));
+        $req -> execute(array('Ajouter_un_capteur' => $capteur));
         return $req;
     }
+
+    public function ajoutAdmin($id,$mdp)
+    {
+        $db=$this->dbConnect();
+        $req = $db -> prepare ('INSERT INTO utilisateur(login,password,id_type_utilisateur) VALUES (:login_admin,:password_admin,1)');
+        $req -> execute(array(
+            'login_admin' => $id,
+            'password_admin' => $mdp));
+        return $req;
+    }
+
+    public function ajoutOp($id,$mdp)
+    {
+        $db=$this->dbConnect();
+        $req = $db -> prepare ('INSERT INTO utilisateur(login,password,id_type_utilisateur) VALUES (:login_op,:password_op,2)');
+        $req -> execute(array(
+            'login_op' => $id,
+            'password_op' => $mdp));
+        return $req;
+    }
+
     private function dbConnect()
     {
        try
