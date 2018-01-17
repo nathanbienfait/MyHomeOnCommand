@@ -1,14 +1,4 @@
 <?php
-function afficheAccueil()
-{
-    if(isset($_SESSION['prenom']))
-    {
-        session_unset();
-        session_destroy();
-    }
-    require_once('vue/accueil.php');
-    
-}
 function login($login,$mdp)
 {
    
