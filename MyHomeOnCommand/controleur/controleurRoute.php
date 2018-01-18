@@ -79,13 +79,6 @@ function afficheAdminPanneauClient()
                 
                 }
                 
-                // Modifier le slogan
-                if (!empty($_POST['Modifier_le_slogan']))
-                {
-                    $bdd = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-                    $req=$bdd->prepare('UPDATE slogan SET contenu = ? WHERE id_slogan = 1');
-                    $req->execute (array( $_POST["Modifier_le_slogan"] ));
-                 }
             
                 $info=adminInfoClient();
                 require_once('vue/adminDonneeClient.php');
