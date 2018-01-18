@@ -10,9 +10,15 @@ else
 	$fonction=$_POST['tri'];
 }
 
+if(isset($_POST['id_equipement']) AND isset($_POST['valeur_cible']))
+{
+	MajValeurCible($_POST['id_equipement'], $_POST['valeur_cible']);
+}
+
 switch ($fonction)
 {
 	case 'piece' :
+
 		$vue='panneaucontroleClient';
 		$title='Vos capteurs';
 		$id_logements=Obtenir_id_logements($_SESSION['id']);
