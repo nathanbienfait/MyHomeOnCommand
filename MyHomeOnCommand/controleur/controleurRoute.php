@@ -351,3 +351,15 @@ function afficheMessagerieSupport()
             }
         }
 }
+
+function afficheSupportOperateur()
+{
+    if(isset($_SESSION['type']))
+        {
+            if($_SESSION['type']==2)
+            {
+                $tableauqr=tableauqr();
+                require_once('vue/supportOperateur.php');
+            }
+        }
+}
