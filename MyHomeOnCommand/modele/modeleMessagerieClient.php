@@ -1,20 +1,7 @@
 <?php
-class messagerieClient
+class messagerieClient extends Connection
 {
-	private function dbConnect()
-    {
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-                        die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
-
-
+	
     public function getMessages($idUtil)    /* Obtient la discussion déjà établie ave le support */
     {
     	$db=$this->dbConnect();
