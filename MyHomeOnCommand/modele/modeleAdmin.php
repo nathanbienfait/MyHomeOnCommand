@@ -1,5 +1,5 @@
 <?php
-class admin
+class admin extends Connection
 {
     public function getDonneeClient()
     {
@@ -33,18 +33,4 @@ class admin
         ));
 
     }
-
-    private function dbConnect()
-    {
-       try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
-
 }
