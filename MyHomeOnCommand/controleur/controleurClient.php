@@ -181,3 +181,47 @@ function modifierNomEquipement($nom,$id)
     $nouveauNom->modifNomEquipement($id,$nom);
     echo "<script>alert(\"Modifications réalisées\")</script>";
 }
+
+function supprimerEquipement($id)
+{
+    $supprimer=new ajout;
+    $supprimer->supprDonneeEquip($id);
+    $supprimer->supprEquip($id);
+    
+}
+
+function supprimerCemac($id)
+{
+    $supprimer= new ajout;
+    $idEquip=$supprimer->getIdEquipDeCemac($id)->fetchAll();
+    foreach($idEquip as $idE)
+    {
+        supprimerEquipement($idE['id_equipement']);
+    }
+    $supprimer->supprCemac($id);
+    $supprimer->supprRelCemacPiece($id);
+}
+
+function supprimerPiece($id)
+{
+    $supprimer= new ajout;
+    $idCemac=$supprimer->getIdCemacDePiece($id)->fetchAll();
+    foreach($idCemac as $idC)
+    {
+        supprimerCemac($idC['id_cemac']);
+    }
+    $supprimer->supprPiece($id);
+}
+
+function supprimerLogement($id)
+{
+    $supprimer= new ajout;
+    $idPiece=$supprimer->getIdPieceDeLogement($id)->fetchAll();
+    foreach($idPiece as $idP)
+    {
+        supprimerPiece($idP['id_piece']);
+    }
+    $supprimer->supprLogement($id);
+    $supprimer-> supprRelLogementUtil($id);
+}
+
