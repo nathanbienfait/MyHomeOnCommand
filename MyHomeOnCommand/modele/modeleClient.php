@@ -1,6 +1,6 @@
 <?php
 
-class ajout
+class ajout extends Connection
 {
     public function ajoutLogement($nom,$rue,$ville,$cp,$pays)
     {
@@ -171,16 +171,5 @@ class ajout
         )); 
     }
 
-    private function dbConnect()
-    {
-       try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
+    
 }
