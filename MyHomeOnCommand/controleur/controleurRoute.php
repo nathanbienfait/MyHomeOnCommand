@@ -112,6 +112,22 @@ function afficheGestionHabitationClient()
                     $nom=htmlspecialchars($_POST['nom']);
                     modifierNomEquipement($nom,$_POST['id']);
                 }
+                if(isset($_POST['bouton_supprimer_equip']))
+                {
+                    supprimerEquipement($_POST['id']);
+                }
+                if(isset($_POST['bouton_supprimer_cemac']))
+                {
+                    supprimerCemac($_POST['id']);
+                }
+                if(isset($_POST['bouton_supprimer_piece']))
+                {
+                    supprimerPiece($_POST['id']);
+                }
+                if(isset($_POST['bouton_supprimer_logement']))
+                {
+                    supprimerLogement($_POST['id']);
+                }
                 $logements=nomLogement($_SESSION['id']);
                 $pieces=nomPiece($_SESSION['id']);
                 $cemacs=nomCemac($_SESSION['id']);
