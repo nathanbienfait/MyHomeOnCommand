@@ -1,19 +1,7 @@
 <?php
-class QuestionReponse
+class QuestionReponse extends Connection
 {
-    private function dbconnect()
-    {
-        try
-            {
-                $bdd = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-            }
-            catch (Exception $e)
-            {
-                die('Erreur : ' . $e->getMessage());
-            }
-        return $bdd;
-    }
-
+    
     public function recupereqr()
     {
         $db=$this->dbConnect();
