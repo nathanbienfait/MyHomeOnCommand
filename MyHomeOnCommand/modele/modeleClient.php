@@ -258,7 +258,64 @@ class ajout extends Connection
             'id'=>$id
         ));
     }
-	
+	public function supprClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM utilisateur WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    public function supprInfoClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM info_utilisateur WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    public function getIdRelQRClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('SELECT id_qr FROM relation_utilisateur_qr WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+            ));
+        return $req;
+    }
+    public function supprimerQR($id)
+    {
+       $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM qr WHERE id_qr = :id');
+        $req->execute(array(
+            'id'=>$id
+        )); 
+    }
+    public function supprRelQRClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM relation_utilisateur_qr WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+        )); 
+    }
+    public function getIdRelLogClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('SELECT id_logement FROM relation_logement_utilisateur WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+            ));
+        return $req;
+    }
+    public function supprRelLogClient($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM relation_logement_utilisateur WHERE id_utilisateur = :id');
+        $req->execute(array(
+            'id'=>$id
+        )); 
+    }
 
     
 }
