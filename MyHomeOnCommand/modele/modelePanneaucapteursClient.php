@@ -255,3 +255,10 @@ function ObtenirEtatEquipement($id_equipement)
 	$req->closeCursor();
 	return $etat;
 }
+
+function MajValeurCible($id_equipement, $nouvelle_valeur_cible)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('UPDATE equipement SET valeur_cible=:valeur_cible WHERE id_equipement=:id_equipement');
+	$req->execute(array('valeur_cible' => $nouvelle_valeur_cible, 'id_equipement' => $id_equipement));
+}
