@@ -40,19 +40,6 @@
 	text-align: center;
 }
 
-/* .liste_pieces
-{
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	
-	flex-wrap: wrap;
-  
-    
-    justify-content: space-around;
-}
-*/
-
 .case_piece
 {
 	display: flex;
@@ -106,16 +93,6 @@
 .case_equipement h2
 {
 	font-size: 1em;
-}
-
-.case_piece:hover
-{
-	background-color: rgba(255,255,255,0.7);
-}
-
-.case_logement:hover
-{
-	background-color: rgba(255,255,255,0.7);
 }
 
 .case_equipement:hover
