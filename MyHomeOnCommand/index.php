@@ -99,6 +99,12 @@ switch($page)
 
         afficheMessagerieSupport();
         break;
+        
+     case 'supportOperateur' :
+
+        afficheSupportOperateur();
+        break;
+
 
  
 }
