@@ -121,7 +121,7 @@
             var mdpconfOk = verifNom(f.mdpconf_inscription);
             if(nomOk && prenomOk && identifiantOk && mdpOk && mdpconfOk )
             {
-                if(f.mdp_inscription==f.mdpconf_inscription)
+                if(f.mdp_inscription.value==f.mdpconf_inscription.value)
                     {
                         return true;
                     }
