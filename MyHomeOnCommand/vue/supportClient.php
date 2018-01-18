@@ -18,7 +18,7 @@
                     <input type="search" id="maRecherche" name="q" placeholder="Recherche">
                 </form>
                <div id="contactSupport">
-                    <a id="textcontact" href="mailto:support@domeisep.com">contactez le support</a>
+                    <a id="textcontact" href="index.php?page=messagerieClient">contactez le support</a>
                </div>
                <div>
                     <?php foreach($tableauqr as $truc): ?>
