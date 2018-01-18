@@ -1,19 +1,7 @@
 <?php
-class gestionProfilClient
+class gestionProfilClient extends Connection
 {
-	private function dbConnect()
-    {
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-                        die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
-
+	
 	public function getUtilisateur($idUtil)
 	{
 		$db=$this->dbConnect();
