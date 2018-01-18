@@ -1,6 +1,21 @@
 <?php
-
-class LoginUtilisateur
+class Connection
+{
+    protected function dbConnect()
+    {
+        try
+        {
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+        }
+        catch (Exception $e)
+        {
+                        die('Erreur : ' . $e->getMessage());
+        }
+        return $db;
+    }
+    
+}
+class LoginUtilisateur extends Connection
 {
     
     public function getAuthentification()
@@ -18,23 +33,11 @@ class LoginUtilisateur
         return $req;
     }
     
-    private function dbConnect()
-    {
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-                        die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
     
     
 }
 
-class InscriptionUtilisateur
+class InscriptionUtilisateur extends Connection
 {
     
     public function setUtilisateur($pseudo,$mp)
@@ -122,17 +125,5 @@ class InscriptionUtilisateur
         return $req;
     }
 
-    private function dbConnect()
-    {
-       try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' . $e->getMessage());
-        }
-        return $db;
-    }
 }
 
