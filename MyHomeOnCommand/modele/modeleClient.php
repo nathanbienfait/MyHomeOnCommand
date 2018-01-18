@@ -170,6 +170,95 @@ class ajout extends Connection
             'id' => $id
         )); 
     }
+	public function supprEquip($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM equipement WHERE id_equipement = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    public function supprDonneeEquip($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM donnees_equipement WHERE id_equipement = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    public function getIdEquipDeCemac($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('SELECT id_equipement FROM equipement WHERE id_cemac = :id');
+        $req->execute(array(
+            'id'=>$id
+            ));
+        return $req;
+    }
+    
+    public function supprCemac($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM cemac WHERE id_cemac = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    public function supprRelCemacPiece($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM relation_piece_cemac WHERE id_cemac = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    
+    public function getIdCemacDePiece($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('SELECT id_cemac FROM relation_piece_cemac WHERE id_piece = :id');
+        $req->execute(array(
+            'id'=>$id
+            ));
+        return $req;
+    }
+    
+    public function supprPiece($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM piece WHERE id_piece = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    
+    public function getIdPieceDeLogement($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('SELECT id_piece FROM piece WHERE id_logement = :id');
+        $req->execute(array(
+            'id'=>$id
+            ));
+        return $req;
+    }
+    public function supprLogement($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM logement WHERE id_logement = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+    
+    public function supprRelLogementUtil($id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM relation_logement_utilisateur WHERE id_logement = :id');
+        $req->execute(array(
+            'id'=>$id
+        ));
+    }
+	
 
     
 }
