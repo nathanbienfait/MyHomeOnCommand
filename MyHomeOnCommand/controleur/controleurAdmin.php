@@ -34,4 +34,22 @@ function adminModifInfoClient($prenom,$nom,$email,$telephone,$type,$pseudo,$idCl
     echo "<script>alert(\"Modifications réalisées\")</script>";
     
 }
+function supprimerClient($id)
+{
+    $admin=new ajout;
+    $admin->supprClient($id);
+    $admin->supprInfoClient($id);
+    $relQR=$admin->getIdRelQRClient($id)->fetchAll();
+    foreach($relQR as $rel)
+    {
+        $admin->supprimerQR($rel['id_qr']);
+    }
+    $admin->supprRelQRClient($id);
+    $relLog=$admin->getIdRelLogClient($id);
+    foreach($relLog as $relL)
+    {
+        supprimerLogement($relL['id_logement']);
+    }
+    $admin->supprRelLogClient($id);
+}
 
