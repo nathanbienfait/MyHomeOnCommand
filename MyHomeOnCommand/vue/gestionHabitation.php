@@ -45,7 +45,7 @@
                     {
                         if($pieces[$x_piece+2]==$logements[$x_logement])
                         {
-                            echo "<div class='logement' style='margin-left:15px;margin-top:15px;'><br>Piece:".$pieces[$x_piece+1]."<button class='bouton_aff_modal' data-modal='modal_piece_".$pieces[$x_piece]."'><i class='fa fa-pencil' aria-hidden='true'></i>
+                            echo "<div class='logement' style='margin-left:10px;margin-top:10px;'><br>Piece:<br>".$pieces[$x_piece+1]."<button class='bouton_aff_modal' data-modal='modal_piece_".$pieces[$x_piece]."'><i class='fa fa-pencil' aria-hidden='true'></i>
                             </button></div><br><div id='modal_piece_".$pieces[$x_piece]."' class='modal'>
                           <div class='modal-content'>
                             <span class='close' id='close_".$pieces[$x_piece]."' >&times;</span>
@@ -67,7 +67,7 @@
                             {
                                 if($cemacs[$x_cemac+2]==$pieces[$x_piece])
                                 {
-                                    echo "<div class='logement' style='margin-left:30px;'><br>Cemac:".$cemacs[$x_cemac+1]."<button class='bouton_aff_modal' data-modal='modal_cemac_".$cemacs[$x_cemac]."'><i class='fa fa-pencil' aria-hidden='true'></i>
+                                    echo "<div class='logement' style='margin-left:20px;'><br>Cemac:<br>".$cemacs[$x_cemac+1]."<button class='bouton_aff_modal' data-modal='modal_cemac_".$cemacs[$x_cemac]."'><i class='fa fa-pencil' aria-hidden='true'></i>
                                     </button></div><br><div id='modal_cemac_".$cemacs[$x_cemac]."' class='modal'>
                                   <div class='modal-content'>
                                     <span class='close' id='close_".$cemacs[$x_cemac]."' >&times;</span>
@@ -89,7 +89,7 @@
                                     {
                                         if($equipements[$x_equip+2]==$cemacs[$x_cemac])
                                         {
-                                            echo "<div class='logement' style='margin-left:45px;'><br>Equipement:".$equipements[$x_equip+1]."<button class='bouton_aff_modal' data-modal='modal_equip_".$equipements[$x_equip]."'><i class='fa fa-pencil' aria-hidden='true'></i></button></div><br><div id='modal_equip_".$equipements[$x_equip]."' class='modal'>
+                                            echo "<div class='logement' style='margin-left:30px;'><br>Equipement:<br>".$equipements[$x_equip+1]."<button class='bouton_aff_modal' data-modal='modal_equip_".$equipements[$x_equip]."'><i class='fa fa-pencil' aria-hidden='true'></i></button></div><br><div id='modal_equip_".$equipements[$x_equip]."' class='modal'>
                                   <div class='modal-content'>
                                     <span class='close' id='close_".$equipements[$x_equip]."' >&times;</span>
                                         <form class='modif' method='post' action='index.php?page=gestionHabitationClient'>
