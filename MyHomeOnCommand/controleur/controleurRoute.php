@@ -78,7 +78,10 @@ function afficheAdminPanneauClient()
                    adminModifInfoClient($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone'],$_POST['type'],$_POST['pseudo'],$_POST['idClient']);
                 
                 }
-                
+                if(isset($_POST['bouton_supprimer']))
+                {
+                    supprimerClient($_POST['idClient']);
+                }
             
                 $info=adminInfoClient();
                 require_once('vue/adminDonneeClient.php');
