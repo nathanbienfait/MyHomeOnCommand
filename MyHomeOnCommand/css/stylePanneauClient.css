@@ -115,7 +115,7 @@
     margin: auto;
 }
 
-.thermometre
+.temperature
 {
     width: 100%;
     height:100%;   
@@ -132,4 +132,11 @@
 	width: 200%;
     height:200%;
     margin-left: -50%;
+}
+
+.fumee
+{
+	width: 300%;
+	height: 300%;
+	margin-left: -50%;
 }
