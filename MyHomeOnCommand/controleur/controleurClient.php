@@ -234,7 +234,7 @@ function clientGrapheConsommationtemperature()
     $annee = $today['year'];
     $login = $_SESSION['prenom'];
     $arr = [["jour", "température"]];
-    $info=$clientconsommation->getconsommationhumiditeclient();
+    $info=$clientconsommation->getconsommationtemperatureclient();
     while($donnees = $info -> fetch())
             {
               $dateentime = strtotime($donnees['date_utilisation']);
