@@ -28,25 +28,30 @@
                   </div>
 		    	<div id="modification">
                 <div id="slogan">
-			    	<p class='paragraphe'>
-			    		Modifier le slogan
-						<form method='POST' id="modif_slogan" action='index.php?page=modification'>
-						    <input type="text" id="modif" name="Modifier_le_slogan" required />
-						    <input type="submit" id="valider" value="Valider" name="bouton_valider_slogan" />
-						</form>
-					</p>
+			<p class='paragraphe'>
+				Modifier le slogan
+				<form method='POST' id="modif_slogan" action='index.php?page=modification'>
+					<input type="text" id="modif" name="Modifier_le_slogan" required />
+					<input type="submit" id="valider" value="Valider" name="bouton_valider_slogan" />
+				</form>
+			</p>
 				</div>
 				
                 
-				<div id="capteur">			
-					<p>
-						Ajouter un type de capteur
-						<form method='POST' id="modif_capteur" action='index.php?page=modification'>
-						    <input type="text" id="ajoutCapteur" name='Ajouter_un_capteur' required />
-						    <input type="submit" id="valider" value="Valider" name="bouton_valider_capteur" />
-						</form>
-					</p>
-				</div>
+		<div id="equipement">			
+			<p>
+			<h1>Ajouter un type d'équipement :</h1>
+			<form method='POST' id="modif_equipement" action='index.php?page=modification'>
+                            <label for="Ajouter_un_equipement"> Nom du capteur : </label>
+						    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>
+                            <label for="unite"> Unité de la valeur mesurée : </label>
+                            <input type="text" name="unite" /></br></br>
+                            <label for="logo"> Importer un logo pour ce type d'équipement (ce logo apparaitra sur le panneau de contrôle des clients) </label></br></br>
+                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label></br></br>
+						    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
+			</form>
+			</p>
+		</div>
 
                 <div id="admin">
                     <p>
@@ -85,7 +90,7 @@
 <script>
     var cas1 = document.querySelector('#slogan');
 cas1.style.display="none";
-    var cas2 = document.querySelector('#capteur');
+    var cas2 = document.querySelector('#equipement');
 cas2.style.display="none";
     var cas3 = document.querySelector('#admin');
 cas3.style.display="none";
