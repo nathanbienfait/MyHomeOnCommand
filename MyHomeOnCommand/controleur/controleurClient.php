@@ -242,7 +242,7 @@ function clientGrapheConsommationtemperature()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    if( $donnees['login'] == $login)
+                    if( $donnees['login'] == $login) //On garde les données du client
                     {
                         $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
                           }
@@ -263,7 +263,10 @@ function clientGrapheConsommationtemperature()
             }
             $x++;
         }
-return $arr; 
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    } 
 }
 
 function clientGrapheConsommationhumidite()
@@ -282,7 +285,7 @@ function clientGrapheConsommationhumidite()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    if( $donnees['login'] == $login)
+                    if( $donnees['login'] == $login) //On garde les données du client
                     {
                         $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
                           }
@@ -303,7 +306,10 @@ function clientGrapheConsommationhumidite()
             }
             $x++;
         }
-return $arr;  
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    }
 }
                     
 
@@ -325,7 +331,7 @@ function clientGrapheConsommationlumiere()
                 {
                     if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                     {
-                        if( $donnees['login'] == $login)
+                        if( $donnees['login'] == $login) //On garde les données du client
                         {
                             $arrid[] = $donnees['id_utilisateur'];
                             $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))];
@@ -346,5 +352,8 @@ function clientGrapheConsommationlumiere()
             }
             $x++;      
         }
-return $arr;           
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    }           
 }
