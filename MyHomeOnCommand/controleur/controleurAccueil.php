@@ -52,7 +52,8 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
             $utilisateur->setUtilisateur($pseudo,$criptedMdp);
             $idUtil=$utilisateur->getIdUtilisateur($pseudo);
             $id=$idUtil->fetch();
-            $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur']);
+            $clef = password_hash($nom,PASSWORD_DEFAULT);
+            $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur'],$clef);
             return 1;
             
         }
@@ -197,4 +198,48 @@ function affichePres($texte_pres)
         return $pres;
     }
 }
- 
+
+function verifierMail($mail)
+{
+    $utilisateur=new LoginUtilisateur;
+    $recupMail=$utilisateur->verifMail()->fetchAll();
+    $verifEmail = NULL;
+    foreach ($recupMail as $testMail) {
+        if($mail == $testMail['email'])
+        {
+            $verifEmail = 1;
+        }
+    }
+    return $verifEmail;
+
+}
+function gettoken($mail)
+{
+    $utilisateur=new LoginUtilisateur;
+    $token=$utilisateur->getClef($mail);
+    return $token;
+}
+
+function modifMdpReinitialisation($mdp,$mdpVerif,$id)
+{
+    $verif=0;
+    if($mdp==$mdpVerif)
+    {
+        $verif=1;
+        $utilisateur=new InscriptionUtilisateur;
+        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+        $utilisateur->setNewMdp($criptedMdp,$id);
+    }
+    else
+    {
+        $verif=2;
+    }
+    return $verif;
+}
+
+function getIdReinitialisation($token)
+{
+    $utilisateur=new InscriptionUtilisateur;
+    $id_client=$utilisateur->getIdToken($token)->fetch();
+    return $id_client;    
+}
