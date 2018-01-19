@@ -106,23 +106,77 @@ function afficheCapteur($capteur)
         return $ajoutCapteur;
     }
 }
+
 function afficheAdmin($id,$mdp)
 {
     if (isset ($_POST['login_admin'],$_POST['password_admin']))
     {
-        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-        $affiche=new InscriptionUtilisateur;
-        $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
-        return $ajoutAdmin;
+        
+        $verif=0;
+        $utilisateur=new InscriptionUtilisateur;
+        $listeLogin=$utilisateur->getLoginUtilisateurs();
+        while($liste=$listeLogin->fetch())
+        {
+            
+            if($liste['login']==$id)
+            {
+                
+                $verif=1;
+                
+                
+            }
+        }
+        
+        if ($verif==0)
+        {
+            
+            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+            $affiche=new InscriptionUtilisateur;
+            $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
+            return $ajoutAdmin;
+            
+        }
+        if($verif==1)
+        {
+            erreur("Votre pseudo n'est pas disponible");
+        }
+
     }
 }
+
 function afficheOp($id,$mdp)
 {
     if (isset ($_POST['login_op'],$_POST['password_op']))
     {
-        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-        $affiche=new InscriptionUtilisateur;
-        $ajoutAdmin =$affiche->ajoutOp($id,$criptedMdp);
-        return $ajoutAdmin;
+        
+        $verif=0;
+        $utilisateur=new InscriptionUtilisateur;
+        $listeLogin=$utilisateur->getLoginUtilisateurs();
+        while($liste=$listeLogin->fetch())
+        {
+            
+            if($liste['login']==$id)
+            {
+                
+                $verif=1;
+                
+                
+            }
+        }
+        
+        if ($verif==0)
+        {
+            
+            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+            $affiche=new InscriptionUtilisateur;
+            $ajoutOp =$affiche->ajoutOp($id,$criptedMdp);
+            return $ajoutOp;
+            
+        }
+        if($verif==1)
+        {
+            erreur("Votre pseudo n'est pas disponible");
+        }
+
     }
 }
