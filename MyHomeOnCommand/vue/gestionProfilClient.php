@@ -23,38 +23,36 @@ include("header.php");
                 <div id="Box1">
 
                     <div id="infoBlock1">
-                        <p class="infoTitre">Informations personnelles </p>
+                        <p class="infoTitre">Informations personnelles :</p>
 
-                        <?php
-                        echo '
 
                             <div id="Forms">
                                 <form method="post" name="formModif" >
                            
                                 <p> Identifiant : </p>
-                                <input type="text" name="login" value="'.$tab[0].'" onblur="verifNom(this)" required/>
-                                </br>
-                                <p> Mot de passe : </p>
-                                <input class="boutonMdp" type="submit" value="Modifier le mot de passe" name="clientModifMdp" />
+                                <input type="text" name="login" value="<?php echo $tab[0] ?>" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> Prénom : </p>
-                                <input type="text" name="prenom" value="'.$tab[2].'" onblur="verifNom(this)" required/>
+                                <input type="text" name="prenom" value="<?php echo $tab[2] ?>" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> Nom : </p>
-                                <input type="text" name="nom" value="'.$tab[3].'" onblur="verifNom(this)" required/>
+                                <input type="text" name="nom" value="<?php echo $tab[3] ?>" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> e-mail : </p>
-                                <input type="text" name="email" value="'.$tab[4].'" onblur="verifMail(this)" />
+                                <input type="text" name="email" value="<?php echo $tab[4] ?>" onblur="verifMail(this)" />
                                 </br>
                                 <p> Téléphone : </p>
-                                <input type="text" name="telephone" value="'.$tab[5].'" onblur="verifTel(this)" />
+                                <input type="text" name="telephone" value="<?php echo $tab[5] ?>" onblur="verifTel(this)" />
                                 </br>
                                 </br>
                                 <input class="bouton" type="submit" value="Valider les changements" name="clientValiModifsInfo" />
-
                             </div>
-                        ';
-                        ?>
+
+                            <p class="infoTitre2"> Mot de passe : </p>
+                            </br>
+                            <div id="FormsMdp">
+                                <a href="index.php?page=modificationMdpClient" class="boutonMdp" name="clientModifMdp"> Modifier le mot de passe </a>
+                            </div>
 
                     </div>
                 </div>
@@ -146,4 +144,3 @@ include("header.php");
     </body>
 
 </html>
-
