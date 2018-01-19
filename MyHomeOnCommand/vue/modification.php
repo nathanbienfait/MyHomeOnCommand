@@ -20,7 +20,7 @@
 		      <div id="onglet">
                 <span id="titre_slogan">Modifier le slogan </span>
                 <br> <br> <br>
-                <span id="titre_capteur">Ajouter un type de capteur </span>
+                <span id="titre_equipement">Ajouter un type de capteur </span>
                 <br> <br> <br>
                 <span id="titre_admin">Ajouter un administrateur </span>
                 <br> <br> <br>
@@ -120,7 +120,7 @@ tab1.addEventListener('click', function() {
     }
  });
 
-var tab2 = document.querySelector('#titre_capteur');
+var tab2 = document.querySelector('#titre_equipement');
 var x2=0;
 tab2.addEventListener('click', function() {
     if(x2==0)
