@@ -87,6 +87,13 @@ function afficheslogan()
     $slogan=$slogan->fetch()[0];
     return $slogan;
 }
+function afficheTextPres()
+{
+    $affiche=new InscriptionUtilisateur;
+    $pres =$affiche->getPres();
+    $pres=$pres->fetch()[0];
+    return $pres;
+}
 function afficheModif($slog)
 {
     if (!empty($_POST['Modifier_le_slogan']))
@@ -180,3 +187,14 @@ function afficheOp($id,$mdp)
 
     }
 }
+
+function affichePres($texte_pres)
+{
+    if (!empty($_POST['texte_pres']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $pres =$affiche->ajoutPres($texte_pres);
+        return $pres;
+    }
+}
+ 
