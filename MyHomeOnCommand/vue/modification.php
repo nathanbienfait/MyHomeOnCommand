@@ -25,6 +25,8 @@
                 <span id="titre_admin">Ajouter un administrateur </span>
                 <br> <br> <br>
                 <span id="titre_op">Ajouter un opérateur </span>
+		<br> <br> <br>
+                <span id="titre_pres">Texte de présentation </span>
                   </div>
 		    	<div id="modification">
                 <div id="slogan">
@@ -81,6 +83,16 @@
                     </p>
                 </div>
 
+		 <div id="presentation">
+                    <p>
+                        Qui sommmes nous ?
+                        <form method='POST' id="explication" action='index.php?page=modification'>
+                            <textarea  id="texte_pres" name="texte_pres" required ></textarea>
+                            <input type="submit" id="valider" value="Valider" name="bouton_valider_pres" />
+                        </form>
+                    </p>
+                </div>
+
 			</div>
 
 		</div>
@@ -96,6 +108,8 @@ cas2.style.display="none";
 cas3.style.display="none";
     var cas4 = document.querySelector('#operateur');
 cas4.style.display="none";
+    var cas5 = document.querySelector('#presentation');
+cas5.style.display="none";
 
 var tab1 = document.querySelector('#titre_slogan');
 var x1=0;
@@ -106,12 +120,15 @@ tab1.addEventListener('click', function() {
         cas2.style.display="none";
         cas3.style.display="none";
         cas4.style.display="none";
+        cas5.style.display="none";
+
         
         x1=1;
         x2=0;
         x3=0;
         x4=0;
-        
+        x5=0;
+
     }
     else
     {
@@ -120,7 +137,7 @@ tab1.addEventListener('click', function() {
     }
  });
 
-var tab2 = document.querySelector('#titre_equipement');
+var tab2 = document.querySelector('#titre_capteur');
 var x2=0;
 tab2.addEventListener('click', function() {
     if(x2==0)
@@ -129,11 +146,13 @@ tab2.addEventListener('click', function() {
         cas1.style.display="none";
         cas3.style.display="none";
         cas4.style.display="none";
+        cas5.style.display="none";
         
         x2=1;
         x1=0;
         x3=0;
         x4=0;
+        x5=0;
        
     }
     else
@@ -152,11 +171,14 @@ tab3.addEventListener('click', function() {
         cas1.style.display="none";
         cas2.style.display="none";
         cas4.style.display="none";
+        cas5.style.display="none";
+
         
         x3=1;
         x1=0;
         x2=0;
         x4=0;
+        x5=0;
        
     }
     else
@@ -175,18 +197,46 @@ tab4.addEventListener('click', function() {
         cas1.style.display="none";
         cas2.style.display="none";
         cas3.style.display="none";
+        cas5.style.display="none";
 
         
         x4=1;
         x1=0;
         x2=0;
         x3=0;
+        x5=0;
        
     }
     else
     {
         cas4.style.display="none";
         x4=0;
+    }
+ });
+
+var tab5 = document.querySelector('#titre_pres');
+var x5=0;
+tab5.addEventListener('click', function() {
+    if(x5==0)
+    {
+        cas5.style.display="";
+        cas1.style.display="none";
+        cas2.style.display="none";
+        cas3.style.display="none";
+        cas4.style.display="none";
+
+        
+        x5=1;
+        x1=0;
+        x2=0;
+        x3=0;
+        x4=0;
+       
+    }
+    else
+    {
+        cas5.style.display="none";
+        x5=0;
     }
  });
 
