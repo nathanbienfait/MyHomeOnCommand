@@ -10,7 +10,7 @@
     </head>
 
 <?php
-include("header.php");
+include("Header.php");
 ?>
 
     <body>
@@ -29,28 +29,28 @@ include("header.php");
                         echo '
 
                             <div id="Forms">
-                                <form method="post">
+                                <form method="post" name="formModif" >
                            
                                 <p> Identifiant : </p>
-                                <input type="text" name="login" value="'.$tab[0].'" />
+                                <input type="text" name="login" value="'.$tab[0].'" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> Mot de passe : </p>
-                                <input type="password" name="password" value="'.$tab[1].'" />
+                                <input class="boutonMdp" type="submit" value="Modifier le mot de passe" name="clientModifMdp" />
                                 </br>
                                 <p> Prénom : </p>
-                                <input type="text" name="prenom" value="'.$tab[2].'" />
+                                <input type="text" name="prenom" value="'.$tab[2].'" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> Nom : </p>
-                                <input type="text" name="nom" value="'.$tab[3].'" />
+                                <input type="text" name="nom" value="'.$tab[3].'" onblur="verifNom(this)" required/>
                                 </br>
                                 <p> e-mail : </p>
-                                <input type="text" name="email" value="'.$tab[4].'" />
+                                <input type="text" name="email" value="'.$tab[4].'" onblur="verifMail(this)" />
                                 </br>
                                 <p> Téléphone : </p>
-                                <input type="text" name="telephone" value="'.$tab[5].'"/>
+                                <input type="text" name="telephone" value="'.$tab[5].'" onblur="verifTel(this)" />
                                 </br>
                                 </br>
-                                <input class="Bouton" type="submit" value="Valider les changements" name="clientValiModifsInfo" />
+                                <input class="bouton" type="submit" value="Valider les changements" name="clientValiModifsInfo" />
 
                             </div>
                         ';
@@ -60,11 +60,89 @@ include("header.php");
                 </div>
             </section>
         </div>
-    </body>
     
-<?php
-include("footer.php");
-?>
+    
+    <?php
+    include("Footer.php");
+    ?>
+
+    <script>
+        function surligne(champ, erreur)
+        {
+           if(erreur)
+              champ.style.backgroundColor = "#fba";
+           else
+              champ.style.backgroundColor = "";
+        }
+
+        function verifNom(champ)
+        {
+            if(champ.value.length < 2 || champ.value.length >30)
+           {
+              surligne(champ, true);
+              return false;
+           }
+           else
+           {
+              surligne(champ, false);
+              return true;
+
+           }
+        }
+
+        function verifMail(champ)
+        {
+            if ((champ.value.indexOf('@') == -1) || (champ.value.indexOf('.') == -1))
+            {
+                surligne(champ, true);
+                return false;
+            }
+            else
+            {
+                surligne(champ, false);
+                return true;
+            }
+        }
+
+        function verifTel(champ)
+        {
+            if (champ.value.length < 7 || champ.value.length > 14 || (isNaN(champ.value) == true))
+            {
+                surligne(champ, true);
+                return false;
+            }
+            else
+            {
+                surligne(champ, false);
+                return true;
+            }
+        }
+
+        function verifForm(f)
+        {
+            var identifiantOk = verifNom(f.login);
+            var nomOk = verifNom(f.nom);
+            var prenomOk = verifNom (f.prenom);
+            var emailOk = verifMail (f.email);
+            var telOk = verifTel (f.telephone);
+            if(nomOk && prenomOk && identifiantOk && emailOk && telOk)
+            {
+                return true;
+            }
+            else
+            {
+                alert("Veuillez remplir correctement tous les champs");
+                return false;
+            }
+        }
+
+        document.formModif.onsubmit = function()
+        {
+            return verifForm(this);
+        }
+
+    </script>
+
+    </body>
 
 </html>
-
