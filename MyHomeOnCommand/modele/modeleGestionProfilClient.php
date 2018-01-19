@@ -1,7 +1,19 @@
 <?php
-class gestionProfilClient extends Connection
+class gestionProfilClient
 {
-	
+	private function dbConnect()
+    {
+        try
+        {
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+        }
+        catch (Exception $e)
+        {
+                        die('Erreur : ' . $e->getMessage());
+        }
+        return $db;
+    }
+
 	public function getUtilisateur($idUtil)
 	{
 		$db=$this->dbConnect();
@@ -23,13 +35,12 @@ class gestionProfilClient extends Connection
         ));
 	}
 
-	public function clientModifUtil($login,$password,$idUtil)
+	public function clientModifUtil($login,$idUtil)
 	{
 		$db=$this->dbConnect();
-		$req = $db->prepare('UPDATE utilisateur SET login =:login, password = :password WHERE id_utilisateur = :id');
+		$req = $db->prepare('UPDATE utilisateur SET login =:login, WHERE id_utilisateur = :id');
         $req->execute(array(
             'login' => $login,
-            'password' => $password,
             'id' => $idUtil
         ));
 	}
