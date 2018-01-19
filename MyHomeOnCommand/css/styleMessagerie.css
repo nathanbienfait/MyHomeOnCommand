@@ -27,6 +27,13 @@
 	margin-left: 1em;
 }
 
+.noNewMessage
+{
+	color : black;
+	text-align: center;
+	font-size: 4em;
+}
+
 .boiteNewQuest
 {
 	background-color: white;
