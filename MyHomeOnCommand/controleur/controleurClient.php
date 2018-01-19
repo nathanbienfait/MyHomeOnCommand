@@ -225,3 +225,126 @@ function supprimerLogement($id)
     $supprimer-> supprRelLogementUtil($id);
 }
 
+//Partie consommation
+function clientGrapheConsommationtemperature()
+{
+    $clientconsommation=new clientconsommation;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon'];
+    $annee = $today['year'];
+    $login = $_SESSION['prenom'];
+    $arr = [["jour", "température"]];
+    $info=$clientconsommation->getconsommationhumiditeclient();
+    while($donnees = $info -> fetch())
+            {
+              $dateentime = strtotime($donnees['date_utilisation']);
+              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                  if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                  {
+                    if( $donnees['login'] == $login)
+                    {
+                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                          }
+                        }  
+                    }
+            }
+//Si deux données ont la même date, on fait la moyenne des deux            
+    $x=1;
+    while($x<sizeof($arr))
+        {
+            if($x<sizeof($arr)-1)
+            {
+                if($arr[$x][0]==$arr[$x+1][0])
+                {
+                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
+                    array_splice($arr,$x+1,1);
+                }
+            }
+            $x++;
+        }
+return $arr; 
+}
+
+function clientGrapheConsommationhumidite()
+{
+    $clientconsommation=new clientconsommation;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon'];
+    $annee = $today['year'];
+    $login = $_SESSION['prenom'];
+    $arr = [["jour", "humidité"]];
+    $info=$clientconsommation->getconsommationhumiditeclient();
+    while($donnees = $info -> fetch())
+            {
+              $dateentime = strtotime($donnees['date_utilisation']);
+              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                  if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                  {
+                    if( $donnees['login'] == $login)
+                    {
+                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                          }
+                        }  
+                    }
+            } 
+//Si deux données ont la même date, on fait la moyenne des deux            
+    $x=1;
+    while($x<sizeof($arr))
+        {
+            if($x<sizeof($arr)-1)
+            {
+                if($arr[$x][0]==$arr[$x+1][0])
+                {
+                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
+                    array_splice($arr,$x+1,1);
+                }
+            }
+            $x++;
+        }
+return $arr;  
+}
+                    
+
+
+function clientGrapheConsommationlumiere()
+{
+    $clientconsommation=new clientconsommation;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon']; 
+    $annee = $today['year'];
+    $arrid = ['identifiant'];
+    $login = $_SESSION['prenom'];
+    $arr = [["jour", "nombre d'heures"]];
+    $info=$clientconsommation->getconsommationlumiereclient();
+    while($donnees = $info -> fetch())
+            {
+                $dateentime = strtotime($donnees['date_utilisation']);
+                if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                    if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                    {
+                        if( $donnees['login'] == $login)
+                        {
+                            $arrid[] = $donnees['id_utilisateur'];
+                            $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))];
+                        }
+                     }  
+                 }
+            }
+    $x=1; //On regarde si des données ont la même date
+    while($x<sizeof($arr))
+        {
+            if($x<sizeof($arr)-1)
+            {
+                if($arr[$x][0]==$arr[$x+1][0])
+                    {
+                        $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
+                    }
+                    array_splice($arr,$x+1,1);
+            }
+            $x++;      
+        }
+return $arr;           
+}
