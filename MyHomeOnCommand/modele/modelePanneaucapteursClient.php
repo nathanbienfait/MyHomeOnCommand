@@ -30,13 +30,12 @@ function Obtenir_type_equipement($id_equipement)
 function Obtenir_derniere_donnee_equipement($id_equipement)
 {
 	$bdd=Ouvrir_BDD();
-	$donnees_equipement = $bdd->prepare('SELECT * FROM donnees_equipement WHERE id_equipement =? ORDER BY temps DESC LIMIT 0,1');
+	$donnees_equipement = $bdd->prepare('SELECT * FROM donnees_equipement WHERE id_equipement =? ORDER BY id_donnees_equipement DESC LIMIT 0,1');
 	$donnees_equipement->execute(array($id_equipement));
 	$info=null;
 	$donnee=$donnees_equipement->fetch();
     $info=$donnee['valeur'];
 	$donnees_equipement->closeCursor();
-	
 	return $info;
 }
 
@@ -163,6 +162,19 @@ function ObtenirTypeEquipementDepuisId($id_type_equipement)
 	return $info;
 }
 
+function ObtenirIdTypeEquipementDepuisNom($nom_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT id_type_equipement FROM type_equipement WHERE nom_type_equipement=:nom_type_equipement');
+	$req->execute(array('nom_type_equipement' => $nom_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$id=$donnees['id_type_equipement'];
+	}
+	$req->closeCursor();
+	return $id;
+}
+
 function ObtenirEquipementsDunTypeEtLogement($id_type_equipement,$id_logement,$id_utilisateur)
 {
 	$bdd = Ouvrir_BDD();
@@ -261,4 +273,43 @@ function MajValeurCible($id_equipement, $nouvelle_valeur_cible)
 	$bdd = Ouvrir_BDD();
 	$req = $bdd->prepare('UPDATE equipement SET valeur_cible=:valeur_cible WHERE id_equipement=:id_equipement');
 	$req->execute(array('valeur_cible' => $nouvelle_valeur_cible, 'id_equipement' => $id_equipement));
+}
+
+function ObtenirImageTypeEquipement($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT image_fond FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$image=$donnees['image_fond'];
+	}
+	$req->closeCursor();
+	return $image;
+}
+
+function ObtenirLogoTypeEquipement($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT logo FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$logo=$donnees['logo'];
+	}
+	$req->closeCursor();
+	return $logo;
+}
+
+function ObtenirUniteTypeEquipement($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT unite FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$unite=$donnees['unite'];
+	}
+	$req->closeCursor();
+	return $unite;
 }
