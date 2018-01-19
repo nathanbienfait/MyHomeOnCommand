@@ -88,6 +88,13 @@ class InscriptionUtilisateur extends Connection
         $req = $db->query('SELECT contenu_slogan FROM slogan');
         return $req; 
      }
+     
+	public function getPres()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT contenu_presentation FROM presentation');
+        return $req; 
+     }
 	
     public function modifSlogan($slog)
     {
@@ -125,5 +132,12 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
+	public function ajoutPres($texte_pres)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE presentation SET contenu_presentation = :texte_pres WHERE id_presentation = 1');
+        $req->execute(array('texte_pres' => $texte_pres));
+        return $req;
+    }
 }
 
