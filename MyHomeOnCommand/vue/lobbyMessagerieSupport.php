@@ -24,7 +24,16 @@
 
            <div id="corpsTexte">
 
+                <?php 
+                if ($tab==NULL)
+                {
+                    echo '
+                    <p name="noNewMessage" class="noNewMessage"> Vous n\'avez aucune nouvelle question. </p>
+                    ';
+                }
+                ?>
                 <?php foreach($tab as $item): ?>
+
                     <p class="blacktext">Question posée par <?php echo nl2br($item['prenom']); ?> <?php echo nl2br($item['nom']) ?> : </p>
                     <div class="boiteNewQuest">
                         <?php echo nl2br($item['contenu_q']); ?>
