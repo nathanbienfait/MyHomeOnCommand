@@ -263,7 +263,7 @@ function clientGrapheConsommationtemperature()
             }
             $x++;
         }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     } 
@@ -306,7 +306,7 @@ function clientGrapheConsommationhumidite()
             }
             $x++;
         }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     }
@@ -352,7 +352,7 @@ function clientGrapheConsommationlumiere()
             }
             $x++;      
         }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     }           
