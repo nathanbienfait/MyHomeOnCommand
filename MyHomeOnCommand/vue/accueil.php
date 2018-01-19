@@ -26,7 +26,8 @@
         </div>
         <div id="partie_droite">    
             <div class="formulaire">
-                <form id="connexion" method="post" action="index.php?page=panneau">
+                <div id="connexion">
+                <form method="post" action="index.php?page=panneau">
                     <p>Connexion:</p>
                     <p>
                         <label for="login">Identifiant:</label>
@@ -42,6 +43,20 @@
                         <input type="submit" value="Se Connecter" name="bouton_connexion" />  
                     </p>
                 </form>
+                <div id="CorpTexte">
+                        <button class="bouton_aff_modal" data-modal="modal1">Mot de passe oublié</button>
+                        <div class='modal' id="modal1">
+                            <div class='modal-content'>
+                                <span class='close' >&times;</span>
+                                    <form method="Post" action="index.php?page=accueil">
+                                        <p> Votre adresse Mail :</p>
+                                        <input type="email" name="email"><br>
+                                        <br><input type="submit" name="envoi_mdp_oublié" value="envoyer">
+                                    </form>
+                            </div>
+                        </div>     
+                </div>
+            </div>
             </div>
 
             <div class="formulaire">
@@ -160,6 +175,34 @@
                 modal.style.display = "none";
             }
         }
+         document.inscription.onsubmit = function()
+        {
+            return confirm('Confirmez votre inscriptions?');
+        }
+        var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
+            boutonsAffModal.forEach(function(bouton){
+                bouton.onclick=function(){
+                    var modal=bouton.getAttribute('data-modal');
+                    document.getElementById(modal).style.display='block';
+                }
+            })
+            
+        var boutonsFermer=document.querySelectorAll(".close");
+            boutonsFermer.forEach(function(bouton){
+                bouton.onclick=function(){
+                    var modal=bouton.closest('.modal');
+                    modal.style.display='none';
+                }
+            })
+            
+
+        window.onclick = function(event){
+            if(event.target.className== "modal")
+                {
+                    event.target.style.display='none';
+                        
+                }
+            }  
     </script>
     </body>
 </html>
