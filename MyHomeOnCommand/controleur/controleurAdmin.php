@@ -87,7 +87,10 @@ function adminGrapheConsommationtemperature()
         }
         $x++;
     }
-    return $arr;
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    };
 }
 
 function adminGrapheConsommationhumidite()
@@ -123,7 +126,10 @@ function adminGrapheConsommationhumidite()
         }
         $x++;
     }
-    return $arr;
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    }
 }
 
 
@@ -166,6 +172,9 @@ function adminGrapheConsommationlumiere()
         }
         $x++;
     }
-    return $arr;
+    if(count($arr) >= 2)
+    {
+       return $arr; 
+    }
 }
 
