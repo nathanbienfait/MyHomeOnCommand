@@ -104,6 +104,10 @@ switch($page)
 
         afficheSupportOperateur();
         break;
+        
+     case 'reinitialisation':
+        afficheReinitialisation();
+        break;
 
 
  
