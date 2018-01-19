@@ -303,6 +303,12 @@ function afficheModification()
             $mdp=htmlspecialchars($_POST['password_op']);
             afficheOp($id,$mdp);
         }
+        
+        if(isset($_POST['bouton_valider_pres']))
+        {
+        $texte_pres=htmlspecialchars($_POST['texte_pres']);
+        affichePres($texte_pres);
+        }
 
         require_once('vue/modification.php');
 }
