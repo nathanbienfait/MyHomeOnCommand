@@ -41,6 +41,7 @@
 
 .titre_image
 {
+	background-color: rgba(255,255,255,0.6);
 	position: relative;
 	width: 100%;
 	min-width: 200px;
@@ -63,37 +64,7 @@
 	color: black;
 }
 
-.thermometre
-{
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-size: cover;
-}
-
-.humidite
-{
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-size: cover;
-}
-
-.ouverture
-{
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-size: cover;
-}
-
-.fumee
+.photo
 {
 	z-index: 2;
 	position: absolute;
