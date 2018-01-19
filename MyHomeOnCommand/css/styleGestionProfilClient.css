@@ -1,6 +1,6 @@
 body
 {
-	background: url(../images/ville.jpg) no-repeat center center fixed;
+	background: url(../images/Ville.jpg) no-repeat center center fixed;
 	background-size: cover;
 	font-family: Arial;
 	margin: 0px 0px 0px;
@@ -54,7 +54,7 @@ body
 	margin-left: 10px;
 }
 
-.Bouton
+.bouton
 {
 	width: 200px ;
 	border:solid 2px black;
@@ -67,7 +67,19 @@ body
 	text-align: center;
 }
 
-.Bouton:hover
+.boutonMdp
+{
+	width: 200px ;
+	border:solid 2px black;
+	background-color: white;
+	text-decoration-line: none;
+	color: black;
+	box-shadow: 6px 6px 6px black;
+	padding: 2px;
+	text-align: center;
+}
+
+.bouton:hover, .boutonMdp:hover
 {
 	box-shadow: 0px 0px 0px;
 }
