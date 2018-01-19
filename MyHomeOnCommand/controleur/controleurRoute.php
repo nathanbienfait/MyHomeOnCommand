@@ -255,7 +255,7 @@ function afficheGestionProfilClient()
     			
     			if(isset($_POST['clientValiModifsInfo'])) 
                 {
-                    clientModifInfoClient($_POST['login'],$_POST['password'],$_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone']); 
+                    clientModifInfoClient($_POST['login'],$_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone']); 
                 }
     			
     			$tab=clientVisuProfilClient(); //Fonction pour préremplir les formulaires de gestionProfilClient
