@@ -31,4 +31,36 @@ function clientModifInfoClient($login,$prenom,$nom,$email,$telephone)
     $utilisateur->clientModifUtil($login,$idClient);
     echo "<script>alert(\"Modifications réalisées\")</script>";
 }
+
+
+
+function clientModifMdp($oldMdp, $newMdp, $confNewMdp)
+{
+    $idClient=$_SESSION['id'];
+    $utilisateur=new gestionProfilClient;
+    $verif=$utilisateur->getMdpUtilisateur($idClient)->fetch();
+
+    if(password_verify($oldMdp,$verif['password']))
+    {
+        if($newMdp == $confNewMdp)
+        {
+            $criptedMdp=password_hash($newMdp,PASSWORD_DEFAULT);
+            $utilisateur->modifMdp($criptedMdp, $idClient);
+        }
+        else
+        {
+            echo "<script>alert(Le nouveau mot de passe et sa confirmation ne sont pas les mêmes)</script>";
+        }
+    }
+    else
+    {
+        echo "<script>alert(L/'ancien mot de passe n/'est pas le bon)</script>";
+    }
+
+
+}
+
+
+
+
 ?>
