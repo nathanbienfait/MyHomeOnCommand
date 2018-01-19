@@ -32,6 +32,19 @@ class LoginUtilisateur extends Connection
         $req->execute(array('id' => $idUtil));
         return $req;
     }
+    public function verifMail()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT email FROM info_utilisateur');
+        return $req;
+    }
+    public function getClef($mail)
+    {
+        $db =$this->dbConnect();
+        $reqToken =$db->prepare('SELECT token FROM info_utilisateur WHERE email = :mail');
+        $reqToken->execute(array('mail' => $mail));
+        return $reqToken;
+    }
     
     
     
@@ -52,17 +65,18 @@ class InscriptionUtilisateur extends Connection
 
     }
 
-    public function setInfoUtilisateur($prenom,$nom,$email,$telephone,$statut,$id)
+    public function setInfoUtilisateur($prenom,$nom,$email,$telephone,$statut,$id,$clef)
     {
         $db=$this->dbConnect();
-        $req = $db->prepare('INSERT INTO info_utilisateur(prenom, nom, email, telephone, statut_utilisateur, id_utilisateur) VALUES(:prenom, :nom, :email, :telephone, :statut, :idutil)');
+        $req = $db->prepare('INSERT INTO info_utilisateur(prenom, nom, email, telephone, statut_utilisateur, id_utilisateur,token) VALUES(:prenom, :nom, :email, :telephone, :statut, :idutil, :token)');
         $req->execute(array(
             'prenom' => $prenom,
             'nom' => $nom,
             'email' => $email,
             'telephone' => $telephone,
             'statut' => $statut,
-            'idutil' => $id
+            'idutil' => $id,
+	    'token' => $clef
 	));
     }
     
@@ -138,6 +152,22 @@ class InscriptionUtilisateur extends Connection
         $req=$db->prepare('UPDATE presentation SET contenu_presentation = :texte_pres WHERE id_presentation = 1');
         $req->execute(array('texte_pres' => $texte_pres));
         return $req;
+    }
+	public function getIdToken($token)
+    {
+        $db=$this->dbConnect();
+        $req =$db->prepare('SELECT id_utilisateur FROM info_utilisateur WHERE token =:token');
+        $req->execute(array('token' =>$token));
+        return $req;
+    }
+    public function setNewMdp($mdp,$id)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE utilisateur SET password=:mdp WHERE id_utilisateur=:id');
+        $req->execute(array(
+            'mdp' => $mdp,
+            'id' =>$id
+        ));
     }
 }
 
