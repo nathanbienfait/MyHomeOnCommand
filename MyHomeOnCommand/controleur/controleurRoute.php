@@ -77,7 +77,7 @@ function afficheInscription()
         }
         if($verif==1)
         {
-            require_once('vue/inscriptionReussi.php');
+            require_once('vue/inscriptionReussie.php');
         }
         else
         {
