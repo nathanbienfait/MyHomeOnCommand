@@ -6,6 +6,25 @@ function afficheAccueil()
         session_unset();
         session_destroy();
     }
+    if(isset($_POST['email']))
+                {
+                      
+                    $verifMail=NULL;
+                    $verifMail=htmlspecialchars(verifierMail($_POST['email']));
+                    if ($verifMail == NULL ) {
+                        echo "<script>alert('Votre Mail ne correspond pas');</script>";
+                    }
+                    elseif ($verifMail == 1) {
+                    $to=htmlspecialchars($_POST['email']);
+                    $subject = "Reinitalisation mot de passe MyHomeOnCommand";
+                    $token = gettoken(htmlspecialchars($_POST['email']))->fetch();
+                    $message = "Bonjour, vous avez demandé une réinitialisation de votre mot de passe,
+Vous pouvez reinitialiser votre mot de passe via ce lien : http://localhost/MyHomeOnCommandters/index.php?page=reinitialisation&clef=".$token['token'];
+                    mail($to,$subject,$message);
+                        echo "<script>alert('Mail envoyé');</script>";
+
+                    }
+                }
     require_once('vue/accueil.php');
     
 }
@@ -371,4 +390,22 @@ function afficheSupportOperateur()
                 require_once('vue/supportOperateur.php');
             }
         }
+}
+function afficheReinitialisation()
+{
+
+    $clef=$_GET['clef'];
+    if(isset($_POST['mdp'],$_POST['mdpverif']))
+    {
+        
+        $verif=NULL;
+        $id=getIdReinitialisation($clef);
+        $verif=modifMdpReinitialisation($_POST['mdp'],$_POST['mdpverif'],$id['id_utilisateur']);
+        require_once('vue/reinitialisation.php');
+    }
+    else
+    {
+        require_once('vue/reinitialisation.php');
+    }   
+    
 }
