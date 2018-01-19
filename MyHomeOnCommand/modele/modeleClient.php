@@ -316,6 +316,68 @@ class ajout extends Connection
             'id'=>$id
         )); 
     }
+   
+}
 
-    
+class clientconsommation
+{
+        //Partie consommation
+    private function dbConnect()
+    {
+       try
+        {
+            $db = new PDO('mysql:host=localhost;dbname=myhomeoncommand;charset=utf8', 'root', '');
+        }
+        catch (Exception $e)
+        {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return $db;
+    }
+
+    public function getconsommationtemperatureclient()
+    {
+        $db=$this->dbConnect();
+        $reponse = $db-> query('SELECT donnees_equipement.id_equipement, donnees_equipement.temps, donnees_equipement.date_utilisation, equipement.id_equipement, donnees_equipement.valeur, relation_logement_utilisateur.id_utilisateur, utilisateur.login  
+            FROM donnees_equipement 
+                INNER JOIN equipement ON equipement.id_equipement = donnees_equipement.id_equipement
+                INNER JOIN relation_piece_cemac ON relation_piece_cemac.id_cemac = equipement.id_cemac 
+                INNER JOIN piece ON piece.id_piece = relation_piece_cemac.id_piece 
+                INNER JOIN logement ON logement.id_logement = piece.id_logement 
+                INNER JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement 
+                INNER JOIN utilisateur ON utilisateur.id_utilisateur = relation_logement_utilisateur.id_utilisateur  
+            WHERE equipement.id_type_equipement=1');
+        return $reponse;        
+    }
+
+    public function getconsommationhumiditeclient()
+    {
+        $db=$this->dbConnect();
+        $reponse = $db-> query('SELECT donnees_equipement.id_equipement, donnees_equipement.date_utilisation, equipement.id_equipement, donnees_equipement.valeur, relation_logement_utilisateur.id_utilisateur, utilisateur.login 
+            FROM donnees_equipement
+                INNER JOIN equipement ON equipement.id_equipement = donnees_equipement.id_equipement 
+                INNER JOIN relation_piece_cemac ON relation_piece_cemac.id_cemac = equipement.id_cemac 
+                INNER JOIN piece ON piece.id_piece = relation_piece_cemac.id_piece 
+                INNER JOIN logement ON logement.id_logement = piece.id_logement 
+                INNER JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement 
+                INNER JOIN utilisateur ON utilisateur.id_utilisateur = relation_logement_utilisateur.id_utilisateur 
+            WHERE equipement.id_type_equipement=2');
+        return $reponse;       
+    }
+
+
+    public function getconsommationlumiereclient()
+    {
+        $db=$this->dbConnect();
+        $reponse = $db-> query('SELECT donnees_equipement.id_equipement, donnees_equipement.temps, donnees_equipement.date_utilisation, equipement.id_equipement, relation_logement_utilisateur.id_utilisateur, utilisateur.login
+            FROM donnees_equipement 
+                INNER JOIN equipement ON equipement.id_equipement = donnees_equipement.id_equipement 
+                INNER JOIN relation_piece_cemac ON relation_piece_cemac.id_cemac = equipement.id_cemac 
+                INNER JOIN piece ON piece.id_piece = relation_piece_cemac.id_piece 
+                INNER JOIN logement ON logement.id_logement = piece.id_logement 
+                INNER JOIN relation_logement_utilisateur ON relation_logement_utilisateur.id_logement = logement.id_logement 
+                INNER JOIN utilisateur ON utilisateur.id_utilisateur = relation_logement_utilisateur.id_utilisateur 
+            WHERE donnees_equipement.valeur=1 and equipement.id_type_equipement=4');
+        return $reponse;      
+    }
 }
