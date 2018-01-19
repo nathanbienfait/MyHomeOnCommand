@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/styleGeneral.css" />
-        <link rel="stylesheet" href="css/styleInscriptionReussi.css" />
+        <link rel="stylesheet" href="css/styleInscriptionReussie.css" />
         <link rel="stylesheet" href="css/styleHeaderFooter.css" />
        
         <title>MyHomeOnCommand</title>
@@ -12,8 +12,11 @@
     <body>
         <?php include('vue/header.php');?>
         <div id="corps">
-        
-        <p>inscription réussi</p>
+        <br/>
+        <p class="decalTextDroite">Inscription réussie</p>
+        <br/>
+        <p class="decalTextDroite"> Retourner à l'accueil : <a href="index.php?page=accueil" class="lienRetour">Accueil</a> </p>
+
         </div>
         <?php include('vue/footer.php');?>
     </body>
