@@ -85,14 +85,14 @@ class InscriptionUtilisateur extends Connection
      public function getSlogan()
     {
         $db=$this->dbConnect();
-        $req = $db->query('SELECT contenu FROM slogan');
+        $req = $db->query('SELECT contenu_slogan FROM slogan');
         return $req; 
      }
 	
     public function modifSlogan($slog)
     {
         $db=$this->dbConnect();
-        $req=$db->prepare('UPDATE slogan SET contenu = :Modifier_le_slogan WHERE id_slogan = 1');
+        $req=$db->prepare('UPDATE slogan SET contenu_slogan = :Modifier_le_slogan WHERE id_slogan = 1');
         $req->execute(array('Modifier_le_slogan' => $slog ));
         return $req;
     }
