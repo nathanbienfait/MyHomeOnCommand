@@ -16,6 +16,9 @@
         <div id="barre_gauche_accueil">
             <div id="description_accueil">
                 <p>Qui sommes-nous?</p>
+                <?php
+                    echo afficheTextPres();
+                ?>
             </div>
             <div id="contact_accueil">
                 <p>Contact</p>
