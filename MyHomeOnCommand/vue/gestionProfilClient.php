@@ -10,7 +10,7 @@
     </head>
 
 <?php
-include("Header.php");
+include("header.php");
 ?>
 
     <body>
@@ -63,7 +63,7 @@ include("Header.php");
     
     
     <?php
-    include("Footer.php");
+    include("footer.php");
     ?>
 
     <script>
