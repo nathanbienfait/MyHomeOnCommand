@@ -24,30 +24,15 @@
 						foreach($idtypesEquipement as $idtypeEquipement)
 						{
 							$compteType+=1;
+							$fond = ObtenirImageTypeEquipement($idtypeEquipement);
 							$id_logements = ObtenirLogementsAvecType($idtypeEquipement, $_SESSION['id']);
 							$type_equipement = ObtenirTypeEquipementDepuisId($idtypeEquipement);
+							$unite = ObtenirUniteTypeEquipement($idtypeEquipement);
 							echo "<div class='bloc_type_equipement'>";	/* début div 1 */
 							echo "<div  class='titre_image'>"; /* début div 2 */
 							echo '<div id=\'bouton' . $compteType . '\'>'; /*début div 3 */
 							echo '<h1>' . ucfirst($type_equipement) . '</h1>';
-							if($type_equipement=="humidite")
-							{	
-								echo '<div class="photo"><img src=\'images/Humidite.png\' alt=\'humidite\' class=\'humidite\'></div>';
-								$suffixe_type = '%';
-							}
-							elseif($type_equipement=="temperature")
-							{	
-								echo '<div class="photo"><img src=\'images/Thermometre2.jpg\' alt=\'thermometre\' class=\'thermometre\'></div>';				
-								$suffixe_type = '°C';						
-							}
-							elseif($type_equipement=="ouverture")
-							{	
-								echo '<div class="photo"><img src=\'images/Paysage.png\' alt=\'ouverture\' class=\'ouverture\'></div>';
-							}
-							elseif($type_equipement=="fumee")
-							{
-								echo '<div class="photo"><img src=\'images/Fumee.jpg\' alt=\'fumee\' class=\'fumee\'></div>';
-							}
+							echo '<div><img src=\'' . $fond . '\' alt=\'' . $idtypeEquipement . '\' class=\'photo\'></div>';
 
 							echo "</div>"; /*fin div 3 */
 							echo "</div>";	/* fin div 2 */
@@ -115,14 +100,14 @@
 												echo 'ATTENTION TAUX ANORMAL DE FUMEE DETECTE';
 											}
 										}
-										elseif($type_equipement == "humidite" OR $type_equipement == "lumiere" OR $type_equipement="temperature")
+										elseif(!empty($unite))
 										{
 											echo $donnee_equipement;
-											echo $suffixe_type;
+											echo $unite;
 											echo '</br>';
 											echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 											echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
-											if($type_equipement == "humidite" or $type_equipement == "lumiere") {$max=100;} else {$max=40;}
+											if($unite == "%") {$max=100;} else {$max=40;}
 											echo '<input type=\'number\' name=\'valeur_cible\' min=\'0\' max=\'' . $max . '\'>';
 											echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $equipement . '\'/>';
 											echo '<input type=\'hidden\' name=\'tri\' value=\'type_parametre\'/>';
