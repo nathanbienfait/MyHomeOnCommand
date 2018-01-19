@@ -24,7 +24,6 @@
 						$compteLogement=0;
 						foreach($id_logements as $id_logement)
 						{
-							$compteLogement += 1;
 							echo '<div class=\'case_logement\' id=\''. $compteLogement . '\'>'; /* début div 4 */
 								$nom_logement=Obtenir_nom_logement($id_logement);
 								echo '<h1 class="titre_logement">' . $nom_logement . '</h1>';
@@ -45,45 +44,28 @@
 											echo '<div class=\'case_equipement\'>'; /* début div 8 */
 											$etat=ObtenirEtatEquipement($id_equipement);
 											$type_equipement=Obtenir_type_equipement($id_equipement);
+											$id_type_equipement=ObtenirIdTypeEquipementDepuisNom($type_equipement);
+											$logo=ObtenirLogoTypeEquipement($id_type_equipement);
+											$unite=ObtenirUniteTypeEquipement($id_type_equipement);
 											$donnee_equipement=Obtenir_derniere_donnee_equipement($id_equipement);
 											
-											if($type_equipement=="humidite")
-											{	
-												echo '<h2>Humidité</h2>';
-												echo '<div class="photo"><img src=\'images/Goutte.png\' alt=\'humidite\' class=\'humidite\'></div>';
-												
+											echo '<h2>' . ucfirst($type_equipement) . '</h2>';
+											echo '<div class="photo"><img src=\'' . $logo . '\' alt=\'' . $type_equipement . '\' class=\'' . $type_equipement . '\'></div>';
+											echo '</br>';
+											if(!empty($unite))
+											{
 												echo $donnee_equipement;
-												echo '%';
-												echo '</br>';
+												echo $unite;
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 												echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
-												echo '<input type=\'number\' name=\'valeur_cible\' min=\'0\' max=\'100\'>';
+												if($unite == "%") {$max=100;} else {$max=40;}
+												echo '<input type=\'number\' name=\'valeur_cible\' min=\'0\' max=\'' . $max . '\'>';
 												echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $id_equipement . '\'/>';
 												echo '<input type=\'hidden\' name=\'tri\' value=\'piece\'/>';
 												echo '<input type=\'submit\' value=\'Appliquer\'/>';
 											}
-											elseif($type_equipement=="temperature")
-											{	
-												echo '<h2>Température</h2>';
-												echo '<div class="photo"><img src=\'images/Thermometre.png\' alt=\'thermometre\' class=\'thermometre\'></div>';
-												
-												echo $donnee_equipement;
-												echo '°C';
-												echo '</br>';
-												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
-												echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
-												echo '<input type=\'number\' name=\'valeur_cible\' min=\'0\' max=\'40\'>';
-												echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $id_equipement . '\'/>';
-												echo '<input type=\'hidden\' name=\'tri\' value=\'piece\'/>';
-												echo '<input type=\'submit\' value=\'Appliquer\'/>';
-												
-											}
-
 											elseif($type_equipement=="ouverture")
 											{	
-												echo '<h2>Porte</h2>';
-												echo '<div class="photo"><img src=\'images/ouvertureFenetre.png\' alt=\'ouverture\' class=\'ouverture\'></div>';
-													
 												if ($donnee_equipement==0)
 												{
 													echo "Fermé";
@@ -103,8 +85,8 @@
 													echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 													echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
 													echo '<select name=\'valeur_cible\'>';
-													echo '<option value=\'ouvert\'selected>Ouvrir</option>';
-													echo '<option value=\'type_parametre\'>Fermer</option>';
+													echo '<option value=\'ouvert\'>Ouvrir</option>';
+													echo '<option value=\'type_parametre\' selected>Fermer</option>';
 													echo '</select>';
 													echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $id_equipement . '\'/>';
 													echo '<input type=\'hidden\' name=\'tri\' value=\'piece\'/>';
@@ -113,7 +95,6 @@
 											}
 											elseif($type_equipement=="fumee")
 											{
-												echo "<h2>Fumée</h2>";
 												if($donnee_equipement==0)
 												{
 													echo "Aucun problème à signaler";
@@ -195,11 +176,6 @@
                         event.target.style.display='none';
                         
                     }
-            }
-
-            var a=document.getElementById('panneau_controle_bloc_principal');
-            a.onclick=function(){
-            	alert('pain');
             }
 			</script>
 		</body>
