@@ -53,3 +53,119 @@ function supprimerClient($id)
     $admin->supprRelLogClient($id);
 }
 
+//Partie consommation
+function adminGrapheConsommationtemperature()
+{
+    $admin=new admin;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon'];
+    $annee = $today['year'];
+    $arr = [["jour", "température"]];
+    $info=$admin->getconsommationtemperatureadmin();
+    while($donnees = $info -> fetch())
+            {
+              $dateentime = strtotime($donnees['date_utilisation']);
+              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                  if (date("Y", $dateentime) == $annee) //Puis celles de l'année actuelle
+                  {
+                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                  }
+                }  
+            }
+    //Si deux données ont la même date, on fait la moyenne des deux            
+            $x=1;
+    while($x<sizeof($arr))
+    {
+        if($x<sizeof($arr)-1)
+        {
+            if($arr[$x][0]==$arr[$x+1][0])
+            {
+                $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
+                 array_splice($arr,$x+1,1);
+            }
+        }
+        $x++;
+    }
+    return $arr;
+}
+
+function adminGrapheConsommationhumidite()
+{
+    $admin=new admin;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon'];
+    $annee = $today['year'];
+    $arr = [["jour", "humidité"]];
+    $info=$admin->getconsommationhumiditeadmin();
+    while($donnees = $info -> fetch())
+            {
+              $dateentime = strtotime($donnees['date_utilisation']);
+              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                  if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                  {
+                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                  }
+                }  
+            }
+//Si deux données ont la même date, on fait la moyenne des deux            
+            $x=1;
+    while($x<sizeof($arr))
+    {
+        if($x<sizeof($arr)-1)
+        {
+            if($arr[$x][0]==$arr[$x+1][0])
+            {
+                $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
+                 array_splice($arr,$x+1,1);
+            }
+        }
+        $x++;
+    }
+    return $arr;
+}
+
+
+function adminGrapheConsommationlumiere()
+{
+    $admin=new admin;
+    $today = getdate(); //On obtient la date actuelle
+    $mois = $today['mon']; 
+    $annee = $today['year'];
+    $arr = [["jour", "nombre d'heures"]];
+    $arrid = ['identifiant'];
+    $info=$admin->getconsommationlumiereadmin();
+    while($donnees = $info -> fetch())
+            {
+              $dateentime = strtotime($donnees['date_utilisation']);
+              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                {
+                  if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                  {
+                    $arrid[] = $donnees['id_utilisateur'];
+                    $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))];
+                  }
+                }  
+            }
+//On regarde si des données ont la même date            
+            $x=1;
+    while($x<sizeof($arr))
+    {
+        if($x<sizeof($arr)-1)
+        {
+            if($arr[$x][0]==$arr[$x+1][0])
+            {
+                if($arrid[$x]==$arrid[$x+1]) //Si les données sont du même utilisateur on fait leur somme
+                {
+                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
+                }
+                $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2; //Sinon, on fait leur moyenne
+            }
+            array_splice($arr,$x+1,1);
+        }
+        $x++;
+    }
+    return $arr;
+}
+
