@@ -87,7 +87,7 @@ function adminGrapheConsommationtemperature()
         }
         $x++;
     }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     };
@@ -126,7 +126,7 @@ function adminGrapheConsommationhumidite()
         }
         $x++;
     }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     }
@@ -172,7 +172,7 @@ function adminGrapheConsommationlumiere()
         }
         $x++;
     }
-    if(count($arr) >= 2)
+    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
        return $arr; 
     }
