@@ -23,12 +23,12 @@ return $tab;
 
 
 
-function clientModifInfoClient($login,$password,$prenom,$nom,$email,$telephone)
+function clientModifInfoClient($login,$prenom,$nom,$email,$telephone)
 {
 	$idClient=$_SESSION['id'];
 	$utilisateur=new gestionProfilClient;
 	$utilisateur->clientModifInfo($prenom,$nom,$email,$telephone,$idClient);
-    $utilisateur->clientModifUtil($login,$password,$idClient);
+    $utilisateur->clientModifUtil($login,$idClient);
     echo "<script>alert(\"Modifications réalisées\")</script>";
 }
 ?>
