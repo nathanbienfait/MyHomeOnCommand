@@ -136,7 +136,6 @@ function adminGrapheConsommationhumidite()
 function adminGrapheConsommationlumiere()
 {
     $admin=new admin;
-    set_time_limit(1800);
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon']; 
     $annee = $today['year'];
@@ -145,40 +144,39 @@ function adminGrapheConsommationlumiere()
     $info=$admin->getconsommationlumiereadmin();
     while($donnees = $info -> fetch())
             {
-              $dateentime = strtotime($donnees['date_utilisation']);
-              if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
+                $dateentime = strtotime($donnees['date_utilisation']);
+                if (date("n", $dateentime) == $mois) //On garde les données du mois actuel
                 {
-                  if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
-                  {
-                    $arrid[] = $donnees['id_utilisateur']; //On ajoute les identifiants des utilisateurs dans ce tableau
-                    $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))]; //On ajoute les données dans ce tableau en convertissant le temps en heures et en int
-                  }
-                }  
+                    if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
+                    {
+                        $arrid[] = $donnees['id_utilisateur']; //On ajoute les identifiants des utilisateurs dans ce tableau
+                        $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))]; //On ajoute les données dans le tableau en convertissant le temps en heures et en int
+                     }  
+                 }
             }
-//On regarde si des données ont la même date            
-            $x=1;
+    $x=1; //Si des données ont la même date ont fait la somme de leurs temps d'utilisation
     while($x<sizeof($arr))
-    {
-        if($x<sizeof($arr)-1)
         {
-            if($arr[$x][0]==$arr[$x+1][0])
+            if($x<sizeof($arr)-1)
             {
-                if($arrid[$x]==$arrid[$x+1]) //Si les données sont du même utilisateur on fait leur somme
-                {
-                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
-                }
-                else 
-                {
-                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2; //Sinon, on fait leur moyenne
-                }
-            array_splice($arr,$x+1,1);
+                if($arr[$x][0]==$arr[$x+1][0])
+                    {
+                        if($arrid[$x]==$arrid[$x+1]) //Si les données sont du même utilisateur on fait leur somme
+                        {
+                            $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
+                        }
+                        else 
+                        {
+                            $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2; //Sinon, on fait leur moyenne
+                        }
+                        array_splice($arr,$x+1,1);
+                    }
             }
-        $x++;
+            $x++;      
         }
-    }
-    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
+    if(count($arr) >= 2) //On retourne le tableau uniquement s'il y a des données
     {
        return $arr; 
-    }
+    }           
 }
 
