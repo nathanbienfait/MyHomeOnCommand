@@ -136,6 +136,7 @@ function adminGrapheConsommationhumidite()
 function adminGrapheConsommationlumiere()
 {
     $admin=new admin;
+    set_time_limit(1800);
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon']; 
     $annee = $today['year'];
@@ -162,7 +163,6 @@ function adminGrapheConsommationlumiere()
         {
             if($arr[$x][0]==$arr[$x+1][0])
             {
-                set_time_limit(1000);
                 if($arrid[$x]==$arrid[$x+1]) //Si les données sont du même utilisateur on fait leur somme
                 {
                     $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
