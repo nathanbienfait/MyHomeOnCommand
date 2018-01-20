@@ -88,6 +88,17 @@ function afficheslogan()
     $slogan=$slogan->fetch()[0];
     return $slogan;
 }
+
+function afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond)
+{
+    if (!empty($_POST['Ajouter_un_equipement']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $ajoutEquipement =$affiche->ajoutEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond);
+        return $ajoutEquipement;
+    }
+}
+
 function afficheTextPres()
 {
     $affiche=new InscriptionUtilisateur;
