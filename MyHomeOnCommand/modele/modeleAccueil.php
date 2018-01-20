@@ -110,6 +110,13 @@ class InscriptionUtilisateur extends Connection
         return $req; 
      }
 	
+      public function getCond()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT contenu_conditions_utilisation FROM conditions_utilisation');
+        return $req; 
+     }
+	
     public function modifSlogan($slog)
     {
         $db=$this->dbConnect();
@@ -153,13 +160,23 @@ class InscriptionUtilisateur extends Connection
         $req->execute(array('texte_pres' => $texte_pres));
         return $req;
     }
+	
+    public function ajoutCond($texte_cond)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE conditions_utilisation SET contenu_conditions_utilisation = :texte_cond WHERE id_conditions_utilisation= 1');
+        $req->execute(array('texte_cond' => $texte_cond));
+        return $req;
+    }
+	
 	public function getIdToken($token)
     {
         $db=$this->dbConnect();
         $req =$db->prepare('SELECT id_utilisateur FROM info_utilisateur WHERE token =:token');
         $req->execute(array('token' =>$token));
         return $req;
-    }
+    }	
+	
     public function setNewMdp($mdp,$id)
     {
         $db=$this->dbConnect();
