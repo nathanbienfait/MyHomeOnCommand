@@ -48,7 +48,7 @@
 			<form method='POST' id="modif_equipement" action='index.php?page=modification' enctype="multipart/form-data">
                             <label for="Ajouter_un_equipement"> Nom du capteur : </label></br>
 			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br                
-                            <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états (ex : ouvert/fermé, allumé/éteint ...) : </label></br>
+                            <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états <br>(ex : ouvert/fermé, allumé/éteint ...) : </label></br>
                             <select name="type_donnees">
                                 <option value="1"> Données à deux états </option>
                                 <option value="2"> Autre </option>
@@ -59,9 +59,9 @@
                             <input type="text" name="etat_bas"></br></br>
                             <label for="unite"> Unité de la valeur mesurée : </label></br>
                             <input type="text" name="unite" /></br></br>
-                            <label for="logo"> Importer un logo pour ce type d'équipement (ce logo apparaîtra sur le panneau de contrôle des clients) </label></br></br>
+                            <label for="logo"> Importer un logo pour ce type d'équipement <br> (ce logo apparaîtra sur le panneau de contrôle des clients) </label></br></br>
                             <input type="file" name="logo" /></br></br>
-                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label></br>
+                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement <br> (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label><br><br>
                             <input type="file" name="image_fond"/></br></br>
 			    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
 		 	</form>
@@ -100,7 +100,7 @@
                     <p>
 			 <h1>Qui sommmes nous ?</h1>
                         <form method='POST' id="explication" action='index.php?page=modification'>
-                            <textarea  id="texte_pres" name="texte_pres" required ></textarea>
+                            <textarea  id="texte_pres" name="texte_pres" required rows="5" cols="40" ></textarea><br>
                             <input type="submit" id="valider" value="Valider" name="bouton_valider_pres" />
                         </form>
                     </p>
