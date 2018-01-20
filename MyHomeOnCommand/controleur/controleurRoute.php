@@ -307,15 +307,15 @@ function afficheModification()
             $nom_equipement=htmlspecialchars($_POST['Ajouter_un_equipement']);
             $type_donnees=htmlspecialchars($_POST['type_donnees']);
             $unite=htmlspecialchars($_POST['unite']);
-            $adresseLogo=0;
-            $adresseImageFond=0;
+            $adresseLogo="NULL";
+            $adresseImageFond="NULL";
 
-            if(isset($_FILES['logo']))
+            if(isset($_FILES['logo']['name']))
             {
                 $adresseLogo='images/' . $_FILES['logo']['name'];
                 $verif=move_uploaded_file($_FILES['logo']['tmp_name'], $adresseLogo);
             }
-            if(isset($_FILES['image_fond']))
+            if(isset($_FILES['image_fond']['name']))
             {
                 $adresseImageFond='images/' . $_FILES['image_fond']['name'];
                 $verif=move_uploaded_file($_FILES['image_fond']['tmp_name'], $adresseImageFond);
