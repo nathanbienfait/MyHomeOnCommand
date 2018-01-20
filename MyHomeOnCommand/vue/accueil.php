@@ -44,7 +44,7 @@
                     </p>
                 </form>
                 <div id="CorpTexte">
-                        <button class="bouton_aff_modal" data-modal="modal1">Mot de passe oublié</button>
+                        <button class="bouton_aff_modal" id="bouton_aff_modal" data-modal="modal1">Mot de passe oublié</button>
                         <div class='modal' id="modal1">
                             <div class='modal-content'>
                                 <span class='close' >&times;</span>
