@@ -13,18 +13,17 @@
 	margin-top: 3%;
 }
 
-#slogan
+#conditions
 {
 	padding: 2%;
 	background-color:black;
 	opacity:0.8;
 	border-radius:10px;
-	
-	width:90%;
+	width:100%;
 	text-align:center;
 }
 
-#equipement, #admin, #operateur, #presentation,#conditions
+#equipement, #admin, #operateur, #presentation,#slogan
 {
 	background-color:black;
 	opacity:0.8;
