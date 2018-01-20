@@ -47,12 +47,16 @@
 			<h1>Ajouter un type d'équipement :</h1>
 			<form method='POST' id="modif_equipement" action='index.php?page=modification' enctype="multipart/form-data">
                             <label for="Ajouter_un_equipement"> Nom du capteur : </label></br>
-			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>            
+			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br                
                             <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états (ex : ouvert/fermé, allumé/éteint ...) : </label></br>
                             <select name="type_donnees">
                                 <option value="1"> Données à deux états </option>
                                 <option value="2"> Autre </option>
-                            </select></br></br>    
+                            </select></br></br>
+                            <label for="etat_haut">Message à afficher quand l'état de l'équipement est "HAUT" :</label></br>
+                            <input type="text" name="etat_haut"></br></br>
+                            <label for="etat_bas">Message à afficher quand l'état de l'équipement est "BAS" :</label></br>
+                            <input type="text" name="etat_bas"></br></br>
                             <label for="unite"> Unité de la valeur mesurée : </label></br>
                             <input type="text" name="unite" /></br></br>
                             <label for="logo"> Importer un logo pour ce type d'équipement (ce logo apparaîtra sur le panneau de contrôle des clients) </label></br></br>
@@ -60,7 +64,7 @@
                             <label for="image_fond"> Importer une image de fond pour ce type d'équipement (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label></br>
                             <input type="file" name="image_fond"/></br></br>
 			    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
-			</form>
+		 	</form>
 			</p>
 		</div>
 
