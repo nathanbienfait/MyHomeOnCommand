@@ -27,6 +27,8 @@
                 <span id="titre_op">Ajouter un opérateur </span>
 		<br> <br> <br>
                 <span id="titre_pres">Texte de présentation </span>
+		<br> <br> <br>
+		<span id="titre_cond">Conditions d'utilisation </span>
                   </div>
 		    	<div id="modification">
                 <div id="slogan">
@@ -48,8 +50,11 @@
 						    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>
                             <label for="unite"> Unité de la valeur mesurée : </label>
                             <input type="text" name="unite" /></br></br>
-                            <label for="logo"> Importer un logo pour ce type d'équipement (ce logo apparaitra sur le panneau de contrôle des clients) </label></br></br>
-                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label></br></br>
+                            <label for="logo"> Importer un logo pour ce type d'équipement <br>
+                            (ce logo apparaitra sur le panneau de contrôle des clients) </label></br></br>
+                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement <br>
+                            (cette image de fond apparaîtra sur le panneau de contôle des clients 
+                            <br> quand elle est triée par type d'équipement) </label></br></br>
 						    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
 			</form>
 			</p>
@@ -92,10 +97,23 @@
                         </form>
                     </p>
                 </div>
+		
+		<div id="conditions">
+                        <p>
+                            Ecrire les conditions d'utilisation
+                            <form method='POST' id="condition" action='index.php?page=modification'>
+                                <textarea  id="texte_cond" name="texte_cond" required rows="15" cols="70"></textarea>
+                                <br>
+                                <input type="submit" id="valider" value="Valider" name="bouton_valider_cond" />
+                            </form>
+                        </p>
+                </div>
 
-			</div>
+	</div>
 
-		</div>
+	</div>
+
+		
 
 
 <?php include('vue/footer.php');?>
@@ -110,6 +128,8 @@ cas3.style.display="none";
 cas4.style.display="none";
     var cas5 = document.querySelector('#presentation');
 cas5.style.display="none";
+    var cas6 = document.querySelector('#conditions');
+cas6.style.display="none";
 
 var tab1 = document.querySelector('#titre_slogan');
 var x1=0;
@@ -121,6 +141,7 @@ tab1.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas5.style.display="none";
+        cas6.style.display="none";
 
         
         x1=1;
@@ -128,6 +149,7 @@ tab1.addEventListener('click', function() {
         x3=0;
         x4=0;
         x5=0;
+        x6=0;
 
     }
     else
@@ -147,12 +169,14 @@ tab2.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas5.style.display="none";
-        
+        cas6.style.display="none";
+
         x2=1;
         x1=0;
         x3=0;
         x4=0;
         x5=0;
+        x6=0;
        
     }
     else
@@ -172,6 +196,7 @@ tab3.addEventListener('click', function() {
         cas2.style.display="none";
         cas4.style.display="none";
         cas5.style.display="none";
+        cas6.style.display="none";
 
         
         x3=1;
@@ -179,6 +204,7 @@ tab3.addEventListener('click', function() {
         x2=0;
         x4=0;
         x5=0;
+        x6=0;
        
     }
     else
@@ -198,6 +224,7 @@ tab4.addEventListener('click', function() {
         cas2.style.display="none";
         cas3.style.display="none";
         cas5.style.display="none";
+        cas6.style.display="none";
 
         
         x4=1;
@@ -205,6 +232,7 @@ tab4.addEventListener('click', function() {
         x2=0;
         x3=0;
         x5=0;
+        x6=0;
        
     }
     else
@@ -224,6 +252,7 @@ tab5.addEventListener('click', function() {
         cas2.style.display="none";
         cas3.style.display="none";
         cas4.style.display="none";
+        cas6.style.display="none";
 
         
         x5=1;
@@ -231,6 +260,7 @@ tab5.addEventListener('click', function() {
         x2=0;
         x3=0;
         x4=0;
+        x6=0;
        
     }
     else
@@ -239,6 +269,35 @@ tab5.addEventListener('click', function() {
         x5=0;
     }
  });
+
+var tab6 = document.querySelector('#titre_cond');
+var x6=0;
+tab6.addEventListener('click', function() {
+    if(x6==0)
+    {
+        cas6.style.display="";
+        cas1.style.display="none";
+        cas2.style.display="none";
+        cas3.style.display="none";
+        cas4.style.display="none";
+        cas5.style.display="none";
+
+        
+        x6=1;
+        x1=0;
+        x2=0;
+        x3=0;
+        x4=0;
+        x5=0;
+       
+    }
+    else
+    {
+        cas6.style.display="none";
+        x6=0;
+    }
+ });
+
 
 </script>
     </body>
