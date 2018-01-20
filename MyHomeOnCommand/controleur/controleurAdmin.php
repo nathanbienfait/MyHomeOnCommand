@@ -60,7 +60,7 @@ function adminGrapheConsommationtemperature()
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon'];
     $annee = $today['year'];
-    $arr = [["jour", "température"]];
+    $arr = [["jour", "température"]]; //On crée le tableau qui va contenir les données
     $info=$admin->getconsommationtemperatureadmin();
     while($donnees = $info -> fetch())
             {
@@ -69,7 +69,7 @@ function adminGrapheConsommationtemperature()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis celles de l'année actuelle
                   {
-                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])]; //On ajoute les données dans le tableau
                   }
                 }  
             }
@@ -82,12 +82,12 @@ function adminGrapheConsommationtemperature()
             if($arr[$x][0]==$arr[$x+1][0])
             {
                 $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
-                 array_splice($arr,$x+1,1);
+                array_splice($arr,$x+1,1);
             }
         }
         $x++;
     }
-    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
+    if(count($arr) >= 2) //On renvoie le tableau uniquement s'il y a des données
     {
        return $arr; 
     };
@@ -97,9 +97,9 @@ function adminGrapheConsommationhumidite()
 {
     $admin=new admin;
     $today = getdate(); //On obtient la date actuelle
-    $mois = $today['mon'];
+    $mois = $today['mon']; 
     $annee = $today['year'];
-    $arr = [["jour", "humidité"]];
+    $arr = [["jour", "humidité"]]; //On crée le tableau qui va contenir les données
     $info=$admin->getconsommationhumiditeadmin();
     while($donnees = $info -> fetch())
             {
@@ -108,7 +108,7 @@ function adminGrapheConsommationhumidite()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                    $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])]; //On ajoute les données dans le tableau
                   }
                 }  
             }
@@ -121,12 +121,12 @@ function adminGrapheConsommationhumidite()
             if($arr[$x][0]==$arr[$x+1][0])
             {
                 $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2;
-                 array_splice($arr,$x+1,1);
+                array_splice($arr,$x+1,1);
             }
         }
         $x++;
     }
-    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
+    if(count($arr) >= 2) //On retourne le tableau uniquement s'il y a des données
     {
        return $arr; 
     }
@@ -139,8 +139,8 @@ function adminGrapheConsommationlumiere()
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon']; 
     $annee = $today['year'];
-    $arr = [["jour", "nombre d'heures"]];
-    $arrid = ['identifiant'];
+    $arr = [["jour", "nombre d'heures"]]; //On crée le tableau qui va contenir les données
+    $arrid = ['identifiant']; //On crée un tableau qui va contenir les identifiants des utilisateurs à qui appartiennent les données
     $info=$admin->getconsommationlumiereadmin();
     while($donnees = $info -> fetch())
             {
@@ -149,8 +149,8 @@ function adminGrapheConsommationlumiere()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    $arrid[] = $donnees['id_utilisateur'];
-                    $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))];
+                    $arrid[] = $donnees['id_utilisateur']; //On ajoute les identifiants des utilisateurs dans ce tableau
+                    $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))]; //On ajoute les données dans ce tableau en convertissant le temps en heures et en int
                   }
                 }  
             }
@@ -162,15 +162,19 @@ function adminGrapheConsommationlumiere()
         {
             if($arr[$x][0]==$arr[$x+1][0])
             {
+                set_time_limit(1000);
                 if($arrid[$x]==$arrid[$x+1]) //Si les données sont du même utilisateur on fait leur somme
                 {
                     $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
                 }
-                $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2; //Sinon, on fait leur moyenne
-            }
+                else 
+                {
+                    $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1])/2; //Sinon, on fait leur moyenne
+                }
             array_splice($arr,$x+1,1);
-        }
+            }
         $x++;
+        }
     }
     if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
     {
