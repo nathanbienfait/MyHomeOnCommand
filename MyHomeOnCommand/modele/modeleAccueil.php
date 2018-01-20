@@ -101,8 +101,8 @@ class InscriptionUtilisateur extends Connection
         $db=$this->dbConnect();
         $req = $db->query('SELECT contenu_slogan FROM slogan');
         return $req; 
-     }
-     
+     }	
+	
 	public function getPres()
     {
         $db=$this->dbConnect();
@@ -125,11 +125,11 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
-    public function ajoutCapteur($capteur)
+    public function ajoutEquipement($equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond)
     {
         $db=$this->dbConnect();
-        $req = $db -> prepare ('INSERT INTO type_equipement(nom_type_equipement) VALUES (:Ajouter_un_capteur)');
-        $req -> execute(array('Ajouter_un_capteur' => $capteur));
+        $req=$db->prepare ('INSERT INTO type_equipement(nom_type_equipement, unite, id_type_donnees, logo, image_fond) VALUES (:equipement, :unite, :type_donnees, :logo, :image_fond)');
+        $req->execute(array('equipement' => $equipement, 'unite' => $unite, 'type_donnees' => $type_donnees, 'logo' => $adresseLogo, 'image_fond' => $adresseImageFond));
         return $req;
     }
 
