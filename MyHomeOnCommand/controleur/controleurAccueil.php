@@ -1,8 +1,6 @@
 <?php
 function login($login,$mdp)
 {
-   
-    
     $utilisateur=new LoginUtilisateur;
     $verification=$utilisateur->getAuthentification();
     while($verif=$verification->fetch())
