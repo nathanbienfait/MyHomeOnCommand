@@ -328,6 +328,12 @@ function afficheModification()
         $texte_pres=htmlspecialchars($_POST['texte_pres']);
         affichePres($texte_pres);
         }
+    
+        if(isset($_POST['bouton_valider_cond']))
+        {
+        $texte_cond=htmlspecialchars($_POST['texte_cond']);
+        afficheCond($texte_cond);
+        }
 
         require_once('vue/modification.php');
 }
