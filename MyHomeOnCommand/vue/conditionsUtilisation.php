@@ -13,7 +13,7 @@
 	<body>
 	<?php include("header.php"); ?>
 
-	<div id="corps"> <p> PLACEHOLDER Conditions d'utilisation </p>
+	<div id="corps"> <p> <?php echo afficheTextCond()?> </p>
   	</div>
 
 	<?php include("footer.php"); ?>
