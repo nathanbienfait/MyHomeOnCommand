@@ -125,11 +125,11 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
-    public function ajoutEquipement($equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond)
+    public function ajoutEquipement($equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas)
     {
         $db=$this->dbConnect();
-        $req=$db->prepare ('INSERT INTO type_equipement(nom_type_equipement, unite, id_type_donnees, logo, image_fond) VALUES (:equipement, :unite, :type_donnees, :logo, :image_fond)');
-        $req->execute(array('equipement' => $equipement, 'unite' => $unite, 'type_donnees' => $type_donnees, 'logo' => $adresseLogo, 'image_fond' => $adresseImageFond));
+        $req=$db->prepare ('INSERT INTO type_equipement(nom_type_equipement, unite, id_type_donnees, logo, image_fond, message_etat_haut, message_etat_bas) VALUES (:equipement, :unite, :type_donnees, :logo, :image_fond, :message_etat_haut, :message_etat_bas)');
+        $req->execute(array('equipement' => $equipement, 'unite' => $unite, 'type_donnees' => $type_donnees, 'logo' => $adresseLogo, 'image_fond' => $adresseImageFond, 'message_etat_haut' => $messageEtatHaut, 'message_etat_bas' => $messageEtatBas));
         return $req;
     }
 
