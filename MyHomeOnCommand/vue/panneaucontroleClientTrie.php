@@ -24,6 +24,7 @@
 						foreach($idtypesEquipement as $idtypeEquipement)
 						{
 							$compteType+=1;
+							$typeDonnees=ObtenirTypeDonnees($idtypeEquipement);
 							$fond = ObtenirImageTypeEquipement($idtypeEquipement);
 							$id_logements = ObtenirLogementsAvecType($idtypeEquipement, $_SESSION['id']);
 							$type_equipement = ObtenirTypeEquipementDepuisId($idtypeEquipement);
@@ -58,11 +59,12 @@
 										echo $piece . '</br>';
 										$donnee_equipement = Obtenir_derniere_donnee_equipement($equipement);
 
-										if($type_equipement == "ouverture")
+										if($typeDonnees == 1)
 										{
 											if($donnee_equipement == 0)
 											{
-												echo "Fermé";
+												$message=ObtenirMessageBas($idtypeEquipement);
+												echo $message;
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
 												echo '<select name=\'valeur_cible\'>';
@@ -72,11 +74,11 @@
 												echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $equipement . '\'/>';
 												echo '<input type=\'hidden\' name=\'tri\' value=\'type_parametre\'/>';
 												echo '<input type=\'submit\' value=\'Appliquer\'/>';
-
 											}
 											else
 											{
-												echo "Ouvert";
+												$message=ObtenirMessageHaut($equipement);
+												echo $message;
 												echo '</br>';
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
@@ -89,18 +91,8 @@
 												echo '<input type=\'submit\' value=\'Appliquer\'/>';
 											}
 										}
-										elseif($type_equipement == "fumee")
-										{
-											if($donnee_equipement == 0)
-											{
-												echo 'Aucun problème à signaler.';
-											}
-											else
-											{
-												echo 'ATTENTION TAUX ANORMAL DE FUMEE DETECTE';
-											}
-										}
-										elseif(!empty($unite))
+										
+										else
 										{
 											echo $donnee_equipement;
 											echo $unite;
