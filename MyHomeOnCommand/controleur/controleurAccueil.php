@@ -95,6 +95,15 @@ function afficheTextPres()
     $pres=$pres->fetch()[0];
     return $pres;
 }
+
+function afficheTextCond()
+{
+    $affiche=new InscriptionUtilisateur;
+    $cond =$affiche->getCond();
+    $cond=$cond->fetch()[0];
+    return $cond;
+}
+
 function afficheModif($slog)
 {
     if (!empty($_POST['Modifier_le_slogan']))
@@ -196,6 +205,16 @@ function affichePres($texte_pres)
         $affiche=new InscriptionUtilisateur;
         $pres =$affiche->ajoutPres($texte_pres);
         return $pres;
+    }
+}
+
+function afficheCond($texte_cond)
+{
+    if (!empty($_POST['texte_cond']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $cond=$affiche->ajoutCond($texte_cond);
+        return $cond;
     }
 }
 
