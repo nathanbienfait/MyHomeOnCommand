@@ -33,7 +33,7 @@
 		    	<div id="modification">
                 <div id="slogan">
 			<p class='paragraphe'>
-				Modifier le slogan
+			<h1>Modifier le slogan :</h1>
 				<form method='POST' id="modif_slogan" action='index.php?page=modification'>
 					<input type="text" id="modif" name="Modifier_le_slogan" required />
 					<input type="submit" id="valider" value="Valider" name="bouton_valider_slogan" />
@@ -45,24 +45,28 @@
 		<div id="equipement">			
 			<p>
 			<h1>Ajouter un type d'équipement :</h1>
-			<form method='POST' id="modif_equipement" action='index.php?page=modification'>
-                            <label for="Ajouter_un_equipement"> Nom du capteur : </label>
-						    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>
-                            <label for="unite"> Unité de la valeur mesurée : </label>
+			<form method='POST' id="modif_equipement" action='index.php?page=modification' enctype="multipart/form-data">
+                            <label for="Ajouter_un_equipement"> Nom du capteur : </label></br>
+			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>            
+                            <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états (ex : ouvert/fermé, allumé/éteint ...) : </label></br>
+                            <select name="type_donnees">
+                                <option value="1"> Données à deux états </option>
+                                <option value="2"> Autre </option>
+                            </select></br></br>    
+                            <label for="unite"> Unité de la valeur mesurée : </label></br>
                             <input type="text" name="unite" /></br></br>
-                            <label for="logo"> Importer un logo pour ce type d'équipement <br>
-                            (ce logo apparaitra sur le panneau de contrôle des clients) </label></br></br>
-                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement <br>
-                            (cette image de fond apparaîtra sur le panneau de contôle des clients 
-                            <br> quand elle est triée par type d'équipement) </label></br></br>
-						    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
+                            <label for="logo"> Importer un logo pour ce type d'équipement (ce logo apparaîtra sur le panneau de contrôle des clients) </label></br></br>
+                            <input type="file" name="logo" /></br></br>
+                            <label for="image_fond"> Importer une image de fond pour ce type d'équipement (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label></br>
+                            <input type="file" name="image_fond"/></br></br>
+			    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
 			</form>
 			</p>
 		</div>
 
                 <div id="admin">
                     <p>
-                        Ajouter un administrateur
+			<h1>Ajouter un administrateur :</h1>
                         <form method='POST' id="ajout_admin" action='index.php?page=modification'>
                             Identifiant
                             <input type="text" id="login" name="login_admin" required />
@@ -76,7 +80,7 @@
 
                 <div id="operateur">
                     <p>
-                        Ajouter un opérateur
+			<h1>Ajouter un opérateur :</h1>
                         <form method='POST' id="ajout_op" action='index.php?page=modification'>
                             Identifiant
                             <input type="text" id="login" name="login_op" required />
@@ -90,7 +94,7 @@
 
 		 <div id="presentation">
                     <p>
-                        Qui sommmes nous ?
+			 <h1>Qui sommmes nous ?</h1>
                         <form method='POST' id="explication" action='index.php?page=modification'>
                             <textarea  id="texte_pres" name="texte_pres" required ></textarea>
                             <input type="submit" id="valider" value="Valider" name="bouton_valider_pres" />
@@ -100,12 +104,12 @@
 		
 		<div id="conditions">
                         <p>
-                            Ecrire les conditions d'utilisation
-                            <form method='POST' id="condition" action='index.php?page=modification'>
-                                <textarea  id="texte_cond" name="texte_cond" required rows="15" cols="70"></textarea>
+			<h1>Ecrire les conditions d'utilisation :</h1>
+                        <form method='POST' id="condition" action='index.php?page=modification'>
+                        	<textarea  id="texte_cond" name="texte_cond" required rows="15" cols="70"></textarea>
                                 <br>
                                 <input type="submit" id="valider" value="Valider" name="bouton_valider_cond" />
-                            </form>
+                        </form>
                         </p>
                 </div>
 
