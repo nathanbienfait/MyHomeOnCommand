@@ -89,12 +89,12 @@ function afficheslogan()
     return $slogan;
 }
 
-function afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond)
+function afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas)
 {
     if (!empty($_POST['Ajouter_un_equipement']))
     {
         $affiche=new InscriptionUtilisateur;
-        $ajoutEquipement =$affiche->ajoutEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond);
+        $ajoutEquipement =$affiche->ajoutEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas);
         return $ajoutEquipement;
     }
 }
