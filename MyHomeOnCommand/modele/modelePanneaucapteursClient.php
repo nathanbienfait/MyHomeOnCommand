@@ -313,3 +313,42 @@ function ObtenirUniteTypeEquipement($id_type_equipement)
 	$req->closeCursor();
 	return $unite;
 }
+
+function ObtenirTypeDonnees($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT id_type_donnees FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$id=$donnees['id_type_donnees'];
+	}
+	$req->closeCursor();
+	return $id;
+}
+
+function ObtenirMessageBas($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT message_etat_bas FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$mess=$donnees['message_etat_bas'];
+	}
+	$req->closeCursor();
+	return $mess;
+}
+
+function ObtenirMessageHaut($id_type_equipement)
+{
+	$bdd = Ouvrir_BDD();
+	$req = $bdd->prepare('SELECT message_etat_haut FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+	$req->execute(array('id_type_equipement' => $id_type_equipement));
+	while($donnees = $req->fetch())
+	{
+		$mess=$donnees['message_etat_haut'];
+	}
+	$req->closeCursor();
+	return $mess;
+}
