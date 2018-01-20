@@ -232,8 +232,8 @@ function clientGrapheConsommationtemperature()
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon'];
     $annee = $today['year'];
-    $login = $_SESSION['prenom'];
-    $arr = [["jour", "température"]];
+    $login = $_SESSION['prenom']; //On obtient l'identifiant du client connecté
+    $arr = [["jour", "température"]]; //On crée le tableau qui va contenir les données
     $info=$clientconsommation->getconsommationtemperatureclient();
     while($donnees = $info -> fetch())
             {
@@ -242,9 +242,9 @@ function clientGrapheConsommationtemperature()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    if( $donnees['login'] == $login) //On garde les données du client
+                    if( $donnees['login'] == $login) //On garde les données appartenant au client connecté
                     {
-                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])]; //On ajoute les données dans le tableau
                           }
                         }  
                     }
@@ -263,7 +263,7 @@ function clientGrapheConsommationtemperature()
             }
             $x++;
         }
-    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
+    if(count($arr) >= 2) //On retourne le tableau uniquement s'il y a des données
     {
        return $arr; 
     } 
@@ -275,8 +275,8 @@ function clientGrapheConsommationhumidite()
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon'];
     $annee = $today['year'];
-    $login = $_SESSION['prenom'];
-    $arr = [["jour", "humidité"]];
+    $login = $_SESSION['prenom']; //On obtient l'identifiant du client connecté
+    $arr = [["jour", "humidité"]]; //On crée le tableau qui va contenir les données
     $info=$clientconsommation->getconsommationhumiditeclient();
     while($donnees = $info -> fetch())
             {
@@ -285,9 +285,9 @@ function clientGrapheConsommationhumidite()
                 {
                   if (date("Y", $dateentime) == $annee) //Puis de l'année actuelle
                   {
-                    if( $donnees['login'] == $login) //On garde les données du client
+                    if( $donnees['login'] == $login) //On garde les données appartenant au client connecté
                     {
-                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])];
+                        $arr[] = [$donnees['date_utilisation'], intval($donnees['valeur'])]; //On ajoute les données dans le tableau
                           }
                         }  
                     }
@@ -320,9 +320,8 @@ function clientGrapheConsommationlumiere()
     $today = getdate(); //On obtient la date actuelle
     $mois = $today['mon']; 
     $annee = $today['year'];
-    $arrid = ['identifiant'];
-    $login = $_SESSION['prenom'];
-    $arr = [["jour", "nombre d'heures"]];
+    $login = $_SESSION['prenom']; //On obtient l'identifiant du client connecté
+    $arr = [["jour", "nombre d'heures"]]; //On crée le tableau qui va contenir les données
     $info=$clientconsommation->getconsommationlumiereclient();
     while($donnees = $info -> fetch())
             {
@@ -333,13 +332,12 @@ function clientGrapheConsommationlumiere()
                     {
                         if( $donnees['login'] == $login) //On garde les données du client
                         {
-                            $arrid[] = $donnees['id_utilisateur'];
-                            $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))];
+                            $arr[] = [$donnees['date_utilisation'], intval(date('h.i',strtotime($donnees['temps'])))]; //On ajoute les données dans le tableau en convertissant le temps en heures et en int
                         }
                      }  
                  }
             }
-    $x=1; //On regarde si des données ont la même date
+    $x=1; //Si des données ont la même date ont fait la somme de leurs temps d'utilisation
     while($x<sizeof($arr))
         {
             if($x<sizeof($arr)-1)
@@ -347,12 +345,12 @@ function clientGrapheConsommationlumiere()
                 if($arr[$x][0]==$arr[$x+1][0])
                     {
                         $arr[$x][1]=($arr[$x][1]+$arr[$x+1][1]);
+                        array_splice($arr,$x+1,1);
                     }
-                    array_splice($arr,$x+1,1);
             }
             $x++;      
         }
-    if(count($arr) >= 2) //On retourne le tableau de données uniquement s'il y a des données
+    if(count($arr) >= 2) //On retourne le tableau uniquement s'il y a des données
     {
        return $arr; 
     }           
