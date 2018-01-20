@@ -302,11 +302,26 @@ function afficheModification()
             afficheModif($slog);
         }
 
-        
-        if(isset($_POST['bouton_valider_capteur']))
-        {    
-            $capteur=htmlspecialchars($_POST['Ajouter_un_capteur']);
-            afficheCapteur($capteur);
+        if(isset($_POST['bouton_valider_equipement']))
+        {
+            $nom_equipement=htmlspecialchars($_POST['Ajouter_un_equipement']);
+            $type_donnees=htmlspecialchars($_POST['type_donnees']);
+            $unite=htmlspecialchars($_POST['unite']);
+            $adresseLogo=0;
+            $adresseImageFond=0;
+
+            if(isset($_FILES['logo']))
+            {
+                $adresseLogo='images/' . $_FILES['logo']['name'];
+                $verif=move_uploaded_file($_FILES['logo']['tmp_name'], $adresseLogo);
+            }
+            if(isset($_FILES['image_fond']))
+            {
+                $adresseImageFond='images/' . $_FILES['image_fond']['name'];
+                $verif=move_uploaded_file($_FILES['image_fond']['tmp_name'], $adresseImageFond);
+            }
+
+            afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond);
         }
 
         if(isset($_POST['bouton_valider_admin']))
