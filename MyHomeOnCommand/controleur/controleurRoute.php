@@ -335,6 +335,24 @@ function afficheModification()
 
             afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas);
         }
+    
+        if(isset($_POST['bouton_valider_nouvelleCarac']))
+        {
+            $idTypeCapteur=$_POST['idTypeCapteur'];
+            $caracEquipement=$_POST['caracSelec'];
+
+            if(!empty($_POST['nouvelleCarac']))
+            {
+                $nouvelleCarac=$_POST['nouvelleCarac'];
+            }
+            else
+            {
+                $nouvelleCarac='images/' . $_FILES['nouvelleCarac']['name'];
+                $verif=move_uploaded_file($_FILES['nouvelleCarac']['tmp_name'], $nouvelleCarac);
+            }
+
+            adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
+        }
 
         if(isset($_POST['bouton_valider_admin']))
         {
