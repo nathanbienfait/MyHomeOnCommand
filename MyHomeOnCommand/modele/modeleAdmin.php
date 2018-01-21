@@ -64,3 +64,50 @@ class admin extends Connection
         return $reponse;      
     }
 }
+
+    public function Obtenir_tous_id_type_equipement()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT id_type_equipement FROM type_equipement');
+        $idtypesequipement = array();
+        while($donnees = $req->fetch())
+        {
+            $idtypesequipement[] = $donnees['id_type_equipement'];
+        }
+        $req->closeCursor();
+        return $idtypesequipement;
+    }
+
+    public function ObtenirTypeEquipementDepuisId($id_type_equipement)
+    {
+        $db=$this->dbConnect();
+        $req = $db->prepare('SELECT nom_type_equipement FROM type_equipement WHERE id_type_equipement=?');
+        $req->execute(array($id_type_equipement));
+        while($donnees = $req->fetch())
+        {
+        $info = $donnees['nom_type_equipement'];
+        }
+        $req->closeCursor();
+        return $info;
+    }
+
+    public function ObtenirTypeDonnees($id_type_equipement)
+    {
+        $db =$this->dbConnect();
+        $req = $db->prepare('SELECT id_type_donnees FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
+        $req->execute(array('id_type_equipement' => $id_type_equipement));
+        while($donnees = $req->fetch())
+        {
+            $id=$donnees['id_type_donnees'];
+        }
+        $req->closeCursor();
+        return $id;
+    }
+
+    public function modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE type_equipement SET ' . htmlspecialchars($caracEquipement) . '=:nouvelleCarac WHERE id_type_equipement=:idTypeCapteur');
+        $req->execute(array('nouvelleCarac' => $nouvelleCarac, 'idTypeCapteur' => $idTypeCapteur));
+        $req->closeCursor();
+    }
