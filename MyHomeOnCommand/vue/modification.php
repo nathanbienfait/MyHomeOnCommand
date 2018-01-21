@@ -29,6 +29,8 @@
                 <span id="titre_pres">Texte de présentation </span>
 		<br> <br> <br>
 		<span id="titre_cond">Conditions d'utilisation </span>
+		<br> <br> <br>
+                <span id="titre_modifEquipement">Modifier un type d'équipement</span>
                   </div>
 		    	<div id="modification">
                 <div id="slogan">
@@ -67,6 +69,75 @@
 		 	</form>
 			</p>
 		</div>
+
+		<div id="modifEquipement">
+                    <p>
+                    
+                    <?php
+                    $typeEquipement=new admin;
+                        
+                        if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement']))
+                        {
+                            $listeIdTypeEquipement=$typeEquipement->Obtenir_tous_id_type_equipement();
+                            echo "<h1>Sélectionner un type d'équipement :</h1></br>";
+                            echo "<form method='post' action='index.php?page=modification' enctype='multipart/form-data'>";
+                            echo "<select name='typeEquipement'>";              
+                            foreach($listeIdTypeEquipement as $idTypeEquipement)
+                            {
+                                $nomTypeEquipement=$typeEquipement->ObtenirTypeEquipementDepuisId($idTypeEquipement);
+                                echo '<option value=\'' . $idTypeEquipement . '\'>' . $nomTypeEquipement . '</option>';
+                            }
+                            echo "</select>";
+                            echo "<input type='submit' value='Valider' name='bouton_valider_selecType' />";
+                        }
+
+                        elseif(empty($_POST['caracEquipement']))
+                        {
+                            $idTypeCapteurSelec=htmlspecialchars($_POST['typeEquipement']);
+                            $typeDonnees=$typeEquipement->ObtenirTypeDonnees($idTypeCapteurSelec);
+                            echo "<h1>Sélectionner la caractéristique à modifier</h1></br>";
+                            echo "<form method='post' action='index.php?page=modification' enctype='multipart/form-data'>";
+                            echo '<input type=\'hidden\' name=\'idTypeCapteur\' value=\'' . $idTypeCapteurSelec . '\'>';
+                            echo "<select name='caracEquipement'>";
+                            echo "<option value='nom_type_equipement'>Nom du type d'équipement</option>";
+                            echo "<option value='image_fond'>Image de fond pour ce type</option>";
+                            echo "<option value='logo'>Logo pour ce type</option>";
+                            if($typeDonnees == 1)
+                            {
+                                echo "<option value='message_etat_haut'>Message à afficher en état haut</option>";
+                                echo "<option value='message_etat_bas'>Message à afficher en état bas</option>";
+                            }
+                            else
+                            {
+                                echo "<option value='unite'>Unité de ce type</option>";
+                            }
+                            echo "</select>";
+                            echo "<input type='submit' value='Valider' name='bouton_valider_selecCarac' />"; 
+                        }
+
+                        else
+                        {
+                            $caracEquipement=htmlspecialchars($_POST['caracEquipement']);
+                            echo "<h1>Modifier la caractéristique sélectionnée</h1></br>";
+                            echo "<form method='post' action='index.php?page=modification' enctype='multipart/form-data'>";
+                            echo '<input type=\'hidden\' name=\'idTypeCapteur\' value=\'' . htmlspecialchars($_POST['idTypeCapteur']) . '\'>';
+                            echo '<input type=\'hidden\' name=\'caracSelec\' value=\'' . $caracEquipement . '\'>';
+                            if($caracEquipement=='nom_type_equipement' OR $caracEquipement=='message_etat_bas' OR $caracEquipement=='message_etat_haut' OR $caracEquipement=='unite')
+                            {   
+                                echo "<label for='nouvelleCarac'>Indiquer la nouvelle valeur :</label></br>";   
+                                echo "<input type='text' name='nouvelleCarac' required>";
+                            }
+                            else
+                            {
+                                echo "<label for='nouvelleCarac'>Choisissez un fichier à télécharger :</label></br>";
+                                echo "<input type='file' name='nouvelleCarac' required/>";
+                            }
+                            echo "<input type='submit' value='Valider' name='bouton_valider_nouvelleCarac' />";    
+                        }
+                        ?>
+                    </form>
+                    </p>
+                </div>
 
                 <div id="admin">
                     <p>
@@ -138,6 +209,9 @@ cas4.style.display="none";
 cas5.style.display="none";
     var cas6 = document.querySelector('#conditions');
 cas6.style.display="none";
+    var cas7 = document.querySelector('#modifEquipement');
+    <?php if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement'])) { echo "cas7.style.display='none';"; }
+    else {echo "cas7.style.display='';"; } ?>
 
 var tab1 = document.querySelector('#titre_slogan');
 var x1=0;
@@ -150,6 +224,7 @@ tab1.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
+	cas7.style.display="none";
 
         
         x1=1;
@@ -158,6 +233,7 @@ tab1.addEventListener('click', function() {
         x4=0;
         x5=0;
         x6=0;
+	x7=0;
 
     }
     else
@@ -178,6 +254,7 @@ tab2.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
+	cas7.style.display="none";
 
         x2=1;
         x1=0;
@@ -185,6 +262,7 @@ tab2.addEventListener('click', function() {
         x4=0;
         x5=0;
         x6=0;
+	x7=0;
        
     }
     else
@@ -205,6 +283,7 @@ tab3.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
+	cas7.style.display="none";
 
         
         x3=1;
@@ -213,7 +292,7 @@ tab3.addEventListener('click', function() {
         x4=0;
         x5=0;
         x6=0;
-       
+        x7=0;
     }
     else
     {
@@ -233,6 +312,7 @@ tab4.addEventListener('click', function() {
         cas3.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
+	cas7.style.display="none";
 
         
         x4=1;
@@ -241,7 +321,7 @@ tab4.addEventListener('click', function() {
         x3=0;
         x5=0;
         x6=0;
-       
+        x7=0;
     }
     else
     {
@@ -261,6 +341,7 @@ tab5.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas6.style.display="none";
+	cas7.style.display="none";
 
         
         x5=1;
@@ -269,7 +350,7 @@ tab5.addEventListener('click', function() {
         x3=0;
         x4=0;
         x6=0;
-       
+        x7=0;
     }
     else
     {
@@ -289,6 +370,7 @@ tab6.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas5.style.display="none";
+	cas7.style.display="none";
 
         
         x6=1;
@@ -297,6 +379,7 @@ tab6.addEventListener('click', function() {
         x3=0;
         x4=0;
         x5=0;
+	x7=0;
        
     }
     else
@@ -306,6 +389,34 @@ tab6.addEventListener('click', function() {
     }
  });
 
+var tab7 = document.querySelector('#titre_modifEquipement');
+var x7=0;
+tab5.addEventListener('click', function() {
+    if(x7==0)
+    {
+        cas7.style.display="";
+        cas1.style.display="none";
+        cas2.style.display="none";
+        cas3.style.display="none";
+        cas4.style.display="none";
+	cas5.style.display="none";
+	cas6.style.display="none";
+		    
+        x7=1;
+        x1=0;
+        x2=0;
+        x3=0;
+        x4=0;
+	x5=0;
+	x6=0;
+       
+    }
+    else
+    {
+        cas7.style.display="none";
+        x7=0;
+    }
+ });
 
 </script>
     </body>
