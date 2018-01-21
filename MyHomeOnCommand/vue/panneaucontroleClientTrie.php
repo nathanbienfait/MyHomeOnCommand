@@ -49,7 +49,6 @@
 									echo "</div>"; /* fin div 5 */
 									echo "</div>";	/* fin div 4 */
 									$equipements = ObtenirEquipementsDunTypeEtLogement($idtypeEquipement, $id_logement, $_SESSION['id']);
-									/*echo '<div id=\'voirDonnees' . $compteLogement . '\'>'; /* début div 6 */
 									echo "<div class='liste_donnees'>";	 /*début div 7*/
 									foreach ($equipements as $equipement)
 									{
@@ -66,10 +65,9 @@
 												$message=ObtenirMessageBas($idtypeEquipement);
 												echo $message;
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
-												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
+												echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
 												echo '<select name=\'valeur_cible\'>';
-												echo '<option value=\'ouvert\'selected>Ouvrir</option>';
-												echo '<option value=\'type_parametre\'>Fermer</option>';
+												echo '<option value=\'1\'selected>Ouvrir/activer</option>';
 												echo '</select>';
 												echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $equipement . '\'/>';
 												echo '<input type=\'hidden\' name=\'tri\' value=\'type_parametre\'/>';
@@ -81,10 +79,9 @@
 												echo $message;
 												echo '</br>';
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
-												echo '<label for=\'valeur_cible\' class=\'label\'>Contrôler l\'ouverture à distance</label></br>';
+												echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
 												echo '<select name=\'valeur_cible\'>';
-												echo '<option value=\'ouvert\'>Ouvrir</option>';
-												echo '<option value=\'type_parametre\'selected>Fermer</option>';
+												echo '<option value=\'0\'selected>Fermer/désactiver</option>';
 												echo '</select>';
 												echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $equipement . '\'/>';
 												echo '<input type=\'hidden\' name=\'tri\' value=\'type_parametre\'/>';
@@ -99,7 +96,7 @@
 											echo '</br>';
 											echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 											echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
-											if($unite == "%") {$max=100;} else {$max=40;}
+											if($unite == "%") {$max=100;} else {$max=1000000;}
 											echo '<input type=\'number\' name=\'valeur_cible\' min=\'0\' max=\'' . $max . '\'>';
 											echo '<input type=\'hidden\' name=\'id_equipement\' value=\'' . $equipement . '\'/>';
 											echo '<input type=\'hidden\' name=\'tri\' value=\'type_parametre\'/>';
@@ -120,7 +117,6 @@
 										echo "</div>"; /* fin div 8 */
 									}
 									echo "</div>"; /* fin div 7 */
-									/*echo "</div>";	/* fin div 6 */
 								}
 							}
 							else
