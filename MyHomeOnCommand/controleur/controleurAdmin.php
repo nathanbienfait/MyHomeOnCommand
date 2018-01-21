@@ -180,3 +180,9 @@ function adminGrapheConsommationlumiere()
     }           
 }
 
+function adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac)
+{
+    $admin=new admin;
+    $admin->modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
+    echo "<script>alert('Modifications réalisées')</script>";
+}
