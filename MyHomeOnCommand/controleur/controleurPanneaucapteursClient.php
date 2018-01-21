@@ -12,7 +12,7 @@ else
 
 if(isset($_POST['id_equipement']) AND isset($_POST['valeur_cible']))
 {
-	MajValeurCible($_POST['id_equipement'], $_POST['valeur_cible']);
+	MajValeurCible(htmlspecialchars($_POST['id_equipement']), htmlspecialchars($_POST['valeur_cible']));
 }
 
 switch ($fonction)
@@ -21,7 +21,7 @@ switch ($fonction)
 
 		$vue='panneaucontroleClient';
 		$title='Vos capteurs';
-		$id_logements=Obtenir_id_logements($_SESSION['id']);
+		$id_logements=Obtenir_id_logements(htmlspecialchars($_SESSION['id']));
 		break;
 
 	case 'type_parametre' :
