@@ -93,7 +93,7 @@ function afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo,
     {
         $affiche=new InscriptionUtilisateur;
         $ajoutEquipement =$affiche->ajoutEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas);
-        return $ajoutEquipement;
+        echo "<script>alert('Modifications réalisées')</script>";
     }
 }
 
