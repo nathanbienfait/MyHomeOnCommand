@@ -6,18 +6,18 @@ function afficheAccueil()
         session_unset();
         session_destroy();
     }
-    if(isset($_POST['email']))
+    if(isset($_POST['email'])) //Permet de vérifier si le client à rentré une adresse Mail pour modifier son mot de passe
                 {
                       
-                    $verifMail=NULL;
-                    $verifMail=htmlspecialchars(verifierMail($_POST['email']));
+                    $verifMail=NULL; //Variable qui va indiquer si le Mail correspond à un client
+                    $verifMail=htmlspecialchars(verifierMail($_POST['email'])); //Renvoie vers la fonction qui verifie le mail
                     if ($verifMail == NULL ) {
                         echo "<script>alert('Votre Mail ne correspond pas');</script>";
                     }
                     elseif ($verifMail == 1) {
-                    $to=htmlspecialchars($_POST['email']);
-                    $subject = "Reinitalisation mot de passe MyHomeOnCommand";
-                    $token = gettoken(htmlspecialchars($_POST['email']))->fetch();
+                    $to=htmlspecialchars($_POST['email']); //destinataire du mail (le mail du client)
+                    $subject = "Reinitalisation mot de passe MyHomeOnCommand"; //Objet du mail
+                    $token = gettoken(htmlspecialchars($_POST['email']))->fetch(); //crée un token, personnalisé permettant de changer le mot de passe de manière sécurisée
                     $message = "Bonjour, vous avez demandé une réinitialisation de votre mot de passe,
 Vous pouvez reinitialiser votre mot de passe via ce lien : http://localhost/myhomeoncommand/index.php?page=reinitialisation&clef=".$token['token'];
                     mail($to,$subject,$message);
@@ -244,21 +244,21 @@ function afficheSupportAdmin()
             if ($_SESSION['type']==1) 
             {
                 
-                if(isset($_POST['boutton_supprimer']))
+                if(isset($_POST['boutton_supprimer'])) //Test si l'administrateur veut supprimer une question/réponse
                 {
-                    supprimerqr($_POST['boutton_supprimer']);
+                    supprimerqr($_POST['boutton_supprimer']); //permet d'effectuer la fonction effaçant les questions/réponses
                 }
                  
-                if(isset($_POST['edit2']))
+                if(isset($_POST['edit2'])) //Test si l'administrateur veut modifier une question/réponse
                 {
-                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']); 
+                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']);  //permet d'effectuer la fonction modifiant les questions/réponses
                 }
 
-                if(isset($_POST['envoitAjout']))
+                if(isset($_POST['envoitAjout'])) //Test si l'administrateur veut ajouter une question/réponse
                 {
-                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$_POST['dateQ'],$_POST['dateR']);
+                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$_POST['dateQ'],$_POST['dateR']); //permet d'effectuer la fonction ajoutant les questions/réponses
                 }
-                $tableauqr=tableauqr();
+                $tableauqr=tableauqr(); //Fonction récupérant les questions/réponses de la Base de donnée
                 require_once('vue/supportAdmin.php');
             }        
         
