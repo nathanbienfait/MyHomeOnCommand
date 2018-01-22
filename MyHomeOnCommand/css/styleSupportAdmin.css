@@ -7,28 +7,30 @@
 	height: 100%;
 	overflow: auto;
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 
 }
 
 #flex /* Contient les éléments de la page y compris le menu (sauf header et footer) */
 {
 	display: flex;
-	height:100%;
+	height: 100%
 }
 
 .groupeq /* contient les encadrés avec les questions */
 {
-	width: 60%;
+	width: 50em;
+	height: 15em;
 	color: black;
 	padding: 0.4em;
 	border: 0.15em solid black;
     background-color: white;
-    margin-top: 10%;
+    margin-top: 5em;
 }
 .grouper /* contient les encadrés avec les réponses */
 {
-	width: 60%;
+	width: 50em;
+	height: 15em;
 	color: black;
 	padding: 0.4em;
 	border: 0.15em solid black;
@@ -87,14 +89,14 @@
 .bouton_aff_modal
 {
 	border:solid 0.15em black;
-	width: 10%;
+	width: 7em;
 	text-align: center;
 	background-color: white;
 	box-shadow: 0.35em 0.35em 0.35em black;
 	color: black;
-	height: 5em;
+	height: 2em;
     font-size: 1em;
-    margin: 5% 0% -4% 5%;
+    margin: 4em 0em -4em 8em;
 }
 .bouton_aff_modal:hover
 {
