@@ -50,7 +50,7 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
             $utilisateur->setUtilisateur($pseudo,$criptedMdp);
             $idUtil=$utilisateur->getIdUtilisateur($pseudo);
             $id=$idUtil->fetch();
-            $clef = password_hash($nom,PASSWORD_DEFAULT);
+            $clef = password_hash($nom,PASSWORD_DEFAULT); //génère le token permettant par la suite au client de modifier son mot de passe en cas d'oublis
             $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur'],$clef);
             return 1;
             
@@ -227,13 +227,13 @@ function afficheCond($texte_cond)
     }
 }
 
-function verifierMail($mail)
+function verifierMail($mail) //fonction permettant de vérifier que le mail du client (voulant récupérer son mot de passe) est dans la BDD
 {
     $utilisateur=new LoginUtilisateur;
-    $recupMail=$utilisateur->verifMail()->fetchAll();
-    $verifEmail = NULL;
+    $recupMail=$utilisateur->verifMail()->fetchAll(); //Appel la fonction SQL récupérant tous les mails de la BDD
+    $verifEmail = NULL; //Variable qui va s'activer à 1 seulement si le mail rentré correspond à un mail de la BDD
     foreach ($recupMail as $testMail) {
-        if($mail == $testMail['email'])
+        if($mail == $testMail['email']) //test du mail dans un boucle, pour le comparer à tous les mails
         {
             $verifEmail = 1;
         }
@@ -241,22 +241,22 @@ function verifierMail($mail)
     return $verifEmail;
 
 }
-function gettoken($mail)
+function gettoken($mail) //fonction permettant de récupérer le token pour le mettre dans l'url du mail envoyé au client ayant perdu son mdp
 {
     $utilisateur=new LoginUtilisateur;
-    $token=$utilisateur->getClef($mail);
+    $token=$utilisateur->getClef($mail); //fait appel à la fonction SQL dans le modele
     return $token;
 }
 
-function modifMdpReinitialisation($mdp,$mdpVerif,$id)
+function modifMdpReinitialisation($mdp,$mdpVerif,$id) //Fonction permettant de modifier le mot de passe avec l'id (récupéré grâce au token)
 {
     $verif=0;
-    if($mdp==$mdpVerif)
+    if($mdp==$mdpVerif) //vérifie que les deux mots de passes concordent
     {
         $verif=1;
         $utilisateur=new InscriptionUtilisateur;
-        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-        $utilisateur->setNewMdp($criptedMdp,$id);
+        $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT); //cripte le nouveau mdp
+        $utilisateur->setNewMdp($criptedMdp,$id); //Fait appel à la fonction SQL
     }
     else
     {
@@ -265,9 +265,9 @@ function modifMdpReinitialisation($mdp,$mdpVerif,$id)
     return $verif;
 }
 
-function getIdReinitialisation($token)
+function getIdReinitialisation($token) // Fonction répuérant l'id du client grâce au token présent dans l'url reçu par le client
 {
     $utilisateur=new InscriptionUtilisateur;
-    $id_client=$utilisateur->getIdToken($token)->fetch();
+    $id_client=$utilisateur->getIdToken($token)->fetch(); //Fait appel à la fonction SQL
     return $id_client;    
 }
