@@ -1,0 +1,30 @@
+#corpsTexte
+{
+	height: 85%;
+	text-align: center;
+}
+
+#formulaire
+{
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 50%;
+	height: 40%;
+	margin: 5% 20% 0 20%; 
+	padding-top: 2em;
+	color: black;
+	font-size: 1.5em;
+	border: groove black 0.2em;
+}
+#submit
+{
+	background-color: white;
+	height: 1.5em;
+	width: 4em;
+	font-size: 1.5em;
+	box-shadow: 0.15em 0.15em rgb(77, 65, 65);
+	border-radius: 0.2em;
+}
+#submit:hover
+{
+	box-shadow: none;
+}
