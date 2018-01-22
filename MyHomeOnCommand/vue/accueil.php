@@ -44,6 +44,7 @@
                     </p>
                 </form>
                 <div id="CorpTexte">
+                    <!-- Bonton contenant le formulaire pour la réinitialisation du mot de passe. Le formulaire est caché grace au JavaScript en bas de la page -->
                         <button class="bouton_aff_modal" id="bouton_aff_modal" data-modal="modal1">Mot de passe oublié</button>
                         <div class='modal' id="modal1">
                             <div class='modal-content'>
