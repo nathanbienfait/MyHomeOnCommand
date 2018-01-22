@@ -32,13 +32,13 @@ class LoginUtilisateur extends Connection
         $req->execute(array('id' => $idUtil));
         return $req;
     }
-    public function verifMail()
+    public function verifMail() //Permet de récupérer tous les mails de la BDD pour les comparer avec celui rentré par le client pour une réinitialisation de MDP
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT email FROM info_utilisateur');
         return $req;
     }
-    public function getClef($mail)
+    public function getClef($mail) //Récupère le token du client en fonction du mail qu'il a rentré
     {
         $db =$this->dbConnect();
         $reqToken =$db->prepare('SELECT token FROM info_utilisateur WHERE email = :mail');
@@ -169,7 +169,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 	
-	public function getIdToken($token)
+	public function getIdToken($token) //Permet de récupérer l'id du client en fonction du token présent dans l'URL reçu par mail
     {
         $db=$this->dbConnect();
         $req =$db->prepare('SELECT id_utilisateur FROM info_utilisateur WHERE token =:token');
@@ -177,7 +177,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }	
 	
-    public function setNewMdp($mdp,$id)
+    public function setNewMdp($mdp,$id) //Permet de changer le mot de passe
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE utilisateur SET password=:mdp WHERE id_utilisateur=:id');
