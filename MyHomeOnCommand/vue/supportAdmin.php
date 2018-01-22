@@ -20,30 +20,17 @@
            <?php include('vue/menuAdmin.php');?>
            
             <div id="CorpTexte">
-                <!-- Bonton contenant le formulaire d'ajout d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->
-                <button class="bouton_aff_modal" data-modal="modal1">Ajouter</button>
-                <div class='modal' id="modal1">
-                          <div class='modal-content'>
-                            <span class='close' >&times;</span>
-                               <form class="ajout" method="Post" action="index.php?page=supportAdmin" >
-                                    <strong>Question :</strong><textarea class="ajoutqr" name="ajoutQ"></textarea><br>
-                                    <strong>Réponse :</strong><textarea class="ajoutqr" name="ajoutR"></textarea><br>
-                                    <strong>Date de la question :</strong><input type="date" name="dateQ" classe="inputAjout"><br>
-                                    <strong>Date de la réponse :</strong><input type="date" name="dateR" classe="inputAjout">
-                                    <input type="submit" name="envoitAjout" onclick="return show(3)" class="envoie">
-                                </form>
-                          </div>
-                        </div>    
+
                     <div class="qrBouton">
-                <!-- Boucle permettant d'afficher les questions réponses récupérés dans un objet PDO -->
+<!-- Boucle permettant d'afficher les questions réponses récupérés dans un objet PDO -->
                     <?php foreach($tableauqr as $truc): ?>   
                         <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
                         <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
-                <!-- Formulaire permettant de supprimer une question/réponse -->                  
+<!-- Formulaire permettant de supprimer une question/réponse -->                                  
                         <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
                                 <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
-                <!-- Bonton contenant le formulaire de modification d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->
-                        <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2<?php echo $truc['id_qr'];?>" required/>
+                <!-- Bonton contenant le formulaire de modification d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->        
+                <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2<?php echo $truc['id_qr'];?>" required/>
                             <div class='modal' id="modal2<?php echo $truc['id_qr'];?>">
                                 <div class='modal-content'>
                                     <span class='close' >&times;</span>
@@ -57,9 +44,24 @@
 
                             
                     <?php endforeach;  ?>
-                        </div>
+                    </div>
+        <!-- Bonton contenant le formulaire d'ajout d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->
+                            <button class="bouton_aff_modal" data-modal="modal1">Ajouter</button>
+                <div class='modal' id="modal1">
+                    <div class='modal-content'>
+                        <span class='close' >&times;</span>
+                           <form class="ajout" method="Post" action="index.php?page=supportAdmin" >
+                                <strong>Question :</strong><textarea class="ajoutqr" name="ajoutQ"></textarea><br>
+                                <strong>Réponse :</strong><textarea class="ajoutqr" name="ajoutR"></textarea><br>
+                                <strong>Date de la question :</strong><input type="date" name="dateQ" classe="inputAjout"><br>
+                                <strong>Date de la réponse :</strong><input type="date" name="dateR" classe="inputAjout">
+                                <input type="submit" name="envoitAjout" onclick="return show(3)" class="envoie">
+                            </form>
+                    </div>
+                </div>    
                    
            </div>
+
     </div>
 
 <script>
