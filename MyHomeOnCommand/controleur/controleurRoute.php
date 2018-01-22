@@ -19,7 +19,7 @@ function afficheAccueil()
                     $subject = "Reinitalisation mot de passe MyHomeOnCommand";
                     $token = gettoken(htmlspecialchars($_POST['email']))->fetch();
                     $message = "Bonjour, vous avez demandé une réinitialisation de votre mot de passe,
-Vous pouvez reinitialiser votre mot de passe via ce lien : http://localhost/MyHomeOnCommandters/index.php?page=reinitialisation&clef=".$token['token'];
+Vous pouvez reinitialiser votre mot de passe via ce lien : http://localhost/myhomeoncommand/index.php?page=reinitialisation&clef=".$token['token'];
                     mail($to,$subject,$message);
                         echo "<script>alert('Mail envoyé');</script>";
 
