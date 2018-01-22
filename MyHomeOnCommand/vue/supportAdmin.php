@@ -35,11 +35,11 @@
                           </div>
                         </div>    
                     <div class="qrBouton">
-<!-- Boucle permettant d'afficher les questions réponses récupérés dans un objet PDO -->
+                <!-- Boucle permettant d'afficher les questions réponses récupérés dans un objet PDO -->
                     <?php foreach($tableauqr as $truc): ?>   
                         <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
                         <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
-             <!-- Formulaire permettant de supprimer une question/réponse -->                      
+                <!-- Formulaire permettant de supprimer une question/réponse -->                  
                         <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
                                 <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
                 <!-- Bonton contenant le formulaire de modification d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->
