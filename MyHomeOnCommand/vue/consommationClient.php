@@ -20,7 +20,8 @@
 
 
             <div id='graphes'>
-                <p>Bienvenue sur la page consommation. Ici, vous pouvez accèder à vos statistiques de consommation.</p>
+                <p><strong>Bienvenue sur la page consommation. Ici, vous pouvez accèder à vos statistiques de consommation.</strong></p>
+                <br/><br/><br/>
 
                 <div id='lumière'>
                     <?php 
@@ -59,6 +60,7 @@
                     <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
                 </div>
 
+		<br/>
                 <div id='humidité'>
                     <?php 
     //Partie humidité
@@ -90,6 +92,7 @@
 
                 </div>
 
+		<br/><br/><br/>
                 <div id='température'> <br/>
                     <?php 
     //Partie température
