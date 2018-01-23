@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>                                     <!--Cette page s'affiche quand l'inscription n'a pas rencontré de problème -->
 <html>
     <head>
         <meta charset="utf-8"/>
@@ -13,10 +13,13 @@
         <?php include('vue/header.php');?>
         <div id="corps">
         <br/>
-        <p class="decalTextDroite">Inscription réussie</p>
-        <br/>
-        <p class="decalTextDroite"> Retourner à l'accueil : <a href="index.php?page=accueil" class="lienRetour">Accueil</a> </p>
 
+            <div id="Box1">                                 <!--Boite dans l'aquelle s'affiche le message de bienvenue -->
+                <p class="bienvenue"> Bienvenue ! </p>  
+                <br/>
+                <p class="decalTextDroite"> Votre inscription s'est déroulée sans soucis. </p>
+                <p class="decalTextDroite"> Vous pouvez maintenant retourner à l'accueil et vous connecter : <a href="index.php?page=accueil" class="lienRetour">Accueil</a> </p>           <!-- Lien pour retourner à l'accueil -->
+            </div>
         </div>
         <?php include('vue/footer.php');?>
     </body>
