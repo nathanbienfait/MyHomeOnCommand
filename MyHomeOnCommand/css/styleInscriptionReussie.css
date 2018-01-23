@@ -1,10 +1,9 @@
 #corps
 {
     min-height: 80%;
-    background-color: rgba(255,255,255,0.8)
 }
 
-a:visited, a:link
+.lienRetour
 {
 	color: black;
 	font-size: 1em;
@@ -12,9 +11,23 @@ a:visited, a:link
 
 .decalTextDroite
 {
-	margin-left: 40%;
 	color: black;
-	font-size: 2em;
+	font-size: 1em;
+	text-align: center;
 }
 
+.bienvenue
+{
+	color: black;
+	font-size : 1.8em;
+	text-align: center;
+}
 
+#Box1
+{
+	border:solid 2px black;
+	background-color: rgba(255, 255, 255, 0.85); /* Le fond de la boite est plus opaque que la plupart du temps car le corps n'a pas de background-color */
+	margin-top: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
