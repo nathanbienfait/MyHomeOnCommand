@@ -26,7 +26,7 @@ include("header.php");
                         <p class="infoTitre">Informations personnelles :</p>
 
 
-                            <div id="Forms">
+                            <div id="Forms">                            <!--On crée un formulaire dans lequel on va retrouver toutes les infos du client -->
                                 <form method="post" name="formModif" >
                            
                                 <p> Identifiant : </p>
@@ -46,13 +46,17 @@ include("header.php");
                                 </br>
                                 </br>
                                 <input class="bouton" type="submit" value="Valider les changements" name="clientValiModifsInfo" />
-                            </div>
+                            </div>  
+
+                                <!--Chaque case contient un nom, une valeur qu'on récupère via la fonction clientVisuProfilClient() du controleurGestionProfilClient appellée dans le controleurRoute et un onblur qui met la case en rouge si la case ne contient pas une donnée correcte. On ajoute un required pour les données ne pouvant pas être NULL, forçant ainsi le client à les remplir. Enfin, on trouve un bouton de type submit qui, si il est appuyé, renvoit toutes les valeurs dans le contreurRoute qui fait ensuite appel a la fonction clientModifInfoClient() -->
 
                             <p class="infoTitre2"> Mot de passe : </p>
                             </br>
                             <div id="FormsMdp">
                                 <a href="index.php?page=modificationMdpClient" class="boutonMdp" name="clientModifMdp"> Modifier le mot de passe </a>
                             </div>
+
+                            <!--Ici, on a juste un bouton "modifier le mot de passe" qui est un lien vers la page modifictaionMdpClient.php -->
 
                     </div>
                 </div>
@@ -64,7 +68,7 @@ include("header.php");
     include("footer.php");
     ?>
 
-    <script>
+    <script>                                //Fonction qui met une case en rouge si le contenu n'est pas valide 
         function surligne(champ, erreur)
         {
            if(erreur)
@@ -73,7 +77,7 @@ include("header.php");
               champ.style.backgroundColor = "";
         }
 
-        function verifNom(champ)
+        function verifNom(champ)        //Fonction qui vérifie si le champ nom/prénom/login crédible
         {
             if(champ.value.length < 2 || champ.value.length >30)
            {
@@ -88,7 +92,7 @@ include("header.php");
            }
         }
 
-        function verifMail(champ)
+        function verifMail(champ)       //Fonction qui vérifie si l'adresse mail rentrée est bien une adresse mail
         {
             if ((champ.value.indexOf('@') == -1) || (champ.value.indexOf('.') == -1))
             {
@@ -102,7 +106,7 @@ include("header.php");
             }
         }
 
-        function verifTel(champ)
+        function verifTel(champ)        //Fonction qui vérifie si le numéro de telephone correspond au normes
         {
             if (champ.value.length < 7 || champ.value.length > 14 || (isNaN(champ.value) == true))
             {
@@ -116,7 +120,7 @@ include("header.php");
             }
         }
 
-        function verifForm(f)
+        function verifForm(f)           //Fonction qui vérifie si les champs sont tous remplis correctement et renvoit true si oui
         {
             var identifiantOk = verifNom(f.login);
             var nomOk = verifNom(f.nom);
@@ -134,7 +138,7 @@ include("header.php");
             }
         }
 
-        document.formModif.onsubmit = function()
+        document.formModif.onsubmit = function()            //Submit si la fonction verifForm renvoit bien true
         {
             return verifForm(this);
         }
