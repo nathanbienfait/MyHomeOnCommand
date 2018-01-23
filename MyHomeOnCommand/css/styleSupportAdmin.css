@@ -20,12 +20,12 @@
 .groupeq /* contient les encadrés avec les questions */
 {
 	width: 50em;
-	height: 15em;
+	height: auto;
 	color: black;
 	padding: 0.4em;
 	border: 0.15em solid black;
-    background-color: white;
-    margin-top: 5em;
+    	background-color: white;
+    	margin-top: 5em;
 }
 .grouper /* contient les encadrés avec les réponses */
 {
@@ -34,7 +34,7 @@
 	color: black;
 	padding: 0.4em;
 	border: 0.15em solid black;
-    background-color: white;
+    	background-color: white;
 
     
 }
@@ -43,7 +43,7 @@
 {
 	width: 3em;
 	height: 3em;
-	margin: 1em 0em 0em 5em;
+	margin: 1em 0em 0em 1em;
 	
 }
 .png2 /* Contient le bouton modifier */
@@ -51,10 +51,16 @@
 	width: 3em;
 	height: 3em;
 	margin-top: 1em;
+	margin-left: 2em;
 	
 }
 
-.bouton /* Permet de gérer l'allignement des deux boutons (supprimer et modifier) entre eux */
+.boutons /* Permet de gérer l'allignement des deux boutons (supprimer et modifier) entre eux */
+{
+	display: flex;
+	flex-direction: row;
+}
+.bouton 
 {
 	display: flex;
 	flex-direction: column;
