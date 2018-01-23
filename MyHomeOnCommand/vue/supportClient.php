@@ -14,9 +14,7 @@
     	   <?php include('vue/menuClient.php');?>
 
     	   <div id="CorpTexte">
-                <form>
-                    <input type="search" id="maRecherche" name="q" placeholder="Recherche">
-                </form>
+                
                <div id="contactSupport">
                     <a id="textcontact" href="index.php?page=messagerieClient">contactez le support</a>
                </div>
