@@ -27,7 +27,8 @@
                         <div class="groupeq"><strong>QUESTION: </strong><br><?php echo nl2br($truc['contenu_q']);?></br></div>
                         <div class="grouper"><strong>REPONSE: </strong><br><?php echo nl2br($truc['contenu_r']); ?></div>
 <!-- Formulaire permettant de supprimer une question/réponse -->                                  
-                        <form class="bouton" action="index.php?page=supportAdmin" method="Post" name="supprimer" >
+                <div class="boutons">        
+                <form action="index.php?page=supportAdmin" method="Post" name="supprimer" >
                                 <input class="png" onclick="return show(2); " type="image" src="images/delete.png" value="<?php echo $truc['id_qr']; ?>" name="boutton_supprimer" required/></form>
                 <!-- Bonton contenant le formulaire de modification d'une question. Le formulaire est caché grace au JavaScript en bas de la page -->        
                 <input class="png2" type="image" src="images/edit.png" name="edit" data-modal="modal2<?php echo $truc['id_qr'];?>" required/>
@@ -40,7 +41,8 @@
                                             <input type="image" class="png2" name="edit2" onclick="return show(1);" src="images/edit.png" value="<?php echo $truc['id_qr']; ?>">
                                         </form>
                                 </div>
-                            </div>   
+                            </div>
+                        </div>
 
                             
                     <?php endforeach;  ?>
