@@ -104,6 +104,7 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <p>Conditions légales d'utilisation</p>
+      <p><?php echo afficheTextCond()?> </p></p>
   </div>
 </div>
     <?php include('vue/footer.php');?>
