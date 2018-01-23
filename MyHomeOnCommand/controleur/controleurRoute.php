@@ -318,7 +318,7 @@ function afficheModification()
             afficheModif($slog);
         }
 
-        if(isset($_POST['bouton_valider_equipement']))
+        if(isset($_POST['bouton_valider_equipement'])) /* prépare les variables pour l'ajout d'un type d'équipement dans la bdd */
         {
             $nom_equipement=htmlspecialchars($_POST['Ajouter_un_equipement']);
             $type_donnees=htmlspecialchars($_POST['type_donnees']);
@@ -338,21 +338,21 @@ function afficheModification()
                 $messageEtatBas=htmlspecialchars($_POST['etat_bas']);
             }
 
-            if(!empty($_FILES['logo']['name']))
+            if(!empty($_FILES['logo']['name'])) /* on crée une variable contenant la nouvelle adresse des images et on les y envoie */
             {
                 $adresseLogo='images/' . $_FILES['logo']['name'];
                 $verif=move_uploaded_file($_FILES['logo']['tmp_name'], $adresseLogo);
             }
-            if(!empty($_FILES['image_fond']['name']))
+            if(!empty($_FILES['image_fond']['name'])) /* de même */
             {
                 $adresseImageFond='images/' . $_FILES['image_fond']['name'];
                 $verif=move_uploaded_file($_FILES['image_fond']['tmp_name'], $adresseImageFond);
             }
 
-            afficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas);
+            adminAfficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas); /* on appelle une fonction du controleurAdmin */
         }
     
-        if(isset($_POST['bouton_valider_nouvelleCarac']))
+        if(isset($_POST['bouton_valider_nouvelleCarac'])) /* prépare les variables pour modifier les caractéristiques d'un type d'équipement dans la bdd */
         {
             $idTypeCapteur=$_POST['idTypeCapteur'];
             $caracEquipement=$_POST['caracSelec'];
@@ -370,7 +370,7 @@ function afficheModification()
             adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
         }
     
-        if(isset($_POST['bouton_valider_selecTypeSupp']))
+        if(isset($_POST['bouton_valider_selecTypeSupp'])) /* prépare les variables pour la suppression d'un type d'équipement dans la bdd */
         {
             $idTypeEquipement=$_POST['typeEquipementSupp'];
             adminSuppTypeEquipement($idTypeEquipement);
