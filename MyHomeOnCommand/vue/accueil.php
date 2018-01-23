@@ -142,6 +142,7 @@
             {
                 if(f.mdp_inscription.value==f.mdpconf_inscription.value)
                     {
+                        confirm('Confirmez votre inscriptions?');
                         return true;
                     }
                 else
@@ -159,6 +160,7 @@
         
         document.inscription.onsubmit = function()
         {
+           
             return verifForm(this);
         }       
         var modal = document.getElementById('modal');
@@ -176,10 +178,7 @@
                 modal.style.display = "none";
             }
         }
-         document.inscription.onsubmit = function()
-        {
-            return confirm('Confirmez votre inscriptions?');
-        }
+         
         var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
             boutonsAffModal.forEach(function(bouton){
                 bouton.onclick=function(){
