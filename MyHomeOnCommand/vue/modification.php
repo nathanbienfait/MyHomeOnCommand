@@ -17,33 +17,34 @@
 
 	    		<?php include('vue/menuAdmin.php');?>
 
-		      <div id="onglet">
+		        <div id="onglet">
                 <span id="titre_slogan">Modifier le slogan </span>
                 <br> <br> <br>
                 <span id="titre_equipement">Ajouter un type d'équipement </span>
-		<br> <br> <br>
+                <br> <br> <br>
                 <span id="titre_modifEquipement">Modifier un type d'équipement</span>
                 <br> <br> <br>
-		<span id="titre_suppEquipement">Supprimer un type d'équipement</span>
+		        <span id="titre_suppEquipement">Supprimer un type d'équipement</span>
                 <br> <br> <br>
                 <span id="titre_admin">Ajouter un administrateur </span>
                 <br> <br> <br>
                 <span id="titre_op">Ajouter un opérateur </span>
-		<br> <br> <br>
+		        <br> <br> <br>
                 <span id="titre_pres">Texte de présentation </span>
-		<br> <br> <br>
-		<span id="titre_cond">Conditions d'utilisation </span>
-		
-                  </div>
+		        <br> <br> <br>
+		        <span id="titre_cond">Conditions d'utilisation </span>
+                </div>
+
 		    	<div id="modification">
+
                 <div id="slogan">
-			<p class='paragraphe'>
-			<h1>Modifier le slogan :</h1>
+                <p class='paragraphe'>
+                <h1>Modifier le slogan :</h1>
 				<form method='POST' id="modif_slogan" action='index.php?page=modification'>
 					<input type="text" id="modif" name="Modifier_le_slogan" required />
-					<input type="submit" id="valider" value="Valider" name="bouton_valider_slogan" />
+					<input type="submit" class="valider" value="Valider" name="bouton_valider_slogan" />
 				</form>
-			</p>
+                </p>
 				</div>
 				
                 
@@ -52,7 +53,7 @@
 			<h1>Ajouter un type d'équipement :</h1>
 			<form method='POST' id="modif_equipement" action='index.php?page=modification' enctype="multipart/form-data">
                             <label for="Ajouter_un_equipement"> Nom du capteur : </label></br>
-			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br                
+			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>               
                             <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états <br>(ex : ouvert/fermé, allumé/éteint ...) : </label></br>
                             <select name="type_donnees">
                                 <option value="1"> Données à deux états </option>
@@ -68,7 +69,7 @@
                             <input type="file" name="logo" /></br></br>
                             <label for="image_fond"> Importer une image de fond pour ce type d'équipement <br> (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label><br><br>
                             <input type="file" name="image_fond"/></br></br>
-			    <input type="submit" id="valider" value="Valider" name="bouton_valider_equipement" />
+			    <input type="submit" class="valider" value="Valider" name="bouton_valider_equipement" />
 		 	</form>
 			</p>
 		</div>
@@ -168,7 +169,7 @@
                             <br> <br>
                             Mot de passe
                             <input type="password" id="password" name="password_admin" required />
-                            <input type="submit" id="valider" value="Valider" name="bouton_valider_admin" />
+                            <input type="submit" class="valider" value="Valider" name="bouton_valider_admin" />
                         </form>
                     </p>
                 </div>
@@ -182,7 +183,7 @@
                             <br> <br>
                             Mot de passe
                             <input type="password" id="password" name="password_op" required />
-                            <input type="submit" id="valider" value="Valider" name="bouton_valider_op" />
+                            <input type="submit" class="valider" value="Valider" name="bouton_valider_op" />
                         </form>
                     </p>
                 </div>
@@ -192,7 +193,7 @@
 			 <h1>Qui sommmes nous ?</h1>
                         <form method='POST' id="explication" action='index.php?page=modification'>
                             <textarea  id="texte_pres" name="texte_pres" required rows="5" cols="40" ></textarea><br>
-                            <input type="submit" id="valider" value="Valider" name="bouton_valider_pres" />
+                            <input type="submit" class="valider" value="Valider" name="bouton_valider_pres" />
                         </form>
                     </p>
                 </div>
@@ -203,7 +204,7 @@
                         <form method='POST' id="condition" action='index.php?page=modification'>
                         	<textarea  id="texte_cond" name="texte_cond" required rows="15" cols="70"></textarea>
                                 <br>
-                                <input type="submit" id="valider" value="Valider" name="bouton_valider_cond" />
+                                <input type="submit" class="valider" value="Valider" name="bouton_valider_cond" />
                         </form>
                         </p>
                 </div>
@@ -246,8 +247,8 @@ tab1.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
-	cas7.style.display="none";
- 	cas8.style.display="none";
+        cas7.style.display="none";
+        cas8.style.display="none";
 	    
         x1=1;
         x2=0;
@@ -255,8 +256,8 @@ tab1.addEventListener('click', function() {
         x4=0;
         x5=0;
         x6=0;
-	x7=0;
-	x8=0;
+        x7=0;
+        x8=0;
 
     }
     else
@@ -277,8 +278,8 @@ tab2.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
-	cas7.style.display="none";
-	cas8.style.display="none";
+        cas7.style.display="none";
+        cas8.style.display="none";
 
         x2=1;
         x1=0;
@@ -286,8 +287,8 @@ tab2.addEventListener('click', function() {
         x4=0;
         x5=0;
         x6=0;
-	x7=0;
-	x8=0;
+        x7=0;
+        x8=0;
        
     }
     else
@@ -407,7 +408,7 @@ tab6.addEventListener('click', function() {
         x3=0;
         x4=0;
         x5=0;
-	x7=0;
+        x7=0;
         x8=0;
     }
     else
@@ -419,7 +420,7 @@ tab6.addEventListener('click', function() {
 
 var tab7 = document.querySelector('#titre_modifEquipement');
 var x7=0;
-tab5.addEventListener('click', function() {
+tab7.addEventListener('click', function() {
     if(x7==0)
     {
         cas7.style.display="";
@@ -450,7 +451,7 @@ tab5.addEventListener('click', function() {
 
 var tab8 = document.querySelector('#titre_suppEquipement');
 var x8=0;
-tab5.addEventListener('click', function() {
+tab8.addEventListener('click', function() {
     if(x8==0)
     {
         cas8.style.display="";
@@ -467,9 +468,9 @@ tab5.addEventListener('click', function() {
         x2=0;
         x3=0;
         x4=0;
-	x5=0;
-	x6=0;
-	x7=0;
+        x5=0;
+        x6=0;
+        x7=0;
        
     }
     else
