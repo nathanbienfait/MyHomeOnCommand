@@ -421,6 +421,14 @@ function afficheMessagerieClient()
                 }
 
                 $tab=visuMessagerieClient();
+                if ($tab==NULL)
+                {
+                    $premierMessage = 1;
+                }
+                else
+                {
+                    $premierMessage =NULL;
+                }
                 require_once('vue/messagerieClient.php');
             }
         }
