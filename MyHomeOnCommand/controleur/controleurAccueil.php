@@ -133,79 +133,95 @@ function afficheCapteur($capteur)
     }
 }
 
-function afficheAdmin($id,$mdp)
+function afficheAdmin($id,$mdp,$mdpVerif)
 {
     if (isset ($_POST['login_admin'],$_POST['password_admin']))
     {
-        
-        $verif=0;
-        $utilisateur=new InscriptionUtilisateur;
-        $listeLogin=$utilisateur->getLoginUtilisateurs();
-        while($liste=$listeLogin->fetch())
+        if($mdp == $mdpVerif)
         {
+            echo"<script>alert('Administrateur ajouté');</script>";
+            $verif=0;
+            $utilisateur=new InscriptionUtilisateur;
+            $listeLogin=$utilisateur->getLoginUtilisateurs();
+            while($liste=$listeLogin->fetch())
+            {
+                if($liste['login']==$id)
+                {
+                    
+                    $verif=1;  
+                }
+            }
             
-            if($liste['login']==$id)
+            if ($verif==0)
             {
                 
-                $verif=1;
-                
+                $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+                $affiche=new InscriptionUtilisateur;
+                $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
+                return $ajoutAdmin;
                 
             }
+            if($verif==1)
+            {
+                erreur("Votre pseudo n'est pas disponible");
+            }
         }
-        
-        if ($verif==0)
-        {
-            
-            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-            $affiche=new InscriptionUtilisateur;
-            $ajoutAdmin =$affiche->ajoutAdmin($id,$criptedMdp);
-            return $ajoutAdmin;
-            
-        }
-        if($verif==1)
-        {
-            erreur("Votre pseudo n'est pas disponible");
-        }
+
+        else
+            {
+                echo "<script>alert('Les deux mots de passe ne sont pas les mêmes');</script>";
+            }
 
     }
 }
 
-function afficheOp($id,$mdp)
+function afficheOp($id,$mdp,$mdpVerif)
 {
-    if (isset ($_POST['login_op'],$_POST['password_op']))
+   if (isset ($_POST['login_op'],$_POST['password_op']))
     {
-        
-        $verif=0;
-        $utilisateur=new InscriptionUtilisateur;
-        $listeLogin=$utilisateur->getLoginUtilisateurs();
-        while($liste=$listeLogin->fetch())
+        if($mdp == $mdpVerif)
         {
-            
-            if($liste['login']==$id)
+            echo"<script>alert('Opérateur ajouté');</script>";
+            $verif=0;
+        
+            $verif=0;
+            $utilisateur=new InscriptionUtilisateur;
+            $listeLogin=$utilisateur->getLoginUtilisateurs();
+            while($liste=$listeLogin->fetch())
             {
                 
-                $verif=1;
+                if($liste['login']==$id)
+                {
+                    
+                    $verif=1;
+                    
+                    
+                }
+            }
+            
+            if ($verif==0)
+            {
                 
+                $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
+                $affiche=new InscriptionUtilisateur;
+                $ajoutOp =$affiche->ajoutOp($id,$criptedMdp);
+                return $ajoutOp;
                 
             }
+            if($verif==1)
+            {
+                erreur("Votre pseudo n'est pas disponible");
+            }
         }
-        
-        if ($verif==0)
-        {
-            
-            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-            $affiche=new InscriptionUtilisateur;
-            $ajoutOp =$affiche->ajoutOp($id,$criptedMdp);
-            return $ajoutOp;
-            
-        }
-        if($verif==1)
-        {
-            erreur("Votre pseudo n'est pas disponible");
-        }
+
+        else
+            {
+                echo "<script>alert('Les deux mots de passe ne sont pas les mêmes');</script>";
+            }
 
     }
 }
+
 
 function affichePres($texte_pres)
 {
