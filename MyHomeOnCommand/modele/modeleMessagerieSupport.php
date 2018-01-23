@@ -22,7 +22,7 @@ class messagerieSupport extends Connection
         return $req;
     }
 
-    public function postReponse($reponse, $idQR)
+    public function postReponse($reponse, $idQR) /*Change le message automatique en la réponse fournie par l'opérateur */
     {
         $db=$this->dbConnect();
         $req = $db->prepare('UPDATE qr SET contenu_r = :cRNew WHERE contenu_r = " - - Un membre du support va vous répondre dans les plus bref délais - - " AND id_qr = :id');
@@ -33,7 +33,7 @@ class messagerieSupport extends Connection
 
     }
 
-    public function recupIdQr($idClient)
+    public function recupIdQr($idClient) /*Récupère l'id du Client */
     {
         $db=$this->dbConnect();
         $req = $db->prepare('SELECT id_qr FROM relation_utilisateur_qr NATURAL JOIN qr WHERE contenu_r = " - - Un membre du support va vous répondre dans les plus bref délais - - " AND id_utilisateur = :id');
