@@ -13,14 +13,19 @@
 	margin-top: 3%;
 }
 
-#equipement, #admin, #operateur, #presentation,#slogan, #conditions
+#equipement, #admin, #operateur, #presentation,#slogan, #conditions, #modifEquipement, #suppEquipement
 {
 	background-color:black;
-	opacity:0.8;
+	opacity:1;
 	border-radius:10px;
 	padding: 2%;
-	width:100%;
+	width:90%;
 	text-align:center;
+}
+
+#titre_modifEquipement, #titre_suppEquipement
+{
+	margin-left: 15%;
 }
 
 #onglet
@@ -31,13 +36,18 @@
 span
 {
     background-color:black;
-	opacity:0.8;
-	border-radius:10px;
-	height:20%;
-	width:90%;
-	text-align:center;
+    opacity:0.7;
+    border-radius:10px;
+    height:20%;
+    width:90%;
+    text-align:center;
     padding: 3%;
     margin: 3%; 
+}
+
+span:hover
+{
+	opacity: 1;
 }
 
 h1
