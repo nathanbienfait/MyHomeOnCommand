@@ -1,6 +1,7 @@
 <?php
-session_start();
+session_start();// démarre la session de l'utilisateur qui se connectera
 
+//ajoute l'ensemble des controleurs et des modèles
 require_once('controleur/controleurAccueil.php');
 require_once('controleur/controleurAdmin.php');
 require_once('controleur/controleurClient.php');
@@ -19,7 +20,7 @@ require_once('modele/modeleMessagerieSupport.php');
 require_once('controleur/controleurMessagerieSupport.php');
 
 
-
+//fonction qui articule les pages du site, chaque case correspond a une page, pour plus de lisibilité les fonctions appellées dans chaque case sont dans le controleurRoute.php
 function route()
 {
 
@@ -115,17 +116,12 @@ switch($page)
     
 }
 
-
-
-
-
-
-
+//ici on appelle la fonction route si $_GET['page'] existe
 if(isset($_GET['page']))
 {
     route();
 }
-
+//Sinon on force l'appelle de route() dans le case accueil
 else
 {
    
