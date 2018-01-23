@@ -380,14 +380,16 @@ function afficheModification()
         {
             $id=htmlspecialchars($_POST['login_admin']);
             $mdp=htmlspecialchars($_POST['password_admin']);
-            afficheAdmin($id,$mdp);
+            $mdpVerif=htmlspecialchars($_POST['password_admin_verif']);
+            afficheAdmin($id,$mdp,$mdpVerif);
         }
 
         if(isset($_POST['bouton_valider_op']))
         {
             $id=htmlspecialchars($_POST['login_op']);
             $mdp=htmlspecialchars($_POST['password_op']);
-            afficheOp($id,$mdp);
+            $mdpVerif=htmlspecialchars($_POST['password_op_verif']);
+            afficheOp($id,$mdp,$mdpVerif);
         }
         
         if(isset($_POST['bouton_valider_pres']))
