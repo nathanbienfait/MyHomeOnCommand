@@ -186,3 +186,10 @@ function adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCar
     $admin->modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
     echo "<script>alert('Modifications réalisées')</script>";
 }
+
+function adminSuppTypeEquipement($idTypeEquipement)
+{
+    $admin=new admin;
+    $admin->suppTypeEquipement($idTypeEquipement);
+    echo "<script>alert('Modifications réalisées')</script>";
+}
