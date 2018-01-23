@@ -113,15 +113,6 @@ function afficheModif($slog)
     }
     
 }
-function afficheCapteur($capteur)
-{
-    if (!empty($_POST['Ajouter_un_capteur']))
-    {
-        $affiche=new InscriptionUtilisateur;
-        $ajoutCapteur =$affiche->ajoutCapteur($capteur);
-        return $ajoutCapteur;
-    }
-}
 
 function afficheAdmin($id,$mdp,$mdpVerif)
 {
