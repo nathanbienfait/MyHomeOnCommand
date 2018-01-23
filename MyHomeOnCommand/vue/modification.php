@@ -16,7 +16,7 @@
 	    <div id="corps">
 
 	    		<?php include('vue/menuAdmin.php');?>
-
+<!-- on définit le nom de tous les onglets !-->
 		        <div id="onglet">
                 <span id="titre_slogan">Modifier le slogan </span>
                 <br> <br> <br>
@@ -48,23 +48,23 @@
 				</div>
 				
                 
-		<div id="equipement">			
+		<div id="equipement">	<!-- permet d'ajouter un type d'équipement grâce à un formulaire !-->		
 			<p>
 			<h1>Ajouter un type d'équipement :</h1>
 			<form method='POST' id="modif_equipement" action='index.php?page=modification' enctype="multipart/form-data">
                             <label for="Ajouter_un_equipement"> Nom du capteur : </label></br>
 			    <input type="text" id="ajoutEquipement" name='Ajouter_un_equipement' required /></br></br>               
                             <label for="type_donnees"> Indiquer si le type d'équipement peut avoir seulement deux états <br>(ex : ouvert/fermé, allumé/éteint ...) : </label></br>
-                            <select name="type_donnees">
+                            <select name="type_donnees" onchange="afficherCacher()">
                                 <option value="1"> Données à deux états </option>
                                 <option value="2"> Autre </option>
                             </select></br></br>
-                            <label for="etat_haut">Message à afficher quand l'état de l'équipement est "HAUT" :</label></br>
+                            <div id="pourBinaire"><label for="etat_haut">Message à afficher quand l'état de l'équipement est "HAUT" :</label></br>
                             <input type="text" name="etat_haut"></br></br>
                             <label for="etat_bas">Message à afficher quand l'état de l'équipement est "BAS" :</label></br>
-                            <input type="text" name="etat_bas"></br></br>
-                            <label for="unite"> Unité de la valeur mesurée : </label></br>
-                            <input type="text" name="unite" /></br></br>
+                            <input type="text" name="etat_bas"></br></br></div>
+                            <div id="pourNonBinaire"><label for="unite"> Unité de la valeur mesurée : </label></br>
+                            <input type="text" name="unite" /></br></br></div>
                             <label for="logo"> Importer un logo pour ce type d'équipement <br> (ce logo apparaîtra sur le panneau de contrôle des clients) </label></br></br>
                             <input type="file" name="logo" /></br></br>
                             <label for="image_fond"> Importer une image de fond pour ce type d'équipement <br> (cette image de fond apparaîtra sur le panneau de contôle des clients quand elle est triée par type d'équipement) </label><br><br>
@@ -74,13 +74,13 @@
 			</p>
 		</div>
 
-		<div id="modifEquipement">
+		<div id="modifEquipement">   <!--permet de modifier un type d'équipement déjà existant !-->
                     <p>
                     
                     <?php
                     $typeEquipement=new admin;
                         
-                        if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement']))
+                        if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement']))  /* première étape : on choisit le type à modifier */
                         {
                             $listeIdTypeEquipement=$typeEquipement->Obtenir_tous_id_type_equipement();
                             echo "<h1>Sélectionner un type d'équipement :</h1></br>";
@@ -95,7 +95,7 @@
                             echo "<input type='submit' value='Valider' name='bouton_valider_selecType' />";
                         }
 
-                        elseif(empty($_POST['caracEquipement']))
+                        elseif(empty($_POST['caracEquipement']))  /* deuxième étape : on choisit la caractéristique à modifier */
                         {
                             $idTypeCapteurSelec=htmlspecialchars($_POST['typeEquipement']);
                             $typeDonnees=$typeEquipement->ObtenirTypeDonnees($idTypeCapteurSelec);
@@ -119,7 +119,7 @@
                             echo "<input type='submit' value='Valider' name='bouton_valider_selecCarac' />"; 
                         }
 
-                        else
+                        else /* troisième étape : on indique la nouvelle valeur (dépend de la caractéristique choisie) */
                         {
                             $caracEquipement=htmlspecialchars($_POST['caracEquipement']);
                             echo "<h1>Modifier la caractéristique sélectionnée</h1></br>";
@@ -143,7 +143,7 @@
                     </p>
                 </div>
 
-		<div id="suppEquipement">
+		<div id="suppEquipement">  <!-- permet de supprimer un type d'équipement existant !-->
                     <p> <?php
                         echo "<h1>Supprimer un type d'équipement :</h1></br>";
                         echo "<form method='post' action='index.php?page=modification' enctype='multipart/form-data' onsubmit='return confirmer();'>";
@@ -226,6 +226,7 @@
 
 <?php include('vue/footer.php');?>
 <script>
+	/* on fait en sorte qu'aucun des formulaires n'apparaisse */
     var cas1 = document.querySelector('#slogan');
 cas1.style.display="none";
     var cas2 = document.querySelector('#equipement');
@@ -244,6 +245,8 @@ else {echo "cas7.style.display='';"; } ?>
     var cas8 = document.querySelector('#suppEquipement');
 cas8.style.display="none";
 
+	/* dans la partie qui suit on demande aux formulaires de s'afficher quand on appuie sur l'onglet correspondant ou de ne plus s'afficher */
+	
 var tab1 = document.querySelector('#titre_slogan');
 var x1=0;
 tab1.addEventListener('click', function() {
@@ -487,6 +490,28 @@ tab8.addEventListener('click', function() {
         x8=0;
     }
  });
+
+var binaire = document.getElementById('pourBinaire');
+var pasBinaire = document.getElementById('pourNonBinaire');
+binaire.style.display="block";
+pasBinaire.style.display="none";
+var y=0;
+
+function afficherCacher()
+{
+    if(y==0)
+    {
+        binaire.style.display="none";
+        pasBinaire.style.display="block";
+        y=1;
+    }
+    else
+    {
+        binaire.style.display="block";
+        pasBinaire.style.display="none";
+        y=0;
+    }
+}
 </script>
     </body>
    		
