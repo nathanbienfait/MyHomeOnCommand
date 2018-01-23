@@ -284,6 +284,22 @@ function afficheGestionProfilClient()
     	}
 }
 
+function afficheModificationMdpClient()
+{
+    if (isset($_SESSION['type']))
+    {
+        if($_SESSION['type']==3)
+        {
+            if(isset($_POST['clientValiModifMdp'])) 
+            {
+                clientModifMdp(htmlspecialchars($_POST['oldMdp']),htmlspecialchars($_POST['newMdp']),htmlspecialchars($_POST['confNewMdp'])); 
+            }
+
+            require_once('vue/modificationMdpClient.php');
+        }
+    }
+}
+
 function afficheMentionsLegales()
 {
     require_once('vue/mentionsLegales.php');
