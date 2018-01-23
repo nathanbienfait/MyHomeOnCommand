@@ -28,6 +28,10 @@
                     <?php 
     //Partie lumière
                         $arrlum = adminGrapheConsommationlumiere();
+                        if(empty($arrlum)) 
+                            {
+                                echo "Il n'y a pas de données à afficher concernant la lumière.";
+                            }
                     ?>
            
 
@@ -66,6 +70,10 @@
                     <?php 
     //Partie humidité
                         $arrhum = adminGrapheConsommationhumidite();
+                        if(empty($arrhum)) 
+                            {
+                                echo "Il n'y a pas de données à afficher concernant l'humidité.";
+                            }
                     ?>
 
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -98,6 +106,10 @@
                     <?php 
     //Partie température
                         $arrtem = adminGrapheConsommationtemperature();
+                        if(empty($arrtem)) 
+                        {
+                            echo "Il n'y a pas de données à afficher concernant la température.";
+                        }
                     ?>
 
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
