@@ -63,7 +63,6 @@ class admin extends Connection
             WHERE donnees_equipement.valeur=1 and equipement.id_type_equipement=4');
         return $reponse;      
     }
-}
 
     public function Obtenir_tous_id_type_equipement()
     {
@@ -111,3 +110,12 @@ class admin extends Connection
         $req->execute(array('nouvelleCarac' => $nouvelleCarac, 'idTypeCapteur' => $idTypeCapteur));
         $req->closeCursor();
     }
+
+    public function suppTypeEquipement($idTypeEquipement)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('DELETE FROM type_equipement WHERE id_type_equipement=:idTypeEquipement');
+        $req->execute(array('idTypeEquipement' => $idTypeEquipement));
+        $req->closeCursor();
+    }
+}
