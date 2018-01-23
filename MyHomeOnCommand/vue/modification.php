@@ -21,6 +21,10 @@
                 <span id="titre_slogan">Modifier le slogan </span>
                 <br> <br> <br>
                 <span id="titre_equipement">Ajouter un type d'équipement </span>
+		<br> <br> <br>
+                <span id="titre_modifEquipement">Modifier un type d'équipement</span>
+                <br> <br> <br>
+		<span id="titre_suppEquipement">Supprimer un type d'équipement</span>
                 <br> <br> <br>
                 <span id="titre_admin">Ajouter un administrateur </span>
                 <br> <br> <br>
@@ -29,8 +33,7 @@
                 <span id="titre_pres">Texte de présentation </span>
 		<br> <br> <br>
 		<span id="titre_cond">Conditions d'utilisation </span>
-		<br> <br> <br>
-                <span id="titre_modifEquipement">Modifier un type d'équipement</span>
+		
                   </div>
 		    	<div id="modification">
                 <div id="slogan">
@@ -139,6 +142,23 @@
                     </p>
                 </div>
 
+		<div id="suppEquipement">
+                    <p> <?php
+                        echo "<h1>Supprimer un type d'équipement :</h1></br>";
+                        echo "<form method='post' action='index.php?page=modification' enctype='multipart/form-data' onsubmit='return confirmer();'>";
+                        echo "<select name='typeEquipementSupp'>";
+                        foreach($listeIdTypeEquipement as $idTypeEquipement)
+                        {
+                            $nomTypeEquipement=$typeEquipement->ObtenirTypeEquipementDepuisId($idTypeEquipement);
+                            echo '<option value=\'' . $idTypeEquipement . '\'>' . $nomTypeEquipement . '</option>';
+                        }
+                        echo "</select>";
+                        echo "<input type='submit' value='Valider' name='bouton_valider_selecTypeSupp' />";
+                        ?>
+                    </form>    
+                    </p>
+                </div>
+
                 <div id="admin">
                     <p>
 			<h1>Ajouter un administrateur :</h1>
@@ -210,8 +230,10 @@ cas5.style.display="none";
     var cas6 = document.querySelector('#conditions');
 cas6.style.display="none";
     var cas7 = document.querySelector('#modifEquipement');
-    <?php if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement'])) { echo "cas7.style.display='none';"; }
-    else {echo "cas7.style.display='';"; } ?>
+<?php if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement'])) { echo "cas7.style.display='none';"; }
+else {echo "cas7.style.display='';"; } ?>
+    var cas8 = document.querySelector('#suppEquipement');
+cas8.style.display="none";
 
 var tab1 = document.querySelector('#titre_slogan');
 var x1=0;
@@ -225,8 +247,8 @@ tab1.addEventListener('click', function() {
         cas5.style.display="none";
         cas6.style.display="none";
 	cas7.style.display="none";
-
-        
+ 	cas8.style.display="none";
+	    
         x1=1;
         x2=0;
         x3=0;
@@ -234,6 +256,7 @@ tab1.addEventListener('click', function() {
         x5=0;
         x6=0;
 	x7=0;
+	x8=0;
 
     }
     else
@@ -255,6 +278,7 @@ tab2.addEventListener('click', function() {
         cas5.style.display="none";
         cas6.style.display="none";
 	cas7.style.display="none";
+	cas8.style.display="none";
 
         x2=1;
         x1=0;
@@ -263,6 +287,7 @@ tab2.addEventListener('click', function() {
         x5=0;
         x6=0;
 	x7=0;
+	x8=0;
        
     }
     else
@@ -284,7 +309,7 @@ tab3.addEventListener('click', function() {
         cas5.style.display="none";
         cas6.style.display="none";
 	cas7.style.display="none";
-
+	cas8.style.display="none";
         
         x3=1;
         x1=0;
@@ -293,6 +318,7 @@ tab3.addEventListener('click', function() {
         x5=0;
         x6=0;
         x7=0;
+	x8=0;
     }
     else
     {
@@ -313,7 +339,7 @@ tab4.addEventListener('click', function() {
         cas5.style.display="none";
         cas6.style.display="none";
 	cas7.style.display="none";
-
+	cas8.style.display="none";
         
         x4=1;
         x1=0;
@@ -322,6 +348,7 @@ tab4.addEventListener('click', function() {
         x5=0;
         x6=0;
         x7=0;
+	x8=0;
     }
     else
     {
@@ -342,7 +369,7 @@ tab5.addEventListener('click', function() {
         cas4.style.display="none";
         cas6.style.display="none";
 	cas7.style.display="none";
-
+	cas8.style.display="none";
         
         x5=1;
         x1=0;
@@ -351,6 +378,7 @@ tab5.addEventListener('click', function() {
         x4=0;
         x6=0;
         x7=0;
+	x8=0;
     }
     else
     {
@@ -371,7 +399,7 @@ tab6.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
 	cas7.style.display="none";
-
+	cas8.style.display="none";
         
         x6=1;
         x1=0;
@@ -380,7 +408,7 @@ tab6.addEventListener('click', function() {
         x4=0;
         x5=0;
 	x7=0;
-       
+        x8=0;
     }
     else
     {
@@ -401,6 +429,7 @@ tab5.addEventListener('click', function() {
         cas4.style.display="none";
 	cas5.style.display="none";
 	cas6.style.display="none";
+	cas8.style.display="none";
 		    
         x7=1;
         x1=0;
@@ -409,6 +438,7 @@ tab5.addEventListener('click', function() {
         x4=0;
 	x5=0;
 	x6=0;
+	x8=0;
        
     }
     else
@@ -418,6 +448,36 @@ tab5.addEventListener('click', function() {
     }
  });
 
+var tab8 = document.querySelector('#titre_suppEquipement');
+var x8=0;
+tab5.addEventListener('click', function() {
+    if(x8==0)
+    {
+        cas8.style.display="";
+        cas1.style.display="none";
+        cas2.style.display="none";
+        cas3.style.display="none";
+        cas4.style.display="none";
+	cas5.style.display="none";
+	cas6.style.display="none";
+	cas7.style.display="none";
+		    
+        x8=1;
+        x1=0;
+        x2=0;
+        x3=0;
+        x4=0;
+	x5=0;
+	x6=0;
+	x7=0;
+       
+    }
+    else
+    {
+        cas8.style.display="none";
+        x8=0;
+    }
+ });
 </script>
     </body>
    		
