@@ -1,3 +1,4 @@
+/* On trouve ici les styles des pages messagerieClient, messagerieSupport et lobbyMessagerieSupport */
 
 			/* Styles de fond */
 
@@ -31,7 +32,7 @@
 {
 	color : black;
 	text-align: center;
-	font-size: 4em;
+	font-size: 1.8em;
 }
 
 .boiteNewQuest
