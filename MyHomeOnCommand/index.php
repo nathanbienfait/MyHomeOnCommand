@@ -72,9 +72,15 @@ switch($page)
 
         afficheSupportAdmin();
         break;
+        
     case 'gestionProfilClient' :
     
     	afficheGestionProfilClient();
+        break;
+        
+    case 'modificationMdpClient' :
+
+        afficheModificationMdpClient();
         break;
         
     case 'mentionsLegales':
