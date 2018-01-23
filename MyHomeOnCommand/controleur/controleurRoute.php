@@ -353,6 +353,12 @@ function afficheModification()
 
             adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
         }
+    
+        if(isset($_POST['bouton_valider_selecTypeSupp']))
+        {
+            $idTypeEquipement=$_POST['typeEquipementSupp'];
+            adminSuppTypeEquipement($idTypeEquipement);
+        }
 
         if(isset($_POST['bouton_valider_admin']))
         {
