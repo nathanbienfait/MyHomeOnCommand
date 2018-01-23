@@ -181,15 +181,25 @@ function adminGrapheConsommationlumiere()
 }
 
 function adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac)
-{
+{   /* fonction appelée par le controleur route pour modifier des types d'équipement */
     $admin=new admin;
     $admin->modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
     echo "<script>alert('Modifications réalisées')</script>";
 }
 
 function adminSuppTypeEquipement($idTypeEquipement)
-{
+{   /* fonction appelée par le controleur route pour supprimer des types d'équipement */
     $admin=new admin;
     $admin->suppTypeEquipement($idTypeEquipement);
     echo "<script>alert('Modifications réalisées')</script>";
+}
+
+function adminAfficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas)
+{   /* fonction appelée par le controleur route pour ajouter des types d'équipement */
+    if (!empty($_POST['Ajouter_un_equipement']))
+    {
+        $affiche=new admin;
+        $ajoutEquipement =$affiche->ajoutEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas);
+        echo "<script>alert('Modifications réalisées')</script>";
+    }
 }
