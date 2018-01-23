@@ -169,6 +169,10 @@
                             <br> <br>
                             Mot de passe
                             <input type="password" id="password" name="password_admin" required />
+			    <br><br>
+                            Confirmer le mot de passe
+                            <input type="password" class="password" name="password_admin_verif" required />
+                            <br><br>
                             <input type="submit" class="valider" value="Valider" name="bouton_valider_admin" />
                         </form>
                     </p>
@@ -183,6 +187,10 @@
                             <br> <br>
                             Mot de passe
                             <input type="password" id="password" name="password_op" required />
+			    <br><br>
+                            Confirmer le mot de passe
+                            <input type="password" class="password" name="password_op_verif" required />
+                            <br><br>
                             <input type="submit" class="valider" value="Valider" name="bouton_valider_op" />
                         </form>
                     </p>
