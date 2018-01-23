@@ -63,8 +63,7 @@ class admin extends Connection
             WHERE donnees_equipement.valeur=1 and equipement.id_type_equipement=4');
         return $reponse;      
     }
-
-    public function Obtenir_tous_id_type_equipement()
+    public function Obtenir_tous_id_type_equipement() /* crée un tableau contenant l'ensemble des id de type d'équipement */
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT id_type_equipement FROM type_equipement');
@@ -77,7 +76,7 @@ class admin extends Connection
         return $idtypesequipement;
     }
 
-    public function ObtenirTypeEquipementDepuisId($id_type_equipement)
+    public function ObtenirTypeEquipementDepuisId($id_type_equipement) /* obtient le nom du type d'équipement à partir de l'id */
     {
         $db=$this->dbConnect();
         $req = $db->prepare('SELECT nom_type_equipement FROM type_equipement WHERE id_type_equipement=?');
@@ -90,7 +89,7 @@ class admin extends Connection
         return $info;
     }
 
-    public function ObtenirTypeDonnees($id_type_equipement)
+    public function ObtenirTypeDonnees($id_type_equipement) /* cherche si un type d'équipement a des valeurs binaires ou non */
     {
         $db =$this->dbConnect();
         $req = $db->prepare('SELECT id_type_donnees FROM type_equipement WHERE id_type_equipement=:id_type_equipement');
@@ -103,7 +102,7 @@ class admin extends Connection
         return $id;
     }
 
-    public function modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac)
+    public function modifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac) /* modifie les caractéristiques d'un type d'équipement dans la bdd */
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE type_equipement SET ' . htmlspecialchars($caracEquipement) . '=:nouvelleCarac WHERE id_type_equipement=:idTypeCapteur');
@@ -111,11 +110,19 @@ class admin extends Connection
         $req->closeCursor();
     }
 
-    public function suppTypeEquipement($idTypeEquipement)
+    public function suppTypeEquipement($idTypeEquipement) /* supprime un type d'équipement de la bdd */
     {
         $db=$this->dbConnect();
         $req=$db->prepare('DELETE FROM type_equipement WHERE id_type_equipement=:idTypeEquipement');
         $req->execute(array('idTypeEquipement' => $idTypeEquipement));
         $req->closeCursor();
+    }
+
+    public function ajoutEquipement($equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas) /* ajoute un nouveau type d'équipement dans la bdd */
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare ('INSERT INTO type_equipement(nom_type_equipement, unite, id_type_donnees, logo, image_fond, message_etat_haut, message_etat_bas) VALUES (:equipement, :unite, :type_donnees, :logo, :image_fond, :message_etat_haut, :message_etat_bas)');
+        $req->execute(array('equipement' => $equipement, 'unite' => $unite, 'type_donnees' => $type_donnees, 'logo' => $adresseLogo, 'image_fond' => $adresseImageFond, 'message_etat_haut' => $messageEtatHaut, 'message_etat_bas' => $messageEtatBas));
+        return $req;
     }
 }
