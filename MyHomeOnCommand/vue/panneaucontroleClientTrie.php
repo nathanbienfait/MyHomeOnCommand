@@ -23,11 +23,11 @@
 						<?php
 						foreach($idtypesEquipement as $idtypeEquipement) /* on affiche un à un les différents types d'équipement */
 						{
-							$typeDonnees=ObtenirTypeDonnees($idtypeEquipement);
-							$fond = ObtenirImageTypeEquipement($idtypeEquipement);
-							$id_logements = ObtenirLogementsAvecType($idtypeEquipement, $_SESSION['id']);
-							$type_equipement = ObtenirTypeEquipementDepuisId($idtypeEquipement);
-							$unite = ObtenirUniteTypeEquipement($idtypeEquipement);
+							$typeDonnees=$panneau->ObtenirTypeDonnees($idtypeEquipement);
+							$fond = $panneau->ObtenirImageTypeEquipement($idtypeEquipement);
+							$id_logements = $panneau->ObtenirLogementsAvecType($idtypeEquipement, $_SESSION['id']);
+							$type_equipement = $panneau->ObtenirTypeEquipementDepuisId($idtypeEquipement);
+							$unite = $panneau->ObtenirUniteTypeEquipement($idtypeEquipement);
 							echo "<div class='bloc_type_equipement'>";	/* début div 1 */ /*contient toutes les informations relatives à 1 type d'équipement */
 							echo "<div  class='titre_image'>"; /* début div 2 */
 							echo '<h1>' . ucfirst($type_equipement) . '</h1>';
@@ -38,24 +38,24 @@
 								foreach($id_logements as $id_logement)
 								{
 									echo "<div class='nom_logement'>"; /*début div 5*/
-									$nom_logement = Obtenir_nom_logement($id_logement);
+									$nom_logement = $panneau->Obtenir_nom_logement($id_logement);
 									echo '<h2>' . $nom_logement . '</h2>';
 									echo "</div>"; /* fin div 5 */
-									$equipements = ObtenirEquipementsDunTypeEtLogement($idtypeEquipement, $id_logement, $_SESSION['id']);
+									$equipements = $panneau->ObtenirEquipementsDunTypeEtLogement($idtypeEquipement, $id_logement, $_SESSION['id']);
 									echo "<div class='liste_donnees'>";	 /*début div 7*/
 									foreach ($equipements as $equipement) /* on affiche un à un les équipements du bon type dans le logement */
 									{
-										$piece=ObtenirPieceDeLequipement($equipement);
-										$etat=ObtenirEtatEquipement($equipement);
+										$piece=$panneau->ObtenirPieceDeLequipement($equipement);
+										$etat=$panneau->ObtenirEtatEquipement($equipement);
 										echo "<div class='bloc_donnees'>";	/* début div 8 */ /* contient les données des équipements */
 										echo $piece . '</br>';
-										$donnee_equipement = Obtenir_derniere_donnee_equipement($equipement);
+										$donnee_equipement = $panneau->Obtenir_derniere_donnee_equipement($equipement);
 
 										if($typeDonnees == 1) /* si les données de ce type d'équipement sont binaires : */
 										{
 											if($donnee_equipement == 0) /* et si les données sont à 0 */
 											{
-												$message=ObtenirMessageBas($idtypeEquipement);
+												$message=$panneau->ObtenirMessageBas($idtypeEquipement);
 												echo $message;
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
 												echo '<label for=\'valeur_cible\' class=\'label\'>Indiquer valeur cible</label></br>';
@@ -68,7 +68,7 @@
 											}
 											else /* et si les données sont à 1 */
 											{
-												$message=ObtenirMessageHaut($equipement);
+												$message=$panneau->ObtenirMessageHaut($equipement);
 												echo $message;
 												echo '</br>';
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
