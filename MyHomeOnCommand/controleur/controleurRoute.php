@@ -256,7 +256,10 @@ function afficheSupportAdmin()
 
                 if(isset($_POST['envoitAjout'])) //Test si l'administrateur veut ajouter une question/réponse
                 {
-                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$_POST['dateQ'],$_POST['dateR']); //permet d'effectuer la fonction ajoutant les questions/réponses
+                    $dateQ= date("Y-n-j");
+                    $dateR = date("Y-n-j");
+                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$dateQ,$dateR); //permet d'effectuer la fonction ajoutant les questions/réponses
+                    
                 }
                 $tableauqr=tableauqr(); //Fonction récupérant les questions/réponses de la Base de donnée
                 require_once('vue/supportAdmin.php');
