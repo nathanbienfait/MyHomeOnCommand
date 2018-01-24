@@ -60,7 +60,7 @@
 	display: flex;
 	flex-direction: row;
 }
-.bouton 
+.bouton /* Gère le bouton de validation de modification d'une question/réponse */
 {
 	display: flex;
 	flex-direction: column;
@@ -88,11 +88,11 @@
 
 }
 
-.ajoutqr
+.ajoutqr /* Gère le texte aréa contenant la question/réponse à modifier */
 {
 	height: 5em;
 }
-.bouton_aff_modal
+.bouton_aff_modal /* Gère le bouton ajouter */
 {
 	border:solid 0.15em black;
 	width: 7em;
@@ -108,7 +108,7 @@
 {
 	box-shadow: none;
 }
-.envoie
+.envoie /* Gère le bouton permettant d'envoyer une nouvelle question */
 {
 	margin-top: 1em;
 	width: 20%;
@@ -120,7 +120,7 @@
 	border:solid 0.15em grey;
 }
 
- /* Toute cette partie correspond à la mise en forme du JavaScript fait par Nathan pour afficher l'ajout d'une question */
+ /* Toute cette partie correspond à la mise en forme du JavaScript pour afficher l'ajout d'une question */
 
 .modal {
     display: none; 
