@@ -103,6 +103,31 @@ function afficheTextCond()
     return $cond;
 }
 
+function afficheTextTel()
+{
+    $affiche=new InscriptionUtilisateur;
+    $cond =$affiche->getTel();
+    $cond=$cond->fetch()[0];
+    return $cond;
+}
+
+function afficheTextMail()
+{
+    $affiche=new InscriptionUtilisateur;
+    $cond =$affiche->getMail();
+    $cond=$cond->fetch()[0];
+    return $cond;
+}
+
+function afficheTextAdresse()
+{
+    $affiche=new InscriptionUtilisateur;
+    $cond =$affiche->getAdresse();
+    $cond=$cond->fetch()[0];
+    return $cond;
+}
+
+
 function afficheModif($slog)
 {
     if (!empty($_POST['Modifier_le_slogan']))
@@ -220,6 +245,16 @@ function afficheCond($texte_cond)
     {
         $affiche=new InscriptionUtilisateur;
         $cond=$affiche->ajoutCond($texte_cond);
+        return $cond;
+    }
+}
+
+function afficheContact($telephone,$mail,$adresse)
+{
+    if (isset($_POST['telephone_contact'],$_POST['mail_contact'],$_POST['adresse_contact']))
+    {
+        $affiche=new InscriptionUtilisateur;
+        $cond=$affiche->ajoutContact($telephone,$mail,$adresse);
         return $cond;
     }
 }
