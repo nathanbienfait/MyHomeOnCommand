@@ -15,13 +15,18 @@
         <div id="corps">
         <div id="barre_gauche_accueil">
             <div id="description_accueil">
-                <p>Qui sommes-nous?</p>
+                <h1>Qui sommes-nous?</h1>
                 <?php
                     echo afficheTextPres();
                 ?>
             </div>
             <div id="contact_accueil">
-                <p>Contact</p>
+                <h1>Contact</h1>
+                Téléphone:  <?php echo afficheTextTel() ?>
+                <br><br>
+                Email: <?php echo afficheTextMail() ?> 
+                <br><br>
+                Adresse: <?php echo afficheTextAdresse() ?>
             </div>
         </div>
         <div id="partie_droite">    
