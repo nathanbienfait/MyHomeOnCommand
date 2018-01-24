@@ -32,7 +32,9 @@
 		        <br> <br> <br>
                 <span id="titre_pres">Texte de présentation </span>
 		        <br> <br> <br>
-		        <span id="titre_cond">Conditions d'utilisation </span>
+		  	<span id="titre_cond">Conditions d'utilisation </span>
+			<br> <br> <br>
+               	 	<span id="titre_contact">Contact</span>
                 </div>
 
 		    	<div id="modification">
@@ -216,6 +218,27 @@
                         </form>
                         </p>
                 </div>
+		
+		<div id="contactDomisep">
+                        <p>
+            	<h1>Comment contacter Domisep :</h1>
+                        <form method='POST' id="contact" action='index.php?page=modification'>
+                            Téléphone
+                            <br>
+                            <input type="text" id="contactTel" name="telephone_contact" required />
+                            <br> <br>
+                            Email
+                            <br>
+                            <input type="text" id="contactMail" name="mail_contact" required />
+                            <br><br>
+                            Adresse
+                            <br>
+                            <textarea  id="contactAdresse" name="adresse_contact" required rows="3" cols="20"></textarea>
+                            <br>
+                            <input type="submit" class="valider" value="Valider" name="bouton_valider_contact" />
+                        </form>
+                        </p>
+        	</div>
 
 	</div>
 
@@ -227,7 +250,7 @@
 <?php include('vue/footer.php');?>
 <script>
 	/* on fait en sorte qu'aucun des formulaires n'apparaisse */
-    var cas1 = document.querySelector('#slogan');
+   var cas1 = document.querySelector('#slogan');
 cas1.style.display="none";
     var cas2 = document.querySelector('#equipement');
 cas2.style.display="none";
@@ -239,11 +262,13 @@ cas4.style.display="none";
 cas5.style.display="none";
     var cas6 = document.querySelector('#conditions');
 cas6.style.display="none";
-    var cas7 = document.querySelector('#modifEquipement');
-<?php if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement'])) { echo "cas7.style.display='none';"; }
-else {echo "cas7.style.display='';"; } ?>
-    var cas8 = document.querySelector('#suppEquipement');
-cas8.style.display="none";
+    var cas7 = document.querySelector('#contactDomisep');
+cas7.style.display="none";
+    var cas8 = document.querySelector('#modifEquipement');
+<?php if(empty($_POST['typeEquipement']) AND empty($_POST['caracEquipement'])) { echo "cas8.style.display='none';"; }
+else {echo "cas8.style.display='';"; } ?>
+    var cas9 = document.querySelector('#suppEquipement');
+cas9.style.display="none";
 
 	/* dans la partie qui suit on demande aux formulaires de s'afficher quand on appuie sur l'onglet correspondant ou de ne plus s'afficher */
 	
@@ -260,6 +285,7 @@ tab1.addEventListener('click', function() {
         cas6.style.display="none";
         cas7.style.display="none";
         cas8.style.display="none";
+        cas9.style.display="none";
 	    
         x1=1;
         x2=0;
@@ -269,6 +295,7 @@ tab1.addEventListener('click', function() {
         x6=0;
         x7=0;
         x8=0;
+        x9=0;
 
     }
     else
@@ -291,6 +318,7 @@ tab2.addEventListener('click', function() {
         cas6.style.display="none";
         cas7.style.display="none";
         cas8.style.display="none";
+        cas9.style.display="none";
 
         x2=1;
         x1=0;
@@ -300,6 +328,7 @@ tab2.addEventListener('click', function() {
         x6=0;
         x7=0;
         x8=0;
+        x9=0;
        
     }
     else
@@ -320,8 +349,9 @@ tab3.addEventListener('click', function() {
         cas4.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
-	cas7.style.display="none";
-	cas8.style.display="none";
+	    cas7.style.display="none";
+	    cas8.style.display="none";
+        cas9.style.display="none";
         
         x3=1;
         x1=0;
@@ -330,7 +360,9 @@ tab3.addEventListener('click', function() {
         x5=0;
         x6=0;
         x7=0;
-	x8=0;
+	    x8=0;
+        x9=0;
+
     }
     else
     {
@@ -350,8 +382,9 @@ tab4.addEventListener('click', function() {
         cas3.style.display="none";
         cas5.style.display="none";
         cas6.style.display="none";
-	cas7.style.display="none";
-	cas8.style.display="none";
+	    cas7.style.display="none";
+	    cas8.style.display="none";
+        cas9.style.display="none";
         
         x4=1;
         x1=0;
@@ -360,7 +393,9 @@ tab4.addEventListener('click', function() {
         x5=0;
         x6=0;
         x7=0;
-	x8=0;
+	    x8=0;
+        x9=0;
+
     }
     else
     {
@@ -380,8 +415,9 @@ tab5.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas6.style.display="none";
-	cas7.style.display="none";
-	cas8.style.display="none";
+	    cas7.style.display="none";
+	    cas8.style.display="none";
+        cas9.style.display="none";
         
         x5=1;
         x1=0;
@@ -390,7 +426,9 @@ tab5.addEventListener('click', function() {
         x4=0;
         x6=0;
         x7=0;
-	x8=0;
+	    x8=0;
+        x9=0;
+
     }
     else
     {
@@ -410,8 +448,9 @@ tab6.addEventListener('click', function() {
         cas3.style.display="none";
         cas4.style.display="none";
         cas5.style.display="none";
-	cas7.style.display="none";
-	cas8.style.display="none";
+	    cas7.style.display="none";
+	    cas8.style.display="none";
+        cas9.style.display="none";
         
         x6=1;
         x1=0;
@@ -421,6 +460,8 @@ tab6.addEventListener('click', function() {
         x5=0;
         x7=0;
         x8=0;
+        x9=0;
+
     }
     else
     {
@@ -429,7 +470,7 @@ tab6.addEventListener('click', function() {
     }
  });
 
-var tab7 = document.querySelector('#titre_modifEquipement');
+var tab7 = document.querySelector('#titre_contact');
 var x7=0;
 tab7.addEventListener('click', function() {
     if(x7==0)
@@ -439,18 +480,20 @@ tab7.addEventListener('click', function() {
         cas2.style.display="none";
         cas3.style.display="none";
         cas4.style.display="none";
-	cas5.style.display="none";
-	cas6.style.display="none";
-	cas8.style.display="none";
+	    cas5.style.display="none";
+	    cas6.style.display="none";
+	    cas8.style.display="none";
+        cas9.style.display="none";
 		    
         x7=1;
         x1=0;
         x2=0;
         x3=0;
         x4=0;
-	x5=0;
-	x6=0;
-	x8=0;
+	    x5=0;
+	    x6=0;
+	    x8=0;
+        x9=0;
        
     }
     else
@@ -460,7 +503,7 @@ tab7.addEventListener('click', function() {
     }
  });
 
-var tab8 = document.querySelector('#titre_suppEquipement');
+var tab8 = document.querySelector('#titre_modifEquipement');
 var x8=0;
 tab8.addEventListener('click', function() {
     if(x8==0)
@@ -470,9 +513,10 @@ tab8.addEventListener('click', function() {
         cas2.style.display="none";
         cas3.style.display="none";
         cas4.style.display="none";
-	cas5.style.display="none";
-	cas6.style.display="none";
-	cas7.style.display="none";
+	    cas5.style.display="none";
+	    cas6.style.display="none";
+	    cas7.style.display="none";
+        cas9.style.display="none";
 		    
         x8=1;
         x1=0;
@@ -482,12 +526,46 @@ tab8.addEventListener('click', function() {
         x5=0;
         x6=0;
         x7=0;
+        x9=0;
        
     }
     else
     {
         cas8.style.display="none";
         x8=0;
+    }
+ });
+
+var tab9 = document.querySelector('#titre_suppEquipement');
+var x9=0;
+tab9.addEventListener('click', function() {
+    if(x9==0)
+    {
+        cas9.style.display="";
+        cas1.style.display="none";
+        cas2.style.display="none";
+        cas3.style.display="none";
+        cas4.style.display="none";
+        cas5.style.display="none";
+        cas6.style.display="none";
+        cas7.style.display="none";
+        cas8.style.display="none";
+            
+        x9=1;
+        x1=0;
+        x2=0;
+        x3=0;
+        x4=0;
+        x5=0;
+        x6=0;
+        x7=0;
+        x8=0;
+       
+    }
+    else
+    {
+        cas9.style.display="none";
+        x9=0;
     }
  });
 
