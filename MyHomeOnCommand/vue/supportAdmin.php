@@ -55,8 +55,6 @@
                            <form class="ajout" method="Post" action="index.php?page=supportAdmin" >
                                 <strong>Question :</strong><textarea class="ajoutqr" name="ajoutQ"></textarea><br>
                                 <strong>Réponse :</strong><textarea class="ajoutqr" name="ajoutR"></textarea><br>
-                                <strong>Date de la question :</strong><input type="date" name="dateQ" classe="inputAjout"><br>
-                                <strong>Date de la réponse :</strong><input type="date" name="dateR" classe="inputAjout">
                                 <input type="submit" name="envoitAjout" onclick="return show(3)" class="envoie">
                             </form>
                     </div>
