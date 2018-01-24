@@ -116,6 +116,28 @@ class InscriptionUtilisateur extends Connection
         $req = $db->query('SELECT contenu_conditions_utilisation FROM conditions_utilisation');
         return $req; 
      }
+	 public function getTel()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT telephone_contact FROM contact');
+        return $req; 
+     }
+
+        public function getMail()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT email_contact FROM contact');
+        return $req; 
+     }
+
+        public function getAdresse()
+    {
+        $db=$this->dbConnect();
+        $req = $db->query('SELECT adresse_contact FROM contact');
+        return $req; 
+     }
+	
+
 	
     public function modifSlogan($slog)
     {
@@ -158,6 +180,22 @@ class InscriptionUtilisateur extends Connection
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE conditions_utilisation SET contenu_conditions_utilisation = :texte_cond WHERE id_conditions_utilisation= 1');
         $req->execute(array('texte_cond' => $texte_cond));
+        return $req;
+    }
+	
+    public function ajoutContact($telephone,$mail,$adresse)
+    {
+        $db=$this->dbConnect();
+        $req=$db->prepare('UPDATE contact 
+            SET telephone_contact = :telephone_contact, 
+                email_contact = :mail_contact, 
+                adresse_contact = :adresse_contact 
+            WHERE id_contact= 1');
+        $req->execute(array(
+            'telephone_contact' => $telephone,
+            'mail_contact' => $mail,
+            'adresse_contact' => $adresse 
+        ));
         return $req;
     }
 	
