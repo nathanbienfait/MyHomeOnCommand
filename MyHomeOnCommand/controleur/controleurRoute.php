@@ -406,6 +406,15 @@ function afficheModification()
         $texte_cond=htmlspecialchars($_POST['texte_cond']);
         afficheCond($texte_cond);
         }
+    
+        if(isset($_POST['bouton_valider_contact']))
+        {
+            $telephone=htmlspecialchars($_POST['telephone_contact']);
+            $mail=htmlspecialchars($_POST['mail_contact']);
+            $adresse=htmlspecialchars($_POST['adresse_contact']);
+            afficheContact($telephone,$mail,$adresse);
+        }
+
 
         require_once('vue/modification.php');
 }
