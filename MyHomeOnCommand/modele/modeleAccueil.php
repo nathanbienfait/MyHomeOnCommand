@@ -96,27 +96,28 @@ class InscriptionUtilisateur extends Connection
        
         return $req;
     }
-     public function getSlogan()
+     public function getSlogan() // permet de récupérer le slogan de la bdd
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT contenu_slogan FROM slogan');
         return $req; 
      }	
 	
-	public function getPres()
+	public function getPres() // permet de récupérer le texte de présentation de Domisep
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT contenu_presentation FROM presentation');
         return $req; 
      }
 	
-      public function getCond()
+      public function getCond() // permet de récupérer le contenu des conditions d'utilisation
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT contenu_conditions_utilisation FROM conditions_utilisation');
         return $req; 
      }
-	 public function getTel()
+	 // les trois fonctions suivantes permettent de récupérer les informations relatives au coordonnées de Domisep
+	public function getTel()  
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT telephone_contact FROM contact');
@@ -139,7 +140,7 @@ class InscriptionUtilisateur extends Connection
 	
 
 	
-    public function modifSlogan($slog)
+    public function modifSlogan($slog) // permet de modifier le slogan dans la bdd
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE slogan SET contenu_slogan = :Modifier_le_slogan WHERE id_slogan = 1');
@@ -147,7 +148,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
-    public function ajoutAdmin($id,$mdp)
+    public function ajoutAdmin($id,$mdp) // ajoute un admin dans le bdd
     {
         $db=$this->dbConnect();
         $req = $db -> prepare ('INSERT INTO utilisateur(login,password,id_type_utilisateur) VALUES (:login_admin,:password_admin,1)');
@@ -157,7 +158,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
-    public function ajoutOp($id,$mdp)
+    public function ajoutOp($id,$mdp) // ajoute un opérateur dans la bdd
     {
         $db=$this->dbConnect();
         $req = $db -> prepare ('INSERT INTO utilisateur(login,password,id_type_utilisateur) VALUES (:login_op,:password_op,2)');
@@ -167,7 +168,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 
-	public function ajoutPres($texte_pres)
+	public function ajoutPres($texte_pres) // modifie le contenu de la présentation de l'entreprise dans la bdd
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE presentation SET contenu_presentation = :texte_pres WHERE id_presentation = 1');
@@ -175,7 +176,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 	
-    public function ajoutCond($texte_cond)
+    public function ajoutCond($texte_cond) // modifie le contenu des conditions d'utilisations dans la bdd
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE conditions_utilisation SET contenu_conditions_utilisation = :texte_cond WHERE id_conditions_utilisation= 1');
@@ -183,7 +184,7 @@ class InscriptionUtilisateur extends Connection
         return $req;
     }
 	
-    public function ajoutContact($telephone,$mail,$adresse)
+    public function ajoutContact($telephone,$mail,$adresse) // modifie le contenu des cooredonnées de Domisep dans la bdd
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE contact 
