@@ -14,7 +14,7 @@
         <?php include('vue/header.php');?>
         <div id='corps'>
         <?php include('vue/menuAdmin.php');?>
-       
+        <?php id='corpssansmenu'>
             <div id='tableau'>
             <table>
                
@@ -70,7 +70,7 @@
         ?>
         </table>
         </div>
-        
+        </div>
         </div>
         <?php include('vue/footer.php');?>
         <script>
