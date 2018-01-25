@@ -14,9 +14,6 @@
            <?php include('vue/menuOperateur.php');?>
 
            <div id="CorpTexte">
-                <form>
-                    <input type="search" id="maRecherche" name="q" placeholder="Recherche">
-                </form>
              
                <div>
                     <?php foreach($tableauqr as $truc): ?>
