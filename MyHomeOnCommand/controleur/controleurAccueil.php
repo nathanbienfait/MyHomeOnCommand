@@ -79,7 +79,7 @@ function infoBandeau($idClient)
     $information=$info->fetch();
     return $information;
 }
-function afficheslogan()
+function afficheslogan() // permet d'aficher le slogan lors de son appel
 {
     $affiche=new InscriptionUtilisateur;
     $slogan =$affiche->getSlogan();
@@ -87,7 +87,7 @@ function afficheslogan()
     return $slogan;
 }
 
-function afficheTextPres()
+function afficheTextPres() // permet d'afficher le texte de présentation
 {
     $affiche=new InscriptionUtilisateur;
     $pres =$affiche->getPres();
@@ -95,7 +95,7 @@ function afficheTextPres()
     return $pres;
 }
 
-function afficheTextCond()
+function afficheTextCond() // permet d'afficher les conditions d'utilisation
 {
     $affiche=new InscriptionUtilisateur;
     $cond =$affiche->getCond();
@@ -103,6 +103,7 @@ function afficheTextCond()
     return $cond;
 }
 
+//les trois fonctions suiantes permettent d'afficher les coordonnées de Domisep
 function afficheTextTel()
 {
     $affiche=new InscriptionUtilisateur;
@@ -128,7 +129,7 @@ function afficheTextAdresse()
 }
 
 
-function afficheModif($slog)
+function afficheModif($slog) // permet de traiter la modification du slogan
 {
     if (!empty($_POST['Modifier_le_slogan']))
     {
@@ -139,17 +140,17 @@ function afficheModif($slog)
     
 }
 
-function afficheAdmin($id,$mdp,$mdpVerif)
+function afficheAdmin($id,$mdp,$mdpVerif) // permet de traiter l'ajout d'un admin
 {
     if (isset ($_POST['login_admin'],$_POST['password_admin']))
     {
-        if($mdp == $mdpVerif)
+        if($mdp == $mdpVerif) // permet de vérifier la correspondance des deux mdp
         {
             echo"<script>alert('Administrateur ajouté');</script>";
             $verif=0;
             $utilisateur=new InscriptionUtilisateur;
             $listeLogin=$utilisateur->getLoginUtilisateurs();
-            while($liste=$listeLogin->fetch())
+            while($liste=$listeLogin->fetch()) // permet de vérifier si l'identifiant n'est pas déjà pris
             {
                 if($liste['login']==$id)
                 {
@@ -181,11 +182,11 @@ function afficheAdmin($id,$mdp,$mdpVerif)
     }
 }
 
-function afficheOp($id,$mdp,$mdpVerif)
+function afficheOp($id,$mdp,$mdpVerif) // permet de traiter l'ajout d'un opérateur
 {
    if (isset ($_POST['login_op'],$_POST['password_op']))
     {
-        if($mdp == $mdpVerif)
+        if($mdp == $mdpVerif) // permet de vérifier la correspondance des deux mdp
         {
             echo"<script>alert('Opérateur ajouté');</script>";
             $verif=0;
@@ -193,7 +194,7 @@ function afficheOp($id,$mdp,$mdpVerif)
             $verif=0;
             $utilisateur=new InscriptionUtilisateur;
             $listeLogin=$utilisateur->getLoginUtilisateurs();
-            while($liste=$listeLogin->fetch())
+            while($liste=$listeLogin->fetch()) // permet de vérifier si l'identifiant n'est pas déjà pris
             {
                 
                 if($liste['login']==$id)
@@ -229,7 +230,7 @@ function afficheOp($id,$mdp,$mdpVerif)
 }
 
 
-function affichePres($texte_pres)
+function affichePres($texte_pres) // permet de traiter la modification du texte de présentation
 {
     if (!empty($_POST['texte_pres']))
     {
@@ -239,7 +240,7 @@ function affichePres($texte_pres)
     }
 }
 
-function afficheCond($texte_cond)
+function afficheCond($texte_cond) // permet de traiter la modification des conditions d'utilisation
 {
     if (!empty($_POST['texte_cond']))
     {
@@ -249,7 +250,7 @@ function afficheCond($texte_cond)
     }
 }
 
-function afficheContact($telephone,$mail,$adresse)
+function afficheContact($telephone,$mail,$adresse) // permet de traiter la modification des coordonnées de Domisep
 {
     if (isset($_POST['telephone_contact'],$_POST['mail_contact'],$_POST['adresse_contact']))
     {
