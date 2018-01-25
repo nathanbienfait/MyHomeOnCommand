@@ -49,6 +49,7 @@
 										foreach($panneau->Obtenir_id_equipements($id_piece) as $id_equipement) /* on prend un à un chaque équipement dans la pièce */
 										{
 											echo '<div class=\'case_equipement\'>'; /* début div 8 */ /*on affiche ici toutes les informations liées aux equipements */
+											$nom_equipement=$panneau->ObtenirNomEquipement($id_equipement);
 											$etat=$panneau->ObtenirEtatEquipement($id_equipement);
 											$type_equipement=$panneau->Obtenir_type_equipement($id_equipement);
 											$id_type_equipement=$panneau->ObtenirIdTypeEquipementDepuisNom($type_equipement);
@@ -61,6 +62,7 @@
 											echo '<div class="photo"><img src=\'' . $logo . '\' alt=\'' . $type_equipement . '\' class=\'' . $type_equipement . '\'></div>'; /* on affiche le logo de l'équipement en fonction de l'adresse dans la bdd */
 
 											echo '</br>';
+											echo '<h2 class=\'nomEquipement\'>' . $nom_equipement . '</h2>';
 											if($typeDonnees==2) /* si les données ne sont pas binaires : */
 											{
 												echo $donnee_equipement;
