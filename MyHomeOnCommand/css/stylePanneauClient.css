@@ -104,6 +104,11 @@
 	font-size: 1em;
 }
 
+.nomEquipement
+{
+	font-style: italic;
+}
+
 .case_equipement:hover
 {
 	background-color: rgba(0, 0, 0, 0.8);
