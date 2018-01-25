@@ -14,7 +14,7 @@
         <?php include('vue/header.php');?>
         <div id='corps'>
         <?php include('vue/menuAdmin.php');?>
-        <?php id='corpssansmenu'>
+        <div id='corpssansmenu'>
             <div id='tableau'>
             <table>
                
