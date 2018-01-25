@@ -17,11 +17,13 @@
             <div id="description_accueil">
                 <h1>Qui sommes-nous?</h1>
                 <?php
+                // Achiche le texte de présentation de Domisep
                     echo afficheTextPres();
                 ?>
             </div>
             <div id="contact_accueil">
                 <h1>Contact</h1>
+                <!-- Affiche les coordonnées de Domisep !-->
                 Téléphone:  <?php echo afficheTextTel() ?>
                 <br><br>
                 Email: <?php echo afficheTextMail() ?> 
