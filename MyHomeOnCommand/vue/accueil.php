@@ -17,7 +17,7 @@
             <div id="description_accueil">
                 <h1>Qui sommes-nous?</h1>
                 <?php
-                // Achiche le texte de présentation de Domisep
+                // Affiche le texte de présentation de Domisep
                     echo afficheTextPres();
                 ?>
             </div>
