@@ -3,6 +3,7 @@
     <div id="logo"><a href="index.php?page=<?php if(isset($_SESSION['type'])){if($_SESSION['type']==3){echo "panneau";}if($_SESSION['type']==1){echo "adminPanneauClient";}}else{echo "accueil";} ?>" title="Accueil"><img id="imagelogo" src="images/logo.png" alt="Logo de MyHomeOnCommand" /></a></div>
         <div id="titre">
     <?php 
+        // Permet d'afficher le slogan (qui est modifiable depuis un compte admin
         echo afficheslogan();
             
         if(isset($_SESSION['prenom']))
