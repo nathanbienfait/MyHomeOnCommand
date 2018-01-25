@@ -28,6 +28,14 @@
 	padding-right: 0%;
 }
 
+#pasDeLogement
+{
+	margin: 10%;
+	font-size: 2em;
+	text-align: center;
+	color: black;
+}
+
 .case_logement
 {
 	display: flex;
