@@ -309,7 +309,7 @@ function afficheConditions()
     require_once('vue/conditionsUtilisation.php');
 }
 
-function afficheModification()
+function afficheModification() // on prépare les variables utiles pour toutes les actions de la page gestion du site 
 {
     if(isset($_POST['bouton_valider_slogan']))
         {
