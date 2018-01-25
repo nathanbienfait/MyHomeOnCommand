@@ -39,7 +39,7 @@
 
 		    	<div id="modification">
 
-                <div id="slogan">
+                <div id="slogan"> <!-- Permet de modifier le slogan qui apparait dans le header du site !-->
                 <p class='paragraphe'>
                 <h1>Modifier le slogan :</h1>
 				<form method='POST' id="modif_slogan" action='index.php?page=modification'>
@@ -162,7 +162,7 @@
                     </p>
                 </div>
 
-                <div id="admin">
+                <div id="admin"> <!-- Permet d'ajouter un nouvel admin à la base de données  !-->
                     <p>
 			<h1>Ajouter un administrateur :</h1>
                         <form method='POST' id="ajout_admin" action='index.php?page=modification'>
@@ -180,7 +180,7 @@
                     </p>
                 </div>
 
-                <div id="operateur">
+                <div id="operateur">  <!-- Permet d'ajouter un nouvel opérateur à la base de données  !-->
                     <p>
 			<h1>Ajouter un opérateur :</h1>
                         <form method='POST' id="ajout_op" action='index.php?page=modification'>
@@ -198,7 +198,7 @@
                     </p>
                 </div>
 
-		 <div id="presentation">
+		 <div id="presentation">  <!-- Permet de modifier le texte de presentation de Domisep !-->
                     <p>
 			 <h1>Qui sommmes nous ?</h1>
                         <form method='POST' id="explication" action='index.php?page=modification'>
@@ -208,7 +208,7 @@
                     </p>
                 </div>
 		
-		<div id="conditions">
+		<div id="conditions">   <!-- Permet de remplir les conditions d'utilisation !-->
                         <p>
 			<h1>Ecrire les conditions d'utilisation :</h1>
                         <form method='POST' id="condition" action='index.php?page=modification'>
@@ -219,7 +219,7 @@
                         </p>
                 </div>
 		
-		<div id="contactDomisep">
+		<div id="contactDomisep">  <!-- Permet de remplir les coordonnées de Domisep !-->
                         <p>
             	<h1>Comment contacter Domisep :</h1>
                         <form method='POST' id="contact" action='index.php?page=modification'>
