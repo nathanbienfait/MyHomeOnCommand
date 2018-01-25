@@ -45,10 +45,12 @@
 									echo "<div class='liste_donnees'>";	 /*début div 7*/
 									foreach ($equipements as $equipement) /* on affiche un à un les équipements du bon type dans le logement */
 									{
+										$nom_equipement=$panneau->ObtenirNomEquipement($equipement);
 										$piece=$panneau->ObtenirPieceDeLequipement($equipement);
 										$etat=$panneau->ObtenirEtatEquipement($equipement);
 										echo "<div class='bloc_donnees'>";	/* début div 8 */ /* contient les données des équipements */
 										echo $piece . '</br>';
+										echo '<h2 class=\'nomEquipement\'>' . $nom_equipement . '</h2>';
 										$donnee_equipement = $panneau->Obtenir_derniere_donnee_equipement($equipement);
 
 										if($typeDonnees == 1) /* si les données de ce type d'équipement sont binaires : */
