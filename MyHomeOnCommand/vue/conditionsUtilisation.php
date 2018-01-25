@@ -12,7 +12,7 @@
 
 	<body>
 	<?php include("header.php"); ?>
-
+ <!-- Permet d'afficher le contenu des conditions d'utilisation (modifiables depuis un compte admin !-->
 	<div id="corps"> <p> <?php echo afficheTextCond()?> </p>
   	</div>
 
