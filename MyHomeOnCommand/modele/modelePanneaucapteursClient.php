@@ -340,4 +340,17 @@ class panneauControle extends Connection
 		$req->closeCursor();
 		return $mess;
 	}
+	
+	public function ObtenirNomEquipement($id_equipement)
+	{
+		$bdd=$this->dbConnect();
+		$req = $bdd->prepare('SELECT nom_equipement FROM equipement WHERE id_equipement=:id_equipement');
+		$req->execute(array('id_equipement' => $id_equipement));
+		while($donnees = $req->fetch())
+		{
+			$nomEquipement=$donnees['nom_equipement'];
+		}
+		$req->closeCursor();
+		return $nomEquipement;
+	}
 }
