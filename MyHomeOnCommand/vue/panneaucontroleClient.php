@@ -21,6 +21,15 @@
 					
 					<div id='panneau_controle_bloc_principal'> <!-- début div 3 --> <!-- les éléments dans ce div se rapportent à l'affichage des données !-->
 						<?php
+						array_filter($id_logements);
+						if(empty($id_logements))
+						{
+							echo "<div id='pasDeLogement'>";
+							echo "Veuillez renseigner les informations liées à votre logement dans l'onglet 'Gestion de l'habitation'";
+							echo "</div>";
+						}
+						else
+						{
 						foreach($id_logements as $id_logement) /*on prend un à un chaque logement de l'utilisateur */
 						{
 							echo '<div class=\'case_logement\'>'; /* début div 4 */ /*cette div contient toutes les infos du logement */
@@ -110,7 +119,8 @@
 								}
 							echo '</div>';	/* fin div 4 */
 						}
-						?>
+					}	
+					?>
 					</div> <!-- fin div 3 -->
 
 					<div id='trier'> <!-- ce formulaire permet de choisir la facon dont on affiche les equipements !-->
