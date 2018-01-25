@@ -26,6 +26,7 @@
 	border: 0.15em solid black;
     	background-color: white;
     	margin-top: 5em;
+	height: auto;
 }
 .grouper /* contient les encadrés avec les réponses */
 {
@@ -35,6 +36,7 @@
 	padding: 0.4em;
 	border: 0.15em solid black;
     	background-color: white;
+	height: auto;
 
     
 }
