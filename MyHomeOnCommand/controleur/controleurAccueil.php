@@ -1,15 +1,15 @@
 <?php
-function login($login,$mdp)
+function login($login,$mdp)//gère la connexion des utilisateurs
 {
-    $utilisateur=new LoginUtilisateur;
-    $verification=$utilisateur->getAuthentification();
-    while($verif=$verification->fetch())
+    $utilisateur=new LoginUtilisateur;// crée une classe pour pouvoir faire appelle aux fonctions du modèle associées à cette classe
+    $verification=$utilisateur->getAuthentification();// appelle de la fonction du modèle qui renvoi la liste des utilisateurs et leur mdp
+    while($verif=$verification->fetch())//pour chaque utilisateur
     {
-        if($verif['login']==$login)
+        if($verif['login']==$login)//on vérifie si un login correspond à celui entrer par l'utilisateur
         {
-            if(password_verify($mdp,$verif['password']))
+            if(password_verify($mdp,$verif['password']))//on vérifie si le mdp correspond à celui entrer, on utilise la focntion password_verify car les mdp sont criptés dans la BDD
             {
-                
+                //on crée les variables de session si l'utilisateur s'est connecté avec succès
                 $_SESSION['prenom'] = $verif['login'];
                 $_SESSION['mdp'] = $verif['password'];
                 $_SESSION['id'] = $verif['id_utilisateur'];
@@ -19,22 +19,22 @@ function login($login,$mdp)
             
         }
     }
-    if(!isset($_SESSION['prenom'],$_SESSION['mdp'],$_SESSION['id'],$_SESSION['type']))
+    if(!isset($_SESSION['prenom'],$_SESSION['mdp'],$_SESSION['id'],$_SESSION['type']))//si la session n'est pas créé, la connexion a échoué
     {
         erreur("L'authentification a échoué");
     }  
 }
-function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
+function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)//gère les inscriptions
 {
-    if($mdp==$mdpconf)
+    if($mdp==$mdpconf)//si les mdp entrés correspondent
     {
         $verif=0;
-        $utilisateur=new InscriptionUtilisateur;
-        $listeLogin=$utilisateur->getLoginUtilisateurs();
-        while($liste=$listeLogin->fetch())
+        $utilisateur=new InscriptionUtilisateur;// crée une classe pour pouvoir faire appelle aux fonctions du modèle associées à cette classe
+        $listeLogin=$utilisateur->getLoginUtilisateurs();// on récupère tous les identifiants déjà créés
+        while($liste=$listeLogin->fetch())//pour chaque identifiant
         {
             
-            if($liste['login']==$pseudo)
+            if($liste['login']==$pseudo)// on vérifie que l'identifiant n'a pas déjà été pris
             {
                 
                 $verif=1;
@@ -46,12 +46,12 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
         if ($verif==0)
         {
             
-            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);
-            $utilisateur->setUtilisateur($pseudo,$criptedMdp);
-            $idUtil=$utilisateur->getIdUtilisateur($pseudo);
+            $criptedMdp=password_hash($mdp,PASSWORD_DEFAULT);//on cripte le mdp
+            $utilisateur->setUtilisateur($pseudo,$criptedMdp);//on fait appelle a la focntion du modèle qui permet d'enregistrer un nouvel utilisateur
+            $idUtil=$utilisateur->getIdUtilisateur($pseudo);// on récupère l'id de l'utilisateur pour enregistrer les infos de l'utilisateur dans une autre table
             $id=$idUtil->fetch();
             $clef = password_hash($nom,PASSWORD_DEFAULT); //génère le token permettant par la suite au client de modifier son mot de passe en cas d'oublis
-            $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur'],$clef);
+            $utilisateur->setInfoUtilisateur($prenom,$nom,$email,$tel,'client',$id['id_utilisateur'],$clef);// on enregistre les infos de l'utilisateur
             return 1;
             
         }
@@ -67,12 +67,12 @@ function inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf)
     return 0;
 }
 
-function erreur($message)
+function erreur($message)// génére des messages d'erreur
 {
     echo "<script>alert(\"".$message."\")</script>";
     
 }
-function infoBandeau($idClient)
+function infoBandeau($idClient)// focntion qui permet d'afficher une notification dans le bandeau si l'utilisateur n'a pas entré toutes ses infos
 {
     $utilisateur=new LoginUtilisateur;
     $info=$utilisateur->getInfoUtilisateur($idClient);
