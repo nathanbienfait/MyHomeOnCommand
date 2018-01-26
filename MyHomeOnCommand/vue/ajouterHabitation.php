@@ -17,6 +17,7 @@
         <?php include('vue/menuClient.php');?>
             <div id='corpsdroit'>
             <div id='partieBouton'>
+                <!-- on crée chaque bouton qui permet d'afficher un formulaire associé!-->
             <div> <p id="tablogement" class="titre">Ajouter un Logement &nbsp&nbsp<i class="fa fa-chevron-right" aria-hidden="true"></i></p>
 
 
@@ -46,6 +47,7 @@
         </div>
         </div>
             <div id="partieForm">
+                <!-- on crée chaque formulaire associé à chaque bouton !-->
                 <form id="logement" method="post" action="index.php?page=ajouterHabitation" onsubmit="return verifForm(this)">
 
                     <p>
@@ -87,7 +89,7 @@
                             <option value="" disabled selected>Séléctionner le logement</option>
                             <?php
                                 $x=0;
-
+                                //on affiche les logement de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomLogement))
                                 {
                                 echo "<option value='".$tableauNomLogement[$x]."'>".$tableauNomLogement[$x+1]."</option>";
@@ -116,7 +118,7 @@
                             <option value="" disabled selected>Séléctionner le logement</option>
                              <?php
                                 $x=0;
-
+                                //on affiche les logement de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomLogement))
                                 {
                                 echo "<option value='".$tableauNomLogement[$x]."'>".$tableauNomLogement[$x+1]."</option>";
@@ -134,7 +136,7 @@
                             <?php
 
                                 $x=0;
-
+                                //on affiche les pièces de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomPiece))
                                 {
                                 echo "<option class='piece' id='".$tableauNomPiece[$x+2]."' value='".$tableauNomPiece[$x]."' style='display: none'>".$tableauNomPiece[$x+1]."</option>";
@@ -162,7 +164,7 @@
                             <option value="" disabled selected>Séléctionner le logement</option>
                              <?php
                                 $x=0;
-
+                                //on affiche les logements de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomLogement))
                                 {
                                 echo "<option value='".$tableauNomLogement[$x]."'>".$tableauNomLogement[$x+1]."</option>";
@@ -179,7 +181,7 @@
                             <?php
 
                                 $x=0;
-
+                                //on affiche les pièces de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomPiece))
                                 {
                                 echo "<option class='piece2' id='".$tableauNomPiece[$x+2]."' value='".$tableauNomPiece[$x]."' style='display: none'>".$tableauNomPiece[$x+1]."</option>";
@@ -196,7 +198,7 @@
                             <?php
 
                                 $x=0;
-
+                            //on affiche les cemacs de la personne dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomCemac))
                                 {
                                 echo "<option class='cemac' id='".$tableauNomCemac[$x+2]."' value='".$tableauNomCemac[$x]."' style='display: none'>".$tableauNomCemac[$x+1]."</option>";
@@ -214,7 +216,7 @@
                             <?php
 
                                 $x=0;
-
+                                //on affiche les types de'équipements dispo dans la liste déroulante du formulaire
                                 while($x<sizeof($tableauNomType))
                                 {
                                 echo "<option class='type' value='".$tableauNomType[$x]."'>".$tableauNomType[$x+1]."</option>";
@@ -239,6 +241,7 @@
 
 
 <script>
+    //les Quatres focntions si-dessous permettent de vérifier si les champs sont correctements remplis et sinon les surlignent en rouge
 function surligne(champ, erreur)
     {
        if(erreur)
@@ -294,7 +297,7 @@ function verifForm(f)
 }
   
     
-    
+//le code si dessous permet d'afficher le bon formulaire lorsque l'on clique sur un bouton et de cacher les autres   
 var cas1 = document.querySelector('#logement');
 cas1.style.display="none";
 var cas2 = document.querySelector('#piece');
@@ -388,6 +391,9 @@ tab4.addEventListener('click', function() {
 </script>
 
 <script>
+    //le code si-dessous permet d'afficher uniquement les options des listes déroulantes qui correspondent aux choix fait avant.
+    //Par exemple uniquement les pièces associées au logement sélectionné seront proposées dans la liste déroulante des pièces.
+    //Pareil pour les cemacs
     var select = document.querySelector('#nomLogementPieceCemac');
 
     select.addEventListener('change', function() {
