@@ -1,12 +1,12 @@
 <?php
-function adminInfoClient()
+function adminInfoClient()// génère le tableau avec toutes les informations de chaque utilisateur
 {
-    $admin=new admin;
+    $admin=new admin;// crée une classe pour pouvoir faire appelle aux fonctions du modèle associées à cette classe
     
-    $tableInfoClient=$admin->getDonneeClient();
+    $tableInfoClient=$admin->getDonneeClient();// récupère les données
     $x=0;
     $tableinfo=null;
-    while($table=$tableInfoClient->fetch())
+    while($table=$tableInfoClient->fetch())//crée la tableau 
     {
        
         $tableinfo[$x]=$table['prenom'];
@@ -26,31 +26,32 @@ function adminInfoClient()
     return $tableinfo;
 }
 
-function adminModifInfoClient($prenom,$nom,$email,$telephone,$type,$pseudo,$idClient)
+function adminModifInfoClient($prenom,$nom,$email,$telephone,$type,$pseudo,$idClient)//permet à l'admin de modifier des infos d'un utlisateur
 {
-    $admin=new admin;
+    $admin=new admin;// crée une classe pour pouvoir faire appelle aux fonctions du modèle associées à cette classe
     $admin->modifDonneeClient($prenom,$nom,$email,$telephone,$type,$idClient);
     $admin->modifCompteClient($pseudo,$idClient);
     echo "<script>alert(\"Modifications réalisées\")</script>";
     
 }
-function supprimerClient($id)
+function supprimerClient($id)// permet à l'admin de supprimer un client
 {
-    $admin=new ajout;
-    $admin->supprClient($id);
-    $admin->supprInfoClient($id);
+    $admin=new ajout;// crée une classe pour pouvoir faire appelle aux fonctions du modèle associées à cette classe
+    $admin->supprClient($id);//supprime l'utilisateur
+    $admin->supprInfoClient($id);//supprime ses infos
     $relQR=$admin->getIdRelQRClient($id)->fetchAll();
     foreach($relQR as $rel)
     {
-        $admin->supprimerQR($rel['id_qr']);
+        $admin->supprimerQR($rel['id_qr']);//supprime ses questions
     }
-    $admin->supprRelQRClient($id);
-    $relLog=$admin->getIdRelLogClient($id);
+    $admin->supprRelQRClient($id);//supprime les relations entre l'utilisateur et ses questions
+    $relLog=$admin->getIdRelLogClient($id);//recupère les relations entre l'utilisateur et ses logements
     foreach($relLog as $relL)
     {
-        supprimerLogement($relL['id_logement']);
+        supprimerLogement($relL['id_logement']);//supprime chaque logement de l'utilisateur(cette focntion en appelle d'autres qui suppriment chaque piece, chaque cemac, chaque équipement)
     }
-    $admin->supprRelLogClient($id);
+    $admin->supprRelLogClient($id);//supprime les relations entre l'utilisateur et ses logements
+    //toutes les données relatives à un utilisateur sont donc supprimées
 }
 
 //Partie consommation
