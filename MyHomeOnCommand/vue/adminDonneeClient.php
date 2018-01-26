@@ -15,7 +15,7 @@
         <div id='corps'>
         <?php include('vue/menuAdmin.php');?>
         <div id='corpssansmenu'>
-            <div id='tableau'>
+            <div id='tableau'><!-- tableau informatif des clients !-->
             <table>
                
 
@@ -30,7 +30,7 @@
                    
                </tr>
                
-        <?php 
+        <?php //génère les lignes du tableau en fonctions des infos de chaque client ainsi que la modal correspondante pour pouvoir  modifier ses infos
             $taille=sizeof($info);
             $x=0;
             while($x<$taille)
@@ -74,14 +74,14 @@
         </div>
         <?php include('vue/footer.php');?>
         <script>
-            var boutonSuppr=document.querySelectorAll(".suppr");
+            var boutonSuppr=document.querySelectorAll(".suppr");//pour chaque bouton supprimer lorsque l'on clique dessus on demande de confirmer la suppression
             boutonSuppr.forEach(function(bouton){
                 bouton.onclick=function(){
                     return confirm('Confirmez la suppression? Cela entrainera la suppression des entitées dépendentes.');
                 }
             })
             
-            var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
+            var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");//pour chaque bouton en fin de tableau, il affiche le modal correspondante à cette ligne
             boutonsAffModal.forEach(function(bouton){
                 bouton.onclick=function(){
                     var modal=bouton.getAttribute('data-modal');
@@ -89,7 +89,7 @@
                 }
             })
             
-            var boutonsFermer=document.querySelectorAll(".close");
+            var boutonsFermer=document.querySelectorAll(".close");//pour chaque modal, on peut les fermer lorsque l'on clique sur le croix
             boutonsFermer.forEach(function(bouton){
                 bouton.onclick=function(){
                     var modal=bouton.closest('.modal');
@@ -97,7 +97,7 @@
                 }
             })
             
-            window.onclick = function(event){
+            window.onclick = function(event){//pour chaque modal, on peut les fermer lorsque l'on clique en dehors de la modal
                 if(event.target.className== "modal")
                     {
                         event.target.style.display='none';
