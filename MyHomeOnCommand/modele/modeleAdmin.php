@@ -1,14 +1,14 @@
 <?php
 class admin extends Connection
 {
-    public function getDonneeClient()
+    public function getDonneeClient()//récupère toutes les infos de chaque utilisateur en rejoignant deux table: utilisateur et info_utilisateur
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT * FROM info_utilisateur NATURAL JOIN utilisateur');
         return $req;
     }
 
-    public function modifDonneeClient($prenom,$nom,$email,$telephone,$statut, $id)
+    public function modifDonneeClient($prenom,$nom,$email,$telephone,$statut, $id)//modifie les informations d'un client
     {
         $db=$this->dbConnect();
         $req = $db->prepare('UPDATE info_utilisateur SET prenom = :prenom, nom = :nom, email = :email, telephone = :telephone, statut_utilisateur = :statut WHERE id_utilisateur = :id');
@@ -23,7 +23,7 @@ class admin extends Connection
 
     }
 
-    public function modifCompteClient($login,$id)
+    public function modifCompteClient($login,$id)//modifie l'identifiant d'un utilisateur
     {
         $db=$this->dbConnect();
         $req=$db->prepare('UPDATE utilisateur SET login = :login WHERE id_utilisateur = :id');
