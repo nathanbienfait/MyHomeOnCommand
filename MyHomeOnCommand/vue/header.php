@@ -8,19 +8,19 @@
             
         if(isset($_SESSION['prenom']))
         {
-            if($_SESSION['type']==3)
+            if($_SESSION['type']==3)//si l'utilisateur est un client on affiche un message avec son prénom/nom dans le bandeau
             {
                 $info=infoBandeau($_SESSION['id']);
                 echo "</br></br><div id='sousTitre'>Bonjour ".$info['prenom']." ". $info['nom']."</div>";
                 $verif=verifInfoClient();
-                if($verif==1)
+                if($verif==1)//si le client n'a pas rempli toutes ses infos on affiche un bouton qui lui notifie en afficheant une modal
                 {
                     $texte='Veuillez completer les informations de votre profil dans l\'onglet "Gestion du profil"';
                     echo "<div id='annonce'><button id='Bouton'><i class='fa fa-exclamation-triangle' aria-hidden='true'>&nbsp&nbspNotification</i></button></div>";
                 }
             
             }
-            if($_SESSION['type']==1)
+            if($_SESSION['type']==1)//si l'utilisateur est un admin on affiche un message avec son identifant dans le bandeau
             {
                 echo "</br></br><div id='sousTitre'>Bonjour administrateur ".$_SESSION['prenom']."</div>";
             }
@@ -31,13 +31,14 @@
     </div>
     
 </div>
-<div id="modalverif" class="modal">
+<div id="modalverif" class="modal"><!-- on crée une modal qui contient un message pour l'utilisateur si besoin !-->
   <div class="modal-content">
     <span class="close">&times;</span>
     <p><?php echo $texte; ?></p>
   </div>
 </div>
 <script>
+    // on gère l'affichage de la modal et sa fermeture
         var modal = document.getElementById('modalverif');
         var btn = document.getElementById("Bouton");
         var span = document.getElementsByClassName("close")[0];
