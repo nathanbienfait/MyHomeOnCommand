@@ -32,7 +32,7 @@
             </div>
         </div>
         <div id="partie_droite">    
-            <div class="formulaire">
+            <div class="formulaire"><!--formualaire de connexion !-->
                 <div id="connexion">
                 <form method="post" action="index.php?page=panneau">
                     <p>Connexion:</p>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="formulaire">
-                <form id="inscription" name="inscription" method="post" action="index.php?page=inscription">
+                <form id="inscription" name="inscription" method="post" action="index.php?page=inscription"><!--formualaire d'inscription !-->
                     <p>Formulaire d'inscription:</p>
                     <p>
                         <label for="nom_inscription">Nom:</label>
@@ -107,7 +107,7 @@
         
         </div>
     </div>
-<div id="modal" class="modal">
+<div id="modal" class="modal"><!--modal qui affiche les conditions d'utilisations !-->
   <div class="modal-content">
     <span class="close">&times;</span>
     <p>Conditions légales d'utilisation</p>
@@ -116,14 +116,14 @@
 </div>
     <?php include('vue/footer.php');?>
     <script>
-        function surligne(champ, erreur)
+        function surligne(champ, erreur)//focntion qui surligne les champs des formulaires si ils ne correspondent pas
         {
            if(erreur)
               champ.style.backgroundColor = "#fba";
            else
               champ.style.backgroundColor = "";
         }
-        function verifNom(champ)
+        function verifNom(champ)//vérifie si le champ contient une chaine de caractere comprise entre 2 et 30 caractère
         {
             if(champ.value.length < 2 || champ.value.length >30)
            {
@@ -139,7 +139,7 @@
 
         }
         
-        function verifForm(f)
+        function verifForm(f)//fonction qui vérifie si le formaulaire est correctement rempli lors de son envoi
         {
             var nomOk = verifNom(f.nom_inscription);
             var prenomOk = verifNom (f.prenom_inscription);
@@ -166,7 +166,7 @@
             }
         }
         
-        document.inscription.onsubmit = function()
+        document.inscription.onsubmit = function()//appelle la fonction si dessus lors de l'envoi du formulaire
         {
            
             return verifForm(this);
@@ -174,19 +174,19 @@
         var modal = document.getElementById('modal');
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[1];
-        btn.onclick = function() {
+        btn.onclick = function() {//affiche la modal lorsque l'on clique sur le lien
             modal.style.display = "block";
         }
         console.log(span);
-        span.onclick = function() {
+        span.onclick = function() {//ferme la modal lorsque l'on clique sur la croix
             modal.style.display = "none";
         }
-        window.onclick = function(event) {
+        window.onclick = function(event) {//ferme la modal lorsque l'on clique en dehors
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-         
+         //le code si dessous gere les modal lorsqu'il y en a plusieurs sur une meme page
         var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
             boutonsAffModal.forEach(function(bouton){
                 bouton.onclick=function(){
