@@ -18,7 +18,11 @@
             <div id='tableauDeGestion'>
                 
                 <?php
-               
+               // on crée pour chaque logement un encadré qui récapitule les pieces, les cemacs et les équipement de ce logement
+		//Pour chaque élément on crée une modal associé qui permettra de modifer le nom de l'élément et de le supprimer
+		// c'est modal s'afficheront lorsque l'on clique sur le bouton modifier qui fait apparaitre des petits bouton horné d'un stylo à coté de chaque élément
+		// en cliquant sur ce petit stylo, la modal s'affiche
+		//Lorsque l'on clique sur le nom du logement le détail de ses composant(pieces,cemacs,equips) s'affichent ou disparaissent pour une meilleure lisibilité, par défaut ils sont cachés
                 $x_logement=0;
                 while($x_logement<sizeof($logements))
                 {
@@ -123,7 +127,7 @@
 				?>
                     
                 </div>
-            <div class="bouton_droit">
+            <div class="bouton_droit"><!-- boutons qui mènent a la page d'ajout et qui font apparaitrent les petits stylo pour modifier !-->
                 <div><a href="index.php?page=ajouterHabitation"><input type='button' value='Ajouter'></a><button id="bouton_aff_modif">Modifier</button></div>
             </div>
             
@@ -131,7 +135,7 @@
         </div>
         <?php include('vue/footer.php');?>
         <script>
-            
+            //le code si dessous gère l'affichage du détails de chaque logement
             var pieces=document.querySelectorAll(".piece");
             var cemacs=document.querySelectorAll(".cemac");
             var equips=document.querySelectorAll(".equip");
@@ -192,14 +196,14 @@
             })
             
             
-            
+            // le code si-dessous gère les boutons supprimer, on demande a l'utilisateur de confirmer avant suppression
             var boutonSuppr=document.querySelectorAll(".suppr");
             boutonSuppr.forEach(function(bouton){
                 bouton.onclick=function(){
                     return confirm('Confirmez la suppression? Cela entrainera la suppression des entitées dépendentes.');
                 }
             })
-            
+            // le code si dessous gère l'affichage de chaque modal lorsque l'on clique sur les petit stylos.
             var boutonsAffModal=document.querySelectorAll(".bouton_aff_modal");
             boutonsAffModal.forEach(function(bouton){
                 bouton.onclick=function(){
@@ -207,6 +211,7 @@
                     document.getElementById(modal).style.display='block';
                 }
             })
+	// le code si-dessous gère l'affichage des petits stylos, ils s'affichent si on appuie sur le bouton modifier
             boutonsAffModal.forEach(function(bouton){
                 bouton.style.display='none';
             })
@@ -225,6 +230,7 @@
                     })
                 }
             }
+	    // le code si-dessous gère la fermeture de chaque modal
             var boutonsFermer=document.querySelectorAll(".close");
             boutonsFermer.forEach(function(bouton){
                 bouton.onclick=function(){
