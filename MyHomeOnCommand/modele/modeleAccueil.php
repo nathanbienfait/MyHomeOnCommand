@@ -1,7 +1,7 @@
 <?php
-class Connection
+class Connection //class dont toutes les autres héritent pour éviter la redondance de la fonction qu'elle contient
 {
-    protected function dbConnect()
+    protected function dbConnect()// fonction qui permet de ce connecter à la BDD
     {
         try
         {
@@ -18,14 +18,14 @@ class Connection
 class LoginUtilisateur extends Connection
 {
     
-    public function getAuthentification()
+    public function getAuthentification()//récupère les infos de tout les utilisateur(id,login,mdp,type)
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT id_utilisateur, login, password, id_type_utilisateur FROM utilisateur');
         return $req;
     }
     
-    public function getInfoUtilisateur($idUtil)
+    public function getInfoUtilisateur($idUtil)//récupère les infos d'un seul utilisateur(prenom,nom,email,telephone,statut,id)
     {
         $db=$this->dbConnect();
         $req = $db->prepare('SELECT prenom, nom, email, telephone, statut_utilisateur, id_utilisateur FROM info_utilisateur WHERE id_utilisateur = :id');
@@ -53,7 +53,7 @@ class LoginUtilisateur extends Connection
 class InscriptionUtilisateur extends Connection
 {
     
-    public function setUtilisateur($pseudo,$mp)
+    public function setUtilisateur($pseudo,$mp)//crée un nouvel utilisateur
     {
         $db=$this->dbConnect();
         $req = $db->prepare('INSERT INTO utilisateur(login, password, id_type_utilisateur) VALUES(:log, :mdp, :id_type)');
@@ -65,7 +65,7 @@ class InscriptionUtilisateur extends Connection
 
     }
 
-    public function setInfoUtilisateur($prenom,$nom,$email,$telephone,$statut,$id,$clef)
+    public function setInfoUtilisateur($prenom,$nom,$email,$telephone,$statut,$id,$clef)//crée de nouvel infos pour un utilisateur
     {
         $db=$this->dbConnect();
         $req = $db->prepare('INSERT INTO info_utilisateur(prenom, nom, email, telephone, statut_utilisateur, id_utilisateur,token) VALUES(:prenom, :nom, :email, :telephone, :statut, :idutil, :token)');
@@ -80,14 +80,14 @@ class InscriptionUtilisateur extends Connection
 	));
     }
     
-    public function getLoginUtilisateurs()
+    public function getLoginUtilisateurs()//récupère tous les identifiants des utilisateurs
     {
         $db=$this->dbConnect();
         $req = $db->query('SELECT login FROM utilisateur');
         return $req;
     }
     
-    public function getIdUtilisateur($log)
+    public function getIdUtilisateur($log)//récupère l'id d'un utilisateur en fonction de son login
     {
        
         $db=$this->dbConnect();
