@@ -1,7 +1,7 @@
 <?php
 function afficheAccueil()
 {
-    if(isset($_SESSION['prenom']))
+    if(isset($_SESSION['prenom']))//Si une session existe, elle est détruit, cela permet de déconnecter un utilisateur
     {
         session_unset();
         session_destroy();
@@ -25,19 +25,19 @@ Vous pouvez reinitialiser votre mot de passe via ce lien : http://localhost/myho
 
                     }
                 }
-    require_once('vue/accueil.php');
+    require_once('vue/accueil.php');//affiche la vue de la page d'accueil
     
 }
 
-function affichePanneau()
+function affichePanneau()//Fonction qui gère les types de connexions et qui redirige vers la bonne page en fonction du type de connection
 {
     if(isset($_POST['login'],$_POST['mdp']))
         {
         $log=htmlspecialchars($_POST['login']);
         $mp=htmlspecialchars($_POST['mdp']); 
-        login($log,$mp);
+        login($log,$mp);//appelle la fonction qui permet de connecter un utilisateur
         }
-        if(isset($_SESSION['type']))
+        if(isset($_SESSION['type']))//En fonction du type de session, 1 pour admin, 2 pour support, 3 pour client, on affiche la bonne vue
         {
             if($_SESSION['type']==3)
             {
@@ -54,11 +54,11 @@ function affichePanneau()
         }
         else
         {
-            Header('refresh:0;url=index.php?page=accueil');
+            Header('refresh:0;url=index.php?page=accueil');// au cas où une erreur ce produit lors de la connexion, on redirige vers la apge d'accueil
         }
 }
 
-function afficheInscription()
+function afficheInscription()// fonction qui gere les inscriptions
 {
     $verif=null; if(isset($_POST['nom_inscription'],$_POST['prenom_inscription'],$_POST['pseudo_inscription'],$_POST['mdp_inscription'],$_POST['mdpconf_inscription']))
         {
@@ -69,36 +69,36 @@ function afficheInscription()
         $pseudo=htmlspecialchars($_POST['pseudo_inscription']);
         $mdp=htmlspecialchars($_POST['mdp_inscription']);
         $mdpconf=htmlspecialchars($_POST['mdpconf_inscription']);
-        $verif=inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf);
+        $verif=inscription($nom,$prenom,$tel,$email,$pseudo,$mdp,$mdpconf);// on appelle la fonction du controleur qui se charge de l'inscription
         }
-        if($verif==1)
+        if($verif==1)// si la focntion retourne 1, l'inscription a réussi et on affiche la vue qui en informe l'utilisateur
         {
             require_once('vue/inscriptionReussie.php');
         }
-        else
+        else// sinon on redirige vers la page d'accueil
         {
             Header('refresh:0;url=index.php?page=accueil');
         }
 }
 
-function afficheAdminPanneauClient()
+function afficheAdminPanneauClient()// fonction qui se charge de l'affichage du panneau client de l'admin
 {
-    if(isset($_SESSION['type']))
+    if(isset($_SESSION['type']))// on vérifie qu'une session existe
         {
-            if($_SESSION['type']==1)
+            if($_SESSION['type']==1)// on vérifie que la session appartient bien à un admin
             {
                 
-                if(isset($_POST['bouton_modifier']))
+                if(isset($_POST['bouton_modifier']))//si un bouton modifier est utilisé on appelle la fonction du controleur qui permet de modifier les informations d'un client
                 {
                    adminModifInfoClient($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone'],$_POST['type'],$_POST['pseudo'],$_POST['idClient']);
                 
                 }
-                if(isset($_POST['bouton_supprimer']))
+                if(isset($_POST['bouton_supprimer']))//si un bouton supprimer est utilisé on appelle la focntion qui permet de supprimer un utilisateur
                 {
                     supprimerClient($_POST['idClient']);
                 }
             
-                $info=adminInfoClient();
+                $info=adminInfoClient();//appelle la fonction du controleur qui renvoit les informations de tous les clients
                 require_once('vue/adminDonneeClient.php');
             }
         }
@@ -108,49 +108,49 @@ function afficheGestionHabitationClient()
 {
     if(isset($_SESSION['type']))
         {
-            if($_SESSION['type']==3)
+            if($_SESSION['type']==3)// on vérifie que la session est bien celle d'un client
             {
                 if(isset($_POST['bouton_modifier_logement']))
                 {
                     $nom=htmlspecialchars($_POST['nom']);
-                    modifierNomLogement($nom,$_POST['id']);
+                    modifierNomLogement($nom,$_POST['id']);//appelle de la fonction qui modifie le nom d'un logement 
                 }
                 if(isset($_POST['bouton_modifier_piece']))
                 {
                     $nom=htmlspecialchars($_POST['nom']);
-                    modifierNomPiece($nom,$_POST['id']);
+                    modifierNomPiece($nom,$_POST['id']);//appelle de la fonction qui modifie le nom d'une pièce
                 }
                 if(isset($_POST['bouton_modifier_cemac']))
                 {
                     $nom=htmlspecialchars($_POST['nom']);
-                    modifierNomCemac($nom,$_POST['id']);
+                    modifierNomCemac($nom,$_POST['id']);//appelle de la fonction qui modifie le nom d'un cemac
                 }
                 if(isset($_POST['bouton_modifier_equipement']))
                 {
                     $nom=htmlspecialchars($_POST['nom']);
-                    modifierNomEquipement($nom,$_POST['id']);
+                    modifierNomEquipement($nom,$_POST['id']);//appelle de la fonction qui modifie le nom d'un équipement
                 }
                 if(isset($_POST['bouton_supprimer_equip']))
                 {
-                    supprimerEquipement($_POST['id']);
+                    supprimerEquipement($_POST['id']);//appelle de la fonction qui supprime un équipement
                 }
                 if(isset($_POST['bouton_supprimer_cemac']))
                 {
-                    supprimerCemac($_POST['id']);
+                    supprimerCemac($_POST['id']);//appelle de la fonction qui supprime un cemac
                 }
                 if(isset($_POST['bouton_supprimer_piece']))
                 {
-                    supprimerPiece($_POST['id']);
+                    supprimerPiece($_POST['id']);//appelle de la fonction qui supprime une pièce
                 }
                 if(isset($_POST['bouton_supprimer_logement']))
                 {
-                    supprimerLogement($_POST['id']);
+                    supprimerLogement($_POST['id']);//appelle de la fonction qui supprime un logement
                 }
-                $logements=nomLogement($_SESSION['id']);
-                $pieces=nomPiece($_SESSION['id']);
-                $cemacs=nomCemac($_SESSION['id']);
-                $equipements=nomEquipement($_SESSION['id']);
-                require_once('vue/gestionHabitation.php');
+                $logements=nomLogement($_SESSION['id']);//liste de tous les logements de l'utilisateur
+                $pieces=nomPiece($_SESSION['id']);//liste de toutes les pièces de l'utilisateur
+                $cemacs=nomCemac($_SESSION['id']);//liste de tous les cemacs de l'utilisateur
+                $equipements=nomEquipement($_SESSION['id']);//liste de tous les équipements de l'utilisateur
+                require_once('vue/gestionHabitation.php');//afiche la vue 
             }
         }
 }
@@ -159,9 +159,9 @@ function afficheAjouterHabitation()
 {
     if(isset($_SESSION['type']))
         {
-            if($_SESSION['type']==3)
+            if($_SESSION['type']==3)// on vérifie que la session est bien celle d'un client
             {
-                if(isset($_POST['bouton_ajouter_logement']))
+                if(isset($_POST['bouton_ajouter_logement']))//if qui permet l'ajout d'un logement
                 {
                   
                     $nomLogement=htmlspecialchars($_POST['nomLogement']);
@@ -169,32 +169,32 @@ function afficheAjouterHabitation()
                     $villeLogement=htmlspecialchars($_POST['ville']);
                     $cpLogement=htmlspecialchars($_POST['cp']);
                     $paysLogement=htmlspecialchars($_POST['pays']);
-                    ajouterLogement($_SESSION['id'],$nomLogement,$rueLogement,$villeLogement,$cpLogement,$paysLogement);
+                    ajouterLogement($_SESSION['id'],$nomLogement,$rueLogement,$villeLogement,$cpLogement,$paysLogement);//appelle de la fonction du controleur qui ajoute un logement
                 }
                 
-                if(isset($_POST['bouton_ajouter_piece']))
+                if(isset($_POST['bouton_ajouter_piece']))//if qui permet l'ajout d'une pièce
                 {
                     $idLogement=htmlspecialchars($_POST['nomLogementPiece']);
                     $nomPiece=htmlspecialchars($_POST['nomPiece']);
-                    ajouterPiece($idLogement,$nomPiece);
+                    ajouterPiece($idLogement,$nomPiece);//appelle de la fonction du controleur qui ajoute une pièce
                 }
-                if(isset($_POST['bouton_ajouter_cemac']))
+                if(isset($_POST['bouton_ajouter_cemac']))//if qui permet l'ajout d'un cemac
                 {
                     $nomCemac=htmlspecialchars($_POST['nomCemac']);
-                    ajouterCemac($_POST['nomPieceCemac'],$nomCemac);
+                    ajouterCemac($_POST['nomPieceCemac'],$nomCemac);//appelle de la fonction du controleur qui ajoute un cemac
                 }
                 
-                if(isset($_POST['bouton_ajouter_equipement']))
+                if(isset($_POST['bouton_ajouter_equipement']))//if qui permet l'ajout d'un équipement
                 {
                     $nomEquip=htmlspecialchars($_POST['nomEquipement']);
-                    ajouterEquipement($_POST['nomCemacEquipement'],$_POST['typeEquipement'],$nomEquip);
+                    ajouterEquipement($_POST['nomCemacEquipement'],$_POST['typeEquipement'],$nomEquip);//appelle de la fonction du controleur qui ajoute un équipement
                 }
-                $tableauNomLogement=nomLogement($_SESSION['id']);
-                $tableauNomPiece=nomPiece($_SESSION['id']);
-                $tableauNomCemac=nomCemac($_SESSION['id']);
-                $tableauNomType=nomTypeEquipement();
+                $tableauNomLogement=nomLogement($_SESSION['id']);//liste des logements de l'utilisateur pour remplir les listes des formulaires
+                $tableauNomPiece=nomPiece($_SESSION['id']);//liste des pièces de l'utilisateur pour remplir les listes des formulaire
+                $tableauNomCemac=nomCemac($_SESSION['id']);//liste des cemacs de l'utilisateur pour remplir les listes des formulaire
+                $tableauNomType=nomTypeEquipement();//liste des types d'equipement disponibles pour remplir les listes des formulaire
                 
-                require_once('vue/ajouterHabitation.php');
+                require_once('vue/ajouterHabitation.php');//affiche la vue
             }
         }
 }
