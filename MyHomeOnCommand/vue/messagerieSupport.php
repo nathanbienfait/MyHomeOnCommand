@@ -45,7 +45,7 @@
                 <?php endforeach ?>
                 
                 <form method="post" id="formR">
-                    <textarea name="textR" id="textR" rows="7" cols="50" placeholder="Saisissez-votre question ici"></textarea>
+                    <textarea name="textR" id="textR" rows="7" cols="50" placeholder="Saisissez-votre réponse ici"></textarea>
                     <input type="hidden" name="idCurrentClient" value=<?php echo $tabou[0]['id_utilisateur']; //On transmet l'id en hidden à controleurRoute?>>
                     <input type="hidden" name="bouton_lobby_repondre" value="bouton_lobby_repondre">
                                     <!--On envoie également en hidden ce bouton_lobby_repondre pour rester dans la première boucle if dans controleurRoute -->
