@@ -1,17 +1,17 @@
 <?php
 
 function ajouterLogement($idClient,$nomLogement,$rueLogement,$villeLogement,$cpLogement,$paysLogement)
-{
+{//focntion qui permet d'ajouter un logement pour l'utilisateur
     $ajout=new ajout;
-    $ajout->ajoutLogement($nomLogement,$rueLogement,$villeLogement,$cpLogement,$paysLogement);
+    $ajout->ajoutLogement($nomLogement,$rueLogement,$villeLogement,$cpLogement,$paysLogement);//enregistre le nouveau logment dans la BDD via la fonction du modèle
     $ajoutLogement=$ajout->getIdNewLogement();
     $idlogement=$ajoutLogement->fetch();
-    $ajout->ajoutRelLogementClient($idClient,$idlogement[0]);
+    $ajout->ajoutRelLogementClient($idClient,$idlogement[0]);// crée la relation entre le logement et l'utilisateur
     echo "<script>alert(\"Ajout du logement réalisé\")</script>";
     
 }
 
-function nomLogement($idClient)
+function nomLogement($idClient)// focntion qui crée un tableau avec l'ensemble des logements de l'utilisateur
 {
     $nom=new ajout;
     $nomLogement=$nom->getNomLogements($idClient);
@@ -26,14 +26,14 @@ function nomLogement($idClient)
     return $tabNomLogement;
 }
 
-function ajouterPiece($idLogement,$nomPiece)
+function ajouterPiece($idLogement,$nomPiece)//permet à l'utilisateur d'enregistrer une nouvelle pièce associée à un logement
 {
     $ajout=new ajout;
     $ajout->ajoutPiece($idLogement,$nomPiece);
     echo "<script>alert(\"Ajout de la pièce réalisé\")</script>";
 }
 
-function nomPiece($idClient)
+function nomPiece($idClient)// récupère l'ensemble des pièces d'un utilisateur
 {
     $nom=new ajout;
     $pieces=$nom->getNomPiece($idClient);
@@ -50,7 +50,7 @@ function nomPiece($idClient)
     return $tablepiece;
 }
 
-function ajouterCemac($idPiece,$nomCemac)
+function ajouterCemac($idPiece,$nomCemac)// permet d'ajouter un cemac associé à une pièce
 {
     $ajout=new ajout;
     $ajout->ajoutCemac($nomCemac);
@@ -60,7 +60,7 @@ function ajouterCemac($idPiece,$nomCemac)
     echo "<script>alert(\"Ajout du cemac réalisé\")</script>";
 }
 
-function nomCemac($idClient)
+function nomCemac($idClient)// récupère l'ensemble des cemacs d'un utilisateur
 {
     $nom=new ajout;
     $cemacs=$nom->getNomCemac($idClient);
@@ -76,7 +76,7 @@ function nomCemac($idClient)
     return $tableCemac;
 }
 
-function nomTypeEquipement()
+function nomTypeEquipement()// récupère l'ensemble des types d'équipement disponibles
 {
     $nom=new ajout;
     $types=$nom->getNomType();
@@ -91,7 +91,7 @@ function nomTypeEquipement()
     return $tableType;
 }
 
-function nomEquipement($idClient)
+function nomEquipement($idClient)// récupère l'ensemble des équipements d'un utilisateur
 {
     $nom=new ajout;
     $equipements=$nom->getNomEquipement($idClient);
@@ -106,7 +106,7 @@ function nomEquipement($idClient)
     }
     return $tableEquipement;
 }
-function ajouterEquipement($idCemac,$idType,$nomEquipement)
+function ajouterEquipement($idCemac,$idType,$nomEquipement)// permet d'ajouter un équipement associé à un cemac
 {
     $equip=new ajout;
     $equip->ajoutEquipement($idCemac,$idType,$nomEquipement);
@@ -121,7 +121,7 @@ function afficherHabitation($idClient)
     return $habitation;
 }
 
-function verifInfoClient()
+function verifInfoClient()//vérifie si l'ensemble des infos du client ont été renseigné
 {
     if(!isset($_SESSION['id']))
     {
@@ -152,7 +152,7 @@ function verifInfoClient()
     {return 0;}
 }
 
-function modifierNomLogement($nom,$id)
+function modifierNomLogement($nom,$id)//permet de modifier le nom d'un logement
 {
     $nouveauNom=new ajout; 
     $nouveauNom->modifNomLogement($id,$nom);
@@ -160,7 +160,7 @@ function modifierNomLogement($nom,$id)
     
 }
 
-function modifierNomPiece($nom,$id)
+function modifierNomPiece($nom,$id)//permet de modifier le nom d'une pièce
 {
     $nouveauNom=new ajout; 
     $nouveauNom->modifNomPiece($id,$nom);
@@ -168,21 +168,21 @@ function modifierNomPiece($nom,$id)
     
 }
 
-function modifierNomCemac($nom,$id)
+function modifierNomCemac($nom,$id)//permet de modifier le nom d'un cemac
 {
     $nouveauNom=new ajout; 
     $nouveauNom->modifNomCemac($id,$nom);
     echo "<script>alert(\"Modifications réalisées\")</script>";
 }
 
-function modifierNomEquipement($nom,$id)
+function modifierNomEquipement($nom,$id)//permet de modifier le nom d'un équipement
 {
     $nouveauNom=new ajout; 
     $nouveauNom->modifNomEquipement($id,$nom);
     echo "<script>alert(\"Modifications réalisées\")</script>";
 }
 
-function supprimerEquipement($id)
+function supprimerEquipement($id)//permet de supprimer un équipement et les données qui lui sont associés
 {
     $supprimer=new ajout;
     $supprimer->supprDonneeEquip($id);
@@ -190,39 +190,39 @@ function supprimerEquipement($id)
     
 }
 
-function supprimerCemac($id)
+function supprimerCemac($id)//permet de supprimer un cemac
 {
     $supprimer= new ajout;
     $idEquip=$supprimer->getIdEquipDeCemac($id)->fetchAll();
     foreach($idEquip as $idE)
     {
-        supprimerEquipement($idE['id_equipement']);
+        supprimerEquipement($idE['id_equipement']);//supprime aussi l'ensemble des équipements associés à ce cemac
     }
-    $supprimer->supprCemac($id);
-    $supprimer->supprRelCemacPiece($id);
+    $supprimer->supprCemac($id);// supprime le cemac
+    $supprimer->supprRelCemacPiece($id);// supprime les relation entre une piece et ce cemac
 }
 
-function supprimerPiece($id)
+function supprimerPiece($id)//permet de supprimer une pièce
 {
     $supprimer= new ajout;
     $idCemac=$supprimer->getIdCemacDePiece($id)->fetchAll();
     foreach($idCemac as $idC)
     {
-        supprimerCemac($idC['id_cemac']);
+        supprimerCemac($idC['id_cemac']);// ainsi que tous les cemacs associés à cette pièce
     }
-    $supprimer->supprPiece($id);
+    $supprimer->supprPiece($id);// supprime la pièce
 }
 
-function supprimerLogement($id)
+function supprimerLogement($id)// permet de supprimer un logement
 {
     $supprimer= new ajout;
     $idPiece=$supprimer->getIdPieceDeLogement($id)->fetchAll();
     foreach($idPiece as $idP)
     {
-        supprimerPiece($idP['id_piece']);
+        supprimerPiece($idP['id_piece']);// supprime toutes les pièce associés à ce logement
     }
-    $supprimer->supprLogement($id);
-    $supprimer-> supprRelLogementUtil($id);
+    $supprimer->supprLogement($id);//supprime le logement
+    $supprimer-> supprRelLogementUtil($id);//supprime les relations entre le logement et l'utilisateur
 }
 
 //Partie consommation
