@@ -37,12 +37,12 @@
                 <form method="post" action="index.php?page=panneau">
                     <p>Connexion:</p>
                     <p>
-                        <label for="login">Identifiant:</label>
+                        <label for="login">Identifiant :</label>
                         </br>
                         <input type="text" id="login" name="login" required/>
                         </br>
                         </br>
-                        <label for="mdp">Mot de passe:</label>
+                        <label for="mdp">Mot de passe :</label>
                         </br>
                         <input type="password" id="mdp" name="mdp" required/>
                         </br>
@@ -71,27 +71,27 @@
                 <form id="inscription" name="inscription" method="post" action="index.php?page=inscription"><!--formualaire d'inscription !-->
                     <p>Formulaire d'inscription:</p>
                     <p>
-                        <label for="nom_inscription">Nom:</label>
+                        <label for="nom_inscription">Nom :</label>
                         </br>
                         <input type="text" id="nom_inscription" name="nom_inscription" onblur="verifNom(this)" required/>
                         </br>
                         </br>
-                        <label for="prenom_inscription">Prénom:</label>
+                        <label for="prenom_inscription">Prénom :</label>
                         </br>
                         <input type="text" id="prenom_inscription" name="prenom_inscription" onblur="verifNom(this)" required/>
                         </br>
                         </br>
-                        <label for="pseudo_inscription">Identifiant:</label>
+                        <label for="pseudo_inscription">Identifiant :</label>
                         </br>
                         <input type="text" id="pseudo_inscription" name="pseudo_inscription" onblur="verifNom(this)" required/>
                         </br>
                         </br>
-                        <label for="mdp_inscription">Mot de passe:</label>
+                        <label for="mdp_inscription">Mot de passe :</label>
                         </br>
                         <input type="password" id="mdp_inscription" name="mdp_inscription" onblur="verifNom(this)" required/>
                         </br>
                         </br>
-                        <label for="mdpconf_inscription">Confirmer le mot de passe:</label>
+                        <label for="mdpconf_inscription">Confirmer le mot de passe :</label>
                         </br>
                         <input type="password" id="mdpconf_inscription" name="mdpconf_inscription" onblur="verifNom(this)" required/>
                         </br>
