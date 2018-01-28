@@ -35,6 +35,7 @@
                     ?>
            
 
+<!-- On trace le graphe grâce à Googlecharts !-->
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
                         var tablum=<?php echo json_encode($arrlum);?>;
@@ -76,6 +77,7 @@
                         }
                     ?>
 
+<!-- On trace le graphe grâce à Googlecharts !-->
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
                     var tabhum=<?php echo json_encode($arrhum);?>;
@@ -112,6 +114,7 @@
                         }
                     ?>
 
+<!-- On trace le graphe grâce à Googlecharts !-->
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
                     var tabtem=<?php echo json_encode($arrtem);?>;
