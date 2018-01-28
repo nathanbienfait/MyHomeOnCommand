@@ -27,8 +27,8 @@
                 <div id='lumière'>
                     <?php 
     //Partie lumière
-                        $arrlum = clientGrapheConsommationlumiere();
-			if(empty($arrlum)) 
+                        $arrlum = clientGrapheConsommationlumiere(); //On récupère le tableau contenant les données
+			if(empty($arrlum)) //S'il n'y a pas de données on affiche une phrase le précisanT
                         {
                             echo "Il n'y a pas de données à afficher concernant la lumière.";
                         }
@@ -69,8 +69,8 @@
                 <div id='humidité'>
                     <?php 
     //Partie humidité
-                        $arrhum = clientGrapheConsommationhumidite();
-			if(empty($arrhum)) 
+                        $arrhum = clientGrapheConsommationhumidite(); //On récupère le tableau contenant les données
+			if(empty($arrhum)) //S'il n'y a pas de données on affiche une phrase le précisanT
                         {
                             echo "Il n'y a pas de données à afficher concernant l'humidité.";
                         }
@@ -105,8 +105,8 @@
                 <div id='température'> <br/>
                     <?php 
     //Partie température
-                        $arrtem = clientGrapheConsommationtemperature();
-			if(empty($arrtem)) 
+                        $arrtem = clientGrapheConsommationtemperature(); //On récupère le tableau contenant les données
+			if(empty($arrtem)) //S'il n'y a pas de données on affiche une phrase le précisant
                         {
                             echo "Il n'y a pas de données à afficher concernant la température.";
                         }
