@@ -27,8 +27,8 @@
                 <div id='lumière'>
                     <?php 
     //Partie lumière
-                        $arrlum = adminGrapheConsommationlumiere();
-                        if(empty($arrlum)) 
+                        $arrlum = adminGrapheConsommationlumiere(); //On récupère le tableau contenant les données
+                        if(empty($arrlum)) //S'il n'y a pas de données on affiche une phrase le précisant
                             {
                                 echo "Il n'y a pas de données à afficher concernant la lumière.";
                             }
@@ -69,13 +69,13 @@
                 <div id='humidité'>
                     <?php 
     //Partie humidité
-                        $arrhum = adminGrapheConsommationhumidite();
-                        if(empty($arrhum)) 
+                        $arrhum = adminGrapheConsommationhumidite(); //On récupère le tableau contenant les données
+                        if(empty($arrhum)) //S'il n'y a pas de données on affiche une phrase le précisant
                             {
                                 echo "Il n'y a pas de données à afficher concernant l'humidité.";
                             }
                     ?>
-
+                    
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
                     var tabhum=<?php echo json_encode($arrhum);?>;
@@ -105,8 +105,8 @@
                 <div id='température'> <br/>
                     <?php 
     //Partie température
-                        $arrtem = adminGrapheConsommationtemperature();
-                        if(empty($arrtem)) 
+                        $arrtem = adminGrapheConsommationtemperature(); //On récupère le tableau contenant les données
+                        if(empty($arrtem)) //S'il n'y a pas de données on affiche une phrase le précisant
                         {
                             echo "Il n'y a pas de données à afficher concernant la température.";
                         }
