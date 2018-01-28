@@ -48,7 +48,7 @@
 										echo '<div class=\'liste_equipements\'>'; /* début div 7 */
 										foreach($panneau->Obtenir_id_equipements($id_piece) as $id_equipement) /* on prend un à un chaque équipement dans la pièce */
 										{
-											echo '<div class=\'case_equipement\'><div class="'.$id_logement.'">'; /* début div 8 */ /*on affiche ici toutes les informations liées aux equipements */
+											echo '<div class=\'case_equipement\'>'; /* début div 8 */ /*on affiche ici toutes les informations liées aux equipements */
 											$nom_equipement=$panneau->ObtenirNomEquipement($id_equipement);
 											$etat=$panneau->ObtenirEtatEquipement($id_equipement);
 											$type_equipement=$panneau->Obtenir_type_equipement($id_equipement);
@@ -114,7 +114,7 @@
 											{
 												echo '<div><img src=\'images/mauvaisEtat.png\' alt=\'Etat_Mauvais\' class=\'etat\'></div>';
 											}
-											echo '</div></div>'; /* fin div 8 */
+											echo '</div>'; /* fin div 8 */
 										}
 										echo '</div>'; /* fin div 7 */
 									echo '</div></div>'; /* fin div 6 */
@@ -145,15 +145,12 @@
 			<script type="text/javascript">
 				var pieces=document.querySelectorAll(".case_piece");
                 
-                var equips=document.querySelectorAll(".case_equipement");
+                
                 var logement=document.querySelectorAll(".titre_logement");
                 pieces.forEach(function(pieces){
                     pieces.style.display='none';
                 })
                
-                equips.forEach(function(equips){
-                    equips.style.display='none';
-                })
                 
                 logement.forEach(function(logement){
                 logement.onclick=function(){
@@ -171,22 +168,7 @@
                             pieces.style.display='none';  
                         }}
                     })}})
-                pieces.forEach(function(pieces){
-                pieces.onclick=function(){
-                    
-                    equips.forEach(function(equips){
-                        if(pieces.children[0].className==equips.children[0].className)
-                            {
-                              
-                        if(equips.style.display=='none')
-                        {
-                            equips.style.display='block';
-                        }
-                        else
-                        {
-                            equips.style.display='none';  
-                        }}
-                    })}})
+               
                 
 			</script>
 		</body>
