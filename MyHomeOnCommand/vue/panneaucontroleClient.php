@@ -38,7 +38,7 @@
 								$id_pieces=$panneau->Obtenir_id_pieces($id_logement);
 								foreach($id_pieces as $id_piece) /*on prend un à un chaque pièce du logement */
 								{
-									echo '<div class=\'case_piece\'><div class="'.$id_logement.'">'; /* début div 6 */
+									echo '<div class=\'case_piece\'><div class="'.$id_logement.'"></div>'; /* début div 6 */
 									echo '<div class=\'nom_piece\'>';
 										$nom_piece=$panneau->Obtenir_nom_piece($id_piece);
 										echo '<h1>';
@@ -117,7 +117,7 @@
 											echo '</div>'; /* fin div 8 */
 										}
 										echo '</div>'; /* fin div 7 */
-									echo '</div></div>'; /* fin div 6 */
+									echo '</div>'; /* fin div 6 */
 								}
 							echo '</div></div>';	/* fin div 4 */
 						}
@@ -160,7 +160,7 @@
                             {
                         if(pieces.style.display=='none')
                         {
-                            pieces.style.display='block';
+                            pieces.style.display='flex';
                         }
                         else
                         {
