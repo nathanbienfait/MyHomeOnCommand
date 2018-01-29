@@ -90,7 +90,7 @@ function afficheAdminPanneauClient()// fonction qui se charge de l'affichage du 
                 
                 if(isset($_POST['bouton_modifier']))//si un bouton modifier est utilisé on appelle la fonction du controleur qui permet de modifier les informations d'un client
                 {
-                   adminModifInfoClient($_POST['prenom'],$_POST['nom'],$_POST['email'],$_POST['telephone'],$_POST['type'],$_POST['pseudo'],$_POST['idClient']);
+                   adminModifInfoClient(htmlspecialchars($_POST['prenom']),htmlspecialchars($_POST['nom']),htmlspecialchars($_POST['email']),htmlspecialchars($_POST['telephone']),htmlspecialchars($_POST['type']),htmlspecialchars($_POST['pseudo']),htmlspecialchars($_POST['idClient']));
                 
                 }
                 if(isset($_POST['bouton_supprimer']))//si un bouton supprimer est utilisé on appelle la focntion qui permet de supprimer un utilisateur
@@ -247,14 +247,14 @@ function afficheSupportAdmin()
                  
                 if(isset($_POST['edit2'])) //Test si l'administrateur veut modifier une question/réponse
                 {
-                    modifqr($_POST['edit2'],$_POST['modifr'],$_POST['modifq']);  //permet d'effectuer la fonction modifiant les questions/réponses
+                    modifqr($_POST['edit2'],htmlspecialchars($_POST['modifr']),htmlspecialchars($_POST['modifq']));  //permet d'effectuer la fonction modifiant les questions/réponses
                 }
 
                 if(isset($_POST['envoitAjout'])) //Test si l'administrateur veut ajouter une question/réponse
                 {
                     $dateQ= date("Y-n-j");
                     $dateR = date("Y-n-j");
-                    ajouterqr($_POST['ajoutQ'],$_POST['ajoutR'],$dateQ,$dateR); //permet d'effectuer la fonction ajoutant les questions/réponses
+                    ajouterqr(htmlspecialchars($_POST['ajoutQ']),htmlspecialchars($_POST['ajoutR']),$dateQ,$dateR); //permet d'effectuer la fonction ajoutant les questions/réponses
                     
                 }
                 $tableauqr=tableauqr(); //Fonction récupérant les questions/réponses de la Base de donnée
@@ -491,7 +491,7 @@ function afficheReinitialisation()
         
         $verif=NULL;
         $id=getIdReinitialisation($clef);
-        $verif=modifMdpReinitialisation($_POST['mdp'],$_POST['mdpverif'],$id['id_utilisateur']);
+        $verif=modifMdpReinitialisation(htmlspecialchars($_POST['mdp']),htmlspecialchars($_POST['mdpverif']),$id['id_utilisateur']);
         require_once('vue/reinitialisation.php');
     }
     else
