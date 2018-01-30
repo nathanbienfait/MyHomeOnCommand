@@ -311,6 +311,8 @@ function afficheConditions()
 
 function afficheModification() // on prépare les variables utiles pour toutes les actions de la page gestion du site 
 {
+    $extensions=array('.png', '.jpg', '.gif');
+    
     if(isset($_POST['bouton_valider_slogan']))
         {
             $slog=htmlspecialchars($_POST['Modifier_le_slogan']);
@@ -337,15 +339,23 @@ function afficheModification() // on prépare les variables utiles pour toutes l
                 $messageEtatBas=htmlspecialchars($_POST['etat_bas']);
             }
 
-            if(!empty($_FILES['logo']['name'])) /* on crée une variable contenant la nouvelle adresse des images et on les y envoie */
+            if(!empty($_FILES['logo']['name']) AND in_array(strrchr($_FILES['logo']['name'], '.'), $extensions)) /* on crée une variable contenant la nouvelle adresse des images et on les y envoie */
             {
                 $adresseLogo='images/' . $_FILES['logo']['name'];
                 $verif=move_uploaded_file($_FILES['logo']['tmp_name'], $adresseLogo);
             }
-            if(!empty($_FILES['image_fond']['name'])) /* de même */
+            if(!empty($_FILES['image_fond']['name']) AND in_array(strrchr($_FILES['image_fond']['name'], '.'), $extensions)) /* de même */
             {
                 $adresseImageFond='images/' . $_FILES['image_fond']['name'];
                 $verif=move_uploaded_file($_FILES['image_fond']['tmp_name'], $adresseImageFond);
+            }
+            if(!in_array(strrchr($_FILES['logo']['name'], '.'), $extensions))
+            {
+                echo "<script>alert('Format du fichier pour le logo invalide. Veuillez mettre un fichier de type jpg, gif ou png.')</script>";
+            }
+            if(!in_array(strrchr($_FILES['image_fond']['name'], '.'), $extensions))
+            {
+                echo "<script>alert('Format du fichier pour l'image de fond invalide. Veuillez mettre un fichier de type jpg, gif ou png.')</script>";
             }
 
             adminAfficheEquipement($nom_equipement, $unite, $type_donnees, $adresseLogo, $adresseImageFond, $messageEtatHaut, $messageEtatBas); /* on appelle une fonction du controleurAdmin */
@@ -355,18 +365,23 @@ function afficheModification() // on prépare les variables utiles pour toutes l
         {
             $idTypeCapteur=$_POST['idTypeCapteur'];
             $caracEquipement=$_POST['caracSelec'];
+            $nouvelleCarac="";
 
-            if(!empty($_POST['nouvelleCarac']))
+            if(isset($_POST['nouvelleCarac']))
             {
                 $nouvelleCarac=$_POST['nouvelleCarac'];
+                adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
             }
-            else
+            elseif(in_array(strrchr($_FILES['nouvelleCarac']['name'], '.'), $extensions))
             {
                 $nouvelleCarac='images/' . $_FILES['nouvelleCarac']['name'];
                 $verif=move_uploaded_file($_FILES['nouvelleCarac']['tmp_name'], $nouvelleCarac);
+                adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
             }
-
-            adminModifTypeEquipement($idTypeCapteur, $caracEquipement, $nouvelleCarac);
+            else
+            {
+                echo "<script>alert('Veuillez vérifier que les informations saisies sont correctes')</script>";
+            }
         }
     
         if(isset($_POST['bouton_valider_selecTypeSupp'])) /* prépare les variables pour la suppression d'un type d'équipement dans la bdd */
