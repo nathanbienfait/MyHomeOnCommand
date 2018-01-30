@@ -43,7 +43,9 @@ span
     width:90%;
     text-align:center;
     padding: 2%;
-    margin: 2%; 
+    margin: 2%;
+    cursor: inherit;
+    cursor: pointer;
 }
 
 span:hover
