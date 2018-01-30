@@ -568,6 +568,11 @@ tab9.addEventListener('click', function() {
         x9=0;
     }
  });
+	
+function confirmer()
+{
+    return confirm("La suppression d'un type d'équipement est définitive et peut entraîner des dysfonctionnements. Confirmer la suppression de ce type de capteur ?");
+}
 
 var binaire = document.getElementById('pourBinaire');
 var pasBinaire = document.getElementById('pourNonBinaire');
