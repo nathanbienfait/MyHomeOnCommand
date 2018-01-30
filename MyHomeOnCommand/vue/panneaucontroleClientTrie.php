@@ -70,7 +70,7 @@
 											}
 											else /* et si les données sont à 1 */
 											{
-												$message=$panneau->ObtenirMessageHaut($equipement);
+												$message=$panneau->ObtenirMessageHaut($idtypeEquipement);
 												echo $message;
 												echo '</br>';
 												echo '<form action=\'index.php?page=panneau\' method=\'post\'>';
