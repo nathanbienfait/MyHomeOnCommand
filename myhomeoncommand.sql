@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 30 jan. 2018 à 18:06
+-- Généré le :  mar. 30 jan. 2018 à 18:37
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -142,8 +142,8 @@ CREATE TABLE IF NOT EXISTS `equipement` (
 
 INSERT INTO `equipement` (`id_equipement`, `etat`, `id_cemac`, `id_type_equipement`, `nom_equipement`, `valeur_cible`) VALUES
 (24, NULL, 21, 4, 'Lumières', NULL),
-(23, NULL, 21, 2, 'Humidite', NULL),
-(22, NULL, 21, 1, 'Temperature', NULL);
+(23, NULL, 21, 2, 'Humidite', 2),
+(22, NULL, 21, 1, 'Temperature', 2);
 
 -- --------------------------------------------------------
 
@@ -434,7 +434,7 @@ INSERT INTO `type_equipement` (`id_type_equipement`, `nom_type_equipement`, `ima
 (1, 'temperature', 'images/Thermometre2.jpg', 'images/Thermometre.png', '°C', 2, NULL, NULL),
 (2, 'humidite', 'images/Humidite.png', 'images/Goutte.png', '%', 2, NULL, NULL),
 (3, 'ouverture', 'images/Paysage.png', 'images/ouvertureFenetre.png', '', 1, 'ouvert', 'fermé'),
-(4, 'lumieres', 'images/lumiere.jpg', 'images/Ampoule.jpg', '', 1, 'Allumé', 'Eteint');
+(4, 'lumieres', 'images/lumiere.jpg', 'images/Ampoule.png', '', 1, 'Allumé', 'Eteint');
 
 -- --------------------------------------------------------
 
