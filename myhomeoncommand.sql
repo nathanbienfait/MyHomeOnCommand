@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 30 jan. 2018 à 18:37
+-- HÃ´te : 127.0.0.1:3306
+-- GÃ©nÃ©rÃ© le :  Dim 04 fÃ©v. 2018 Ã  17:21
 -- Version du serveur :  5.7.19
--- Version de PHP :  7.1.9
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `myhomeoncommand`
+-- Base de donnÃ©es :  `myhomeoncommand`
 --
 
 -- --------------------------------------------------------
@@ -33,14 +33,15 @@ CREATE TABLE IF NOT EXISTS `cemac` (
   `id_cemac` int(11) NOT NULL AUTO_INCREMENT,
   `nom_cemac` varchar(255) NOT NULL,
   PRIMARY KEY (`id_cemac`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `cemac`
+-- DÃ©chargement des donnÃ©es de la table `cemac`
 --
 
 INSERT INTO `cemac` (`id_cemac`, `nom_cemac`) VALUES
-(21, 'CeMac1');
+(21, 'CeMac1'),
+(22, 'Cemac salon');
 
 -- --------------------------------------------------------
 
@@ -56,11 +57,11 @@ CREATE TABLE IF NOT EXISTS `conditions_utilisation` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `conditions_utilisation`
+-- DÃ©chargement des donnÃ©es de la table `conditions_utilisation`
 --
 
 INSERT INTO `conditions_utilisation` (`id_conditions_utilisation`, `contenu_conditions_utilisation`) VALUES
-(1, 'Conditions d\'utilisation à remplir par Domisep');
+(1, 'Conditions d\'utilisation Ã  remplir par Domisep');
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `contact`
+-- DÃ©chargement des donnÃ©es de la table `contact`
 --
 
 INSERT INTO `contact` (`id_contact`, `telephone_contact`, `email_contact`, `adresse_contact`) VALUES
@@ -101,23 +102,23 @@ CREATE TABLE IF NOT EXISTS `donnees_equipement` (
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `donnees_equipement`
+-- DÃ©chargement des donnÃ©es de la table `donnees_equipement`
 --
 
 INSERT INTO `donnees_equipement` (`id_donnees_equipement`, `temps`, `date_utilisation`, `valeur`, `id_equipement`) VALUES
 (1, '03:00:00', '2018-02-01', 40, 23),
-(2, '01:00:00', '2018-02-01', 50, 23),
+(2, '01:00:00', '2018-02-02', 50, 23),
 (3, '07:00:00', '2018-02-03', 50, 23),
 (4, '17:00:00', '2018-02-01', 26, 22),
-(5, '10:00:00', '2018-02-01', 24, 22),
+(5, '10:00:00', '2018-02-02', 24, 22),
 (6, '14:00:00', '2018-02-03', 21, 22),
-(17, '08:00:00', '2018-02-05', 1, 24),
-(16, '06:00:00', '2018-02-02', 1, 24),
-(15, '07:00:00', '2018-02-01', 1, 24),
-(11, '06:00:00', '2018-02-06', 48, 23),
-(12, '03:00:00', '2018-02-08', 43, 23),
-(13, '09:00:00', '2018-02-06', 24, 22),
-(14, '05:00:00', '2018-02-08', 20, 22);
+(17, '08:00:00', '2018-02-02', 1, 24),
+(16, '06:00:00', '2018-02-04', 1, 24),
+(15, '07:00:00', '2018-02-05', 1, 24),
+(11, '06:00:00', '2018-02-06', 1, 26),
+(12, '03:00:00', '2018-02-08', 43, 28),
+(13, '09:00:00', '2018-02-06', 24, 27),
+(14, '05:00:00', '2018-02-08', 20, 27);
 
 -- --------------------------------------------------------
 
@@ -134,16 +135,19 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `nom_equipement` varchar(255) NOT NULL,
   `valeur_cible` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_equipement`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `equipement`
+-- DÃ©chargement des donnÃ©es de la table `equipement`
 --
 
 INSERT INTO `equipement` (`id_equipement`, `etat`, `id_cemac`, `id_type_equipement`, `nom_equipement`, `valeur_cible`) VALUES
-(24, NULL, 21, 4, 'Lumières', NULL),
+(24, NULL, 21, 4, 'LumiÃ¨res', NULL),
 (23, NULL, 21, 2, 'Humidite', 2),
-(22, NULL, 21, 1, 'Temperature', 2);
+(22, NULL, 21, 1, 'Temperature', 2),
+(26, NULL, 22, 4, 'lumiÃ¨res 1', NULL),
+(27, NULL, 22, 1, 'tempÃ©rature 1', NULL),
+(28, NULL, 22, 2, 'humiditÃ© 1', NULL);
 
 -- --------------------------------------------------------
 
@@ -178,14 +182,14 @@ CREATE TABLE IF NOT EXISTS `info_utilisateur` (
 ) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `info_utilisateur`
+-- DÃ©chargement des donnÃ©es de la table `info_utilisateur`
 --
 
 INSERT INTO `info_utilisateur` (`id_info_utilisateur`, `prenom`, `nom`, `email`, `telephone`, `statut_utilisateur`, `id_utilisateur`, `token`) VALUES
 (37, 'Pierre ', 'Dupont', NULL, NULL, 'client', 107, '$2y$10$AubhFedS6lgUdhtxe5v3L.QW1ZXjHzz6VmeJ6Gt0OHhEqC23SkA92'),
 (33, 'Nathan', 'Bienfait', 'nathan.bienfait@isep.fr', '0745342857', 'client', 103, '$2y$10$eJL90ItXZ8zdOfkVf4UX0ux9eymFd.ewH2pb.Ftd3DS4Ql4olruyi'),
 (35, 'Elodie', 'Boye', 'elodie.boye@isep.fr', '0682522974', 'client', 105, '$2y$10$btQURi95KtuHqZh6vkKffeNl9U2Li5pz5HOQywc1vLsNseV6VYRzm'),
-(31, 'Rémi', 'Biolley ', 'remi.boilley@isep.fr', '0628061438', 'client', 101, '$2y$10$WbkCWdknrH/aLIaq7qwase8VU.nTxV.f7w3oM3fyBb.P.1cxC0WOq'),
+(31, 'RÃ©mi', 'Biolley ', 'remi.boilley@isep.fr', '0628061438', 'client', 101, '$2y$10$WbkCWdknrH/aLIaq7qwase8VU.nTxV.f7w3oM3fyBb.P.1cxC0WOq'),
 (32, 'Louis ', 'Ecuvillon', 'louis.ecuvillon@isep.fr', '0678675645', 'client', 102, '$2y$10$dQtKRPA//PnnjvZXad2JsOAXbZSv.BIWSlMem7q/HNG2STMxTQdgK'),
 (30, 'Maya', 'Bachir', 'maya.bachir@isep.fr', '0684290190', 'client', 100, '$2y$10$fofZltO2ed3xChfq1KZajOf8thk0muwb9ujxHFxL/Py6/6YtRF98O'),
 (34, 'Alexis', 'Delorme', 'alexis.delorme@isep.fr', '0687956745', 'client', 104, '$2y$10$v4qZcwc9J4Q1F.D1Hch6fOANn82W2GsbpJO8/3xpGmiWGNhWxagcK');
@@ -205,14 +209,15 @@ CREATE TABLE IF NOT EXISTS `logement` (
   `code_postal` int(11) NOT NULL,
   `pays` varchar(255) NOT NULL,
   PRIMARY KEY (`id_logement`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `logement`
+-- DÃ©chargement des donnÃ©es de la table `logement`
 --
 
 INSERT INTO `logement` (`id_logement`, `nom_logement`, `rue`, `ville`, `code_postal`, `pays`) VALUES
-(21, 'Appart Paris', 'Victor Hugo', 'Issy-les-Moulinneaux', 92130, 'France');
+(21, 'Appart Paris', 'Victor Hugo', 'Issy-les-Moulinneaux', 92130, 'France'),
+(22, 'Maison principale', '1 rue des Anges', 'Paris', 75016, 'France');
 
 -- --------------------------------------------------------
 
@@ -226,14 +231,15 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `nom_piece` varchar(255) NOT NULL,
   `id_logement` int(11) NOT NULL,
   PRIMARY KEY (`id_piece`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `piece`
+-- DÃ©chargement des donnÃ©es de la table `piece`
 --
 
 INSERT INTO `piece` (`id_piece`, `nom_piece`, `id_logement`) VALUES
-(21, 'Chambre ', 21);
+(21, 'Chambre ', 21),
+(22, 'Salon', 22);
 
 -- --------------------------------------------------------
 
@@ -249,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `presentation` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `presentation`
+-- DÃ©chargement des donnÃ©es de la table `presentation`
 --
 
 INSERT INTO `presentation` (`id_presentation`, `contenu_presentation`) VALUES
@@ -273,14 +279,14 @@ CREATE TABLE IF NOT EXISTS `qr` (
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `qr`
+-- DÃ©chargement des donnÃ©es de la table `qr`
 --
 
 INSERT INTO `qr` (`id_qr`, `contenu_q`, `contenu_r`, `date_q`, `date_r`, `id_type_qr`) VALUES
-(22, 'La puce sous un de mes équipements est rouge, qu\'est-ce que cela veut dire?', 'Cela signifie que l\'équipement en question n\'envoie plus de données à son cemac. Pensez à vérifier qu\'aucun objet extérieur ne vient perturber la connexion entre le capteur et son cemac attitré. Sinon, nous vous invitons à contacter un opérateur.', '2018-01-27 00:00:00', '2018-01-27 00:00:00', 1),
-(25, 'Oui, je l\'ai fait deux fois, rien n\'a changé. Que puis-je faire pour faire fonctionner mon équipement de nouveau?', ' - - Un membre du support va vous répondre dans les plus bref délais - - ', '2018-01-28 00:46:25', '2018-01-28 00:46:25', 2),
-(24, 'Bonjour\r\nLa connexion entre mon équipement et le cemac semble ne plus fonctionner.', 'Bien, avant tout, je vais vous posez quelques questions classique afin de mieux cerner le problème. \r\n\r\nTout d\'abord, avez vous essayé d\'éteindre et rallumer le système?', '2018-01-28 00:43:42', '2018-01-28 00:43:42', 2),
-(23, 'Le nom que je donne à mes équipement est-il important?', 'Vous pouvez nommer vos équipements comme bon vous semble. cela n\'a aucune influence sur le fonctionnement de votre système. Les noms vous permettent juste de mieux vous y retrouver.', '2018-01-27 00:00:00', '2018-01-27 00:00:00', 1);
+(22, 'La puce sous un de mes Ã©quipements est rouge, qu\'est-ce que cela veut dire?', 'Cela signifie que l\'Ã©quipement en question n\'envoie plus de donnÃ©es Ã  son cemac. Pensez Ã  vÃ©rifier qu\'aucun objet extÃ©rieur ne vient perturber la connexion entre le capteur et son cemac attitrÃ©. Sinon, nous vous invitons Ã  contacter un opÃ©rateur.', '2018-01-27 00:00:00', '2018-01-27 00:00:00', 1),
+(25, 'Oui, je l\'ai fait deux fois, rien n\'a changÃ©. Que puis-je faire pour faire fonctionner mon Ã©quipement de nouveau?', ' - - Un membre du support va vous rÃ©pondre dans les plus bref dÃ©lais - - ', '2018-01-28 00:46:25', '2018-01-28 00:46:25', 2),
+(24, 'Bonjour\r\nLa connexion entre mon Ã©quipement et le cemac semble ne plus fonctionner.', 'Bien, avant tout, je vais vous posez quelques questions classique afin de mieux cerner le problÃ¨me. \r\n\r\nTout d\'abord, avez vous essayÃ© d\'Ã©teindre et rallumer le systÃ¨me?', '2018-01-28 00:43:42', '2018-01-28 00:43:42', 2),
+(23, 'Le nom que je donne Ã  mes Ã©quipement est-il important?', 'Vous pouvez nommer vos Ã©quipements comme bon vous semble. cela n\'a aucune influence sur le fonctionnement de votre systÃ¨me. Les noms vous permettent juste de mieux vous y retrouver.', '2018-01-27 00:00:00', '2018-01-27 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -308,14 +314,15 @@ CREATE TABLE IF NOT EXISTS `relation_logement_utilisateur` (
   `id_logement` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id_relation_logement_utilisateur`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `relation_logement_utilisateur`
+-- DÃ©chargement des donnÃ©es de la table `relation_logement_utilisateur`
 --
 
 INSERT INTO `relation_logement_utilisateur` (`id_relation_logement_utilisateur`, `id_logement`, `id_utilisateur`) VALUES
-(12, 21, 105);
+(12, 21, 105),
+(13, 22, 100);
 
 -- --------------------------------------------------------
 
@@ -329,14 +336,15 @@ CREATE TABLE IF NOT EXISTS `relation_piece_cemac` (
   `id_piece` int(11) NOT NULL,
   `id_cemac` int(11) NOT NULL,
   PRIMARY KEY (`id_relation_piece_cemac`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `relation_piece_cemac`
+-- DÃ©chargement des donnÃ©es de la table `relation_piece_cemac`
 --
 
 INSERT INTO `relation_piece_cemac` (`id_relation_piece_cemac`, `id_piece`, `id_cemac`) VALUES
-(18, 21, 21);
+(18, 21, 21),
+(19, 22, 22);
 
 -- --------------------------------------------------------
 
@@ -353,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `relation_utilisateur_qr` (
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `relation_utilisateur_qr`
+-- DÃ©chargement des donnÃ©es de la table `relation_utilisateur_qr`
 --
 
 INSERT INTO `relation_utilisateur_qr` (`id_relation_utilisateur_qr`, `id_qr`, `id_utilisateur`) VALUES
@@ -380,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `slogan` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `slogan`
+-- DÃ©chargement des donnÃ©es de la table `slogan`
 --
 
 INSERT INTO `slogan` (`id_slogan`, `contenu_slogan`) VALUES
@@ -400,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `type_donnees` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `type_donnees`
+-- DÃ©chargement des donnÃ©es de la table `type_donnees`
 --
 
 INSERT INTO `type_donnees` (`id_type_donnees`, `nom_type_donnees`) VALUES
@@ -427,14 +435,14 @@ CREATE TABLE IF NOT EXISTS `type_equipement` (
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `type_equipement`
+-- DÃ©chargement des donnÃ©es de la table `type_equipement`
 --
 
 INSERT INTO `type_equipement` (`id_type_equipement`, `nom_type_equipement`, `image_fond`, `logo`, `unite`, `id_type_donnees`, `message_etat_haut`, `message_etat_bas`) VALUES
-(1, 'temperature', 'images/Thermometre2.jpg', 'images/Thermometre.png', '°C', 2, NULL, NULL),
+(1, 'temperature', 'images/Thermometre2.jpg', 'images/Thermometre.png', 'Â°C', 2, NULL, NULL),
 (2, 'humidite', 'images/Humidite.png', 'images/Goutte.png', '%', 2, NULL, NULL),
-(3, 'ouverture', 'images/Paysage.png', 'images/ouvertureFenetre.png', '', 1, 'ouvert', 'fermé'),
-(4, 'lumieres', 'images/lumiere.jpg', 'images/Ampoule.png', '', 1, 'Allumé', 'Eteint');
+(3, 'ouverture', 'images/Paysage.png', 'images/ouvertureFenetre.png', '', 1, 'ouvert', 'fermÃ©'),
+(4, 'lumieres', 'images/lumiere.jpg', 'images/Ampoule.png', '', 1, 'AllumÃ©', 'Eteint');
 
 -- --------------------------------------------------------
 
@@ -450,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `type_utilisateur` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `type_utilisateur`
+-- DÃ©chargement des donnÃ©es de la table `type_utilisateur`
 --
 
 INSERT INTO `type_utilisateur` (`id_type_utilisateur`, `nom_type_utilisateur`) VALUES
@@ -474,11 +482,11 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 ) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- DÃ©chargement des donnÃ©es de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `login`, `password`, `id_type_utilisateur`) VALUES
-(101, 'Rémi', '$2y$10$HC3VcpyGA4pPU5EEc.FnsuuLvXcqknLsG7j4O61wDGxaqL0S.7GMC', 3),
+(101, 'RÃ©mi', '$2y$10$HC3VcpyGA4pPU5EEc.FnsuuLvXcqknLsG7j4O61wDGxaqL0S.7GMC', 3),
 (104, 'Alexis', '$2y$10$f/8VUcHwEO2fDGs0717a1e6f8hUSLZCUEJuIDqrZRBDV/rC50QfrS', 3),
 (105, 'Elodie', '$2y$10$bRkNVlh8wwkt9zGdY.HUkOI/B2V7bH9t777nT05Cqe5DScJdRDU5m', 3),
 (102, 'Louis', '$2y$10$xvmzwdjKpGAzC.13V3i4BuwnRchUS1wYxfTV9RO6bN9cxfMJ2rzTe', 3),
